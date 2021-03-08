@@ -8,6 +8,7 @@ import fi.tuni.tiko.eventSystem.TouchListener;
 
 /**
  * won't be in the final game
+ *test
  */
 public class TestGameObject implements GameObject, TouchListener {
 

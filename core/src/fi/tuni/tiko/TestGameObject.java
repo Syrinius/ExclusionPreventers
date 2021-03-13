@@ -23,7 +23,7 @@ public class TestGameObject implements GameObject, TouchListener {
 
     @Override
     public void onTick(float deltaTime) {
-        HudElementManager.SetDebugText("DeltaTime: " + deltaTime);
+        //HudElementManager.SetDebugText("DeltaTime: " + deltaTime);
     }
 
     @Override
@@ -48,6 +48,6 @@ public class TestGameObject implements GameObject, TouchListener {
 
     @Override
     public void onTouchDragged(ScreenPosition position, int pointer) {
-        HudElementManager.SetDebugText("type: " + MapManager.getSelectedMap().getTileType(position.ToMapPosition()));
+        //HudElementManager.SetDebugText("type: " + MapManager.getSelectedMap().getTileType(position.ToMapPosition()));
     }
 }

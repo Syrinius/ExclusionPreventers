@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.ArrayList;
 import java.util.List;
 
-import fi.tuni.tiko.HudElement;
+import fi.tuni.tiko.hud.HudElement;
 import fi.tuni.tiko.ImprovedSprite;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.coordinateSystem.ScreenPosition;
@@ -37,6 +37,11 @@ public class Joystick implements HudElement, TouchListener {
     public void render(SpriteBatch batch) {
         background.draw(batch);
         knob.draw(batch);
+    }
+
+    @Override
+    public void dispose() {
+        Events.RemoveListener(this);
     }
 
     @Override

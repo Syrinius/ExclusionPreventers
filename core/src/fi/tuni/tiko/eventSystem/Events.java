@@ -18,13 +18,18 @@ public class Events implements InputProcessor {
     }
 
     private static final ArrayList<TouchListener> touchListeners = new ArrayList<>();
+    private static final ArrayList<TouchListener> delayedAdd = new ArrayList<>();
+    private static final ArrayList<TouchListener> delayedRemove = new ArrayList<>();
+    private static boolean locked;
 
     public static void AddListener(TouchListener listener){
-        touchListeners.add(listener);
+        if (locked) delayedAdd.add(listener);
+        else touchListeners.add(listener);
     }
 
     public static void RemoveListener(TouchListener listener){
-        touchListeners.remove(listener);
+        if (locked) delayedRemove.add(listener);
+        else touchListeners.remove(listener);
     }
 
     @Override
@@ -44,24 +49,54 @@ public class Events implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        locked = true;
         for (TouchListener touchListener : touchListeners) {
             touchListener.onTouchDown(new ScreenPosition(screenX, screenY), pointer);
+        }
+        locked = false;
+        if (!delayedAdd.isEmpty()) {
+            touchListeners.addAll(delayedAdd);
+            delayedAdd.clear();
+        }
+        if (!delayedRemove.isEmpty()) {
+            touchListeners.removeAll(delayedRemove);
+            delayedRemove.clear();
         }
         return false;
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        locked = true;
         for (TouchListener touchListener : touchListeners) {
             touchListener.onTouchUp(new ScreenPosition(screenX, screenY), pointer);
+        }
+        locked = false;
+        if (!delayedAdd.isEmpty()) {
+            touchListeners.addAll(delayedAdd);
+            delayedAdd.clear();
+        }
+        if (!delayedRemove.isEmpty()) {
+            touchListeners.removeAll(delayedRemove);
+            delayedRemove.clear();
         }
         return false;
     }
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
+        locked = true;
         for (TouchListener touchListener : touchListeners) {
             touchListener.onTouchDragged(new ScreenPosition(screenX, screenY), pointer);
+        }
+        locked = false;
+        if (!delayedAdd.isEmpty()) {
+            touchListeners.addAll(delayedAdd);
+            delayedAdd.clear();
+        }
+        if (!delayedRemove.isEmpty()) {
+            touchListeners.removeAll(delayedRemove);
+            delayedRemove.clear();
         }
         return false;
     }

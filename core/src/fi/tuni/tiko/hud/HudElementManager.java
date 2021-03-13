@@ -1,7 +1,6 @@
-package fi.tuni.tiko;
+package fi.tuni.tiko.hud;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
@@ -10,30 +9,40 @@ import fi.tuni.tiko.coordinateSystem.MenuPosition;
 
 public class HudElementManager {
 
-    private static final ArrayList<HudElement> hudElements = new ArrayList<>();
-    private static final ArrayList<HudElement> delayedAdd = new ArrayList<>();
-    private static final ArrayList<HudElement> delayedRemove = new ArrayList<>();
-    private static boolean locked;
+    private final ArrayList<HudElement> hudElements = new ArrayList<>();
+    private final ArrayList<HudElement> delayedAdd = new ArrayList<>();
+    private final ArrayList<HudElement> delayedRemove = new ArrayList<>();
+    private boolean locked;
 
-    static BitmapFont font;
-    static SpriteBatch batch;
-    static OrthographicCamera camera;
-    static String debugText = "";
 
-    //static Joystick joystick;
+    SpriteBatch batch;
+    OrthographicCamera camera;
 
-    public static void AddHudElement(HudElement hudElement){
+
+    //Joystick joystick;
+
+    public void Dispose() {
+        if (locked) return;
+        locked = true;
+        for (HudElement hudElement : hudElements) {
+            hudElement.dispose();
+        }
+        hudElements.clear();
+        delayedAdd.clear();
+        delayedRemove.clear();
+    }
+
+    public void AddHudElement(HudElement hudElement){
         if (!locked) hudElements.add(hudElement);
         else delayedAdd.add(hudElement);
     }
 
-    public static void RemoveHudElement(HudElement hudElement){
+    public void RemoveHudElement(HudElement hudElement){
         if (!locked) hudElements.remove(hudElement);
         else delayedRemove.add(hudElement);
     }
 
-    public static void Initialize(){
-        font = new BitmapFont();
+    public HudElementManager() {
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
         camera.setToOrtho(false, MenuPosition.WIDTH, MenuPosition.HEIGHT);
@@ -44,7 +53,7 @@ public class HudElementManager {
         //GameObjectManager.AddGameObject(new TestGameObject());
     }
 
-    public static void Render(){
+    public void Render(){
         camera.update();
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
@@ -62,11 +71,8 @@ public class HudElementManager {
             hudElements.removeAll(delayedRemove);
             delayedRemove.clear();
         }
-        font.draw(batch, debugText, 10, 190);
+
         batch.end();
     }
 
-    public static void SetDebugText(String text){
-        debugText = text;
-    }
 }

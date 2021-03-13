@@ -30,4 +30,20 @@ public class ImprovedSprite extends Sprite {
     public float getY() {
         return super.getY() + getOriginY();
     }
+
+    public float getActualWidth() {
+        return getWidth() * getScaleX();
+    }
+
+    public float getActualHeight() {
+        return getHeight() * getScaleY();
+    }
+
+    public float getActualOriginX() {
+        return getOriginX() * getScaleX();
+    }
+
+    public float getActualOriginY() {
+        return getOriginY() * getScaleY();
+    }
 }

@@ -2,6 +2,14 @@ package fi.tuni.tiko;
 
 import java.util.ArrayList;
 
+import fi.tuni.tiko.coordinateSystem.MapPosition;
+import fi.tuni.tiko.eventSystem.Events;
+import fi.tuni.tiko.sceneSystem.GameScene;
+import fi.tuni.tiko.sceneSystem.MainMenu;
+import fi.tuni.tiko.sceneSystem.MapLoadingScreen;
+import fi.tuni.tiko.sceneSystem.MapSelectionMenu;
+import fi.tuni.tiko.sceneSystem.SceneManager;
+
 public class GameLogic {
 
     /**
@@ -10,7 +18,7 @@ public class GameLogic {
      * and will trigger all the events needed for the settings screen
      */
     public enum GameState {
-        SPLASH_SCREEN, MAIN_MENU, SETTINGS_SCREEN, BUILD_PHASE, WAVE_PHASE, END_SCREEN
+        SPLASH_SCREEN, MAIN_MENU, MAP_SELECTION_SCREEN, MAP_CONFIRM_SCREEN, SETTINGS_SCREEN, MAP_LOADING_SCREEN, BUILD_PHASE, WAVE_PHASE, END_SCREEN
     }
 
     private static final ArrayList<GameLogicListener> gameLogicListeners = new ArrayList<>();
@@ -35,6 +43,31 @@ public class GameLogic {
         if (!toAdd.isEmpty()) {
             gameLogicListeners.addAll(toAdd);
             toAdd.clear();
+        }
+
+        switch (state){
+            case SPLASH_SCREEN:
+                Events.Initialize();
+                MapPosition.Initialize();
+                SetState(GameState.MAIN_MENU);
+                break;
+            case MAIN_MENU:
+                SceneManager.SetActiveScene(new MainMenu());
+                break;
+            case MAP_SELECTION_SCREEN:
+                SceneManager.SetActiveScene(new MapSelectionMenu());
+                break;
+            case MAP_LOADING_SCREEN:
+                SceneManager.SetActiveScene(new MapLoadingScreen());
+                MapManager.getSelectedMap().LoadMap(new Action() {
+                    @Override
+                    public void run() {
+                        SceneManager.SetActiveScene(new GameScene());
+                    }
+                });
+                break;
+            case BUILD_PHASE:
+                break;
         }
     }
 

@@ -9,43 +9,40 @@ import fi.tuni.tiko.coordinateSystem.MapPosition;
 
 public class GameObjectManager extends Timer.Task {
 
-    private static final ArrayList<GameObject> gameObjects = new ArrayList<>();
-    private static final ArrayList<GameObject> delayedAdd = new ArrayList<>();
-    private static final ArrayList<GameObject> delayedRemove = new ArrayList<>();
-    private static boolean locked;
-    private static long lastTick;
-    private static SpriteBatch batch;
+    private final ArrayList<GameObject> gameObjects = new ArrayList<>();
+    private final ArrayList<GameObject> delayedAdd = new ArrayList<>();
+    private final ArrayList<GameObject> delayedRemove = new ArrayList<>();
+    private boolean locked;
+    private long lastTick;
+    private SpriteBatch batch;
 
-    static void AddGameObject(GameObject object){
+    public void addGameObject(GameObject object){
         if(locked) delayedAdd.add(object);
         else gameObjects.add(object);
     }
 
-    static void RemoveGameObject(GameObject object){
+    public void removeGameObject(GameObject object){
         if(locked) delayedRemove.add(object);
         else gameObjects.remove(object);
     }
 
-    private static GameObjectManager singleton;
-
-    public static void Initialize() {
-        if(singleton != null) return;
-        singleton = new GameObjectManager();
-        Timer.schedule(singleton, 0, 0.04f);
+    public GameObjectManager() {
+        Timer.schedule(this, 0, 0.04f);
         lastTick = System.nanoTime();
         batch = new SpriteBatch();
     }
 
-    public static void Dispose() {
-        if(singleton == null) return;
-        if (!locked) gameObjects.clear();
+    public void dispose() {
+        if (locked) return;
+        locked = true;
+        gameObjects.clear();
         delayedAdd.clear();
         delayedRemove.clear();
-        singleton.cancel();
+        cancel();
         batch.dispose();
     }
 
-    public static void Render() {
+    public void render() {
         batch.setProjectionMatrix(MapPosition.camera.combined);
         batch.begin();
         locked = true;

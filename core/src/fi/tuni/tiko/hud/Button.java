@@ -9,19 +9,20 @@ import fi.tuni.tiko.coordinateSystem.ScreenPosition;
 import fi.tuni.tiko.eventSystem.Events;
 import fi.tuni.tiko.eventSystem.TouchListener;
 
-public class Button extends ImprovedHudSprite implements HudElement, TouchListener {
+public class Button extends HudSprite implements HudElement, TouchListener {
 
-    private Action toExecute;
+    private final Action toExecute;
+    private final Events.Priority priority;
 
     public Button(Texture texture, MenuPosition position, float size, Action toExecute) {
-        super(texture, position, size);
-        this.toExecute = toExecute;
-        Events.AddListener(this);
+        this(texture, position, size, toExecute, Events.Priority.MEDIUM);
     }
 
-    @Override
-    public void render(SpriteBatch batch) {
-        draw(batch);
+    public Button(Texture texture, MenuPosition position, float size, Action toExecute, Events.Priority priority) {
+        super(texture, position, size);
+        this.priority = priority;
+        this.toExecute = toExecute;
+        Events.AddListener(this);
     }
 
     @Override
@@ -30,17 +31,26 @@ public class Button extends ImprovedHudSprite implements HudElement, TouchListen
     }
 
     @Override
-    public void onTouchDown(ScreenPosition position, int pointer) {
-        if (IsInside(position.ToMenuPosition())) toExecute.run();
+    public boolean onTouchDown(ScreenPosition position, int pointer) {
+        if (IsInside(position.ToMenuPosition())) {
+            toExecute.run();
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void onTouchUp(ScreenPosition position, int pointer) {
-
+    public boolean onTouchUp(ScreenPosition position, int pointer) {
+        return false;
     }
 
     @Override
-    public void onTouchDragged(ScreenPosition position, int pointer) {
+    public boolean onTouchDragged(ScreenPosition position, int pointer) {
+        return false;
+    }
 
+    @Override
+    public Events.Priority getTouchListenerPriority() {
+        return priority;
     }
 }

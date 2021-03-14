@@ -8,7 +8,11 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.Timer;
 
+import java.util.ArrayList;
+
 import fi.tuni.tiko.coordinateSystem.MapPosition;
+import fi.tuni.tiko.hud.HudElementManager;
+import fi.tuni.tiko.sceneSystem.GameScene;
 
 public class Map extends Timer.Task {
 
@@ -17,12 +21,26 @@ public class Map extends Timer.Task {
     TiledMapRenderer tiledMapRenderer;
     boolean initialized;
     Action toExecute;
+    ArrayList<TowerLocation> towerLocations;
+    int width;
+    int height;
+
+    private GameObjectManager gameObjectManager;
+    private GameScene scene;
+
+    public GameObjectManager getGameObjectManager() {
+        return gameObjectManager;
+    }
+    public HudElementManager getHudElementManager() {
+        return scene.hudElementManager;
+    }
 
     public Map(String path) {
         this.path = path;
     }
 
-    public void LoadMap(Action mapLoaded) {
+    public void LoadMap(GameScene scene, Action mapLoaded) {
+        this.scene = scene;
         toExecute = mapLoaded;
         Timer.schedule(this, 0.02f, 0, 0);
     }
@@ -31,11 +49,16 @@ public class Map extends Timer.Task {
         if (!initialized) return;
         tiledMapRenderer.setView(MapPosition.camera);
         tiledMapRenderer.render();
+        gameObjectManager.render();
     }
 
     public int getTileType(MapPosition at) {
+        return getTileType((int)at.x, (int)at.y);
+    }
+
+    private int getTileType(int x, int y) {
         if (!initialized) return -1;
-        TiledMapTileLayer.Cell cell = ((TiledMapTileLayer)tiledMap.getLayers().get(0)).getCell((int)at.x, (int)at.y);
+        TiledMapTileLayer.Cell cell = ((TiledMapTileLayer)tiledMap.getLayers().get(0)).getCell(x, y);
         if (cell == null || cell.getTile() == null) return -1;
         MapProperties props = cell.getTile().getProperties();
         if (!props.containsKey("type")) return -1;
@@ -47,6 +70,18 @@ public class Map extends Timer.Task {
         tiledMap = new TmxMapLoader().load(path);
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, MapPosition.SCALE);
         initialized = true;
+        gameObjectManager = new GameObjectManager();
+        towerLocations = new ArrayList<>();
+        height = ((TiledMapTileLayer)tiledMap.getLayers().get(0)).getHeight();
+        width = ((TiledMapTileLayer)tiledMap.getLayers().get(0)).getWidth();
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                if (getTileType(j, i) == 1){
+                    towerLocations.add(new TowerLocation(new MapPosition(j, i), this));
+                }
+            }
+        }
+
         toExecute.run();
     }
 }

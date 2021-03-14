@@ -4,12 +4,25 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import fi.tuni.tiko.coordinateSystem.ScreenPosition;
 
 public class Events implements InputProcessor {
 
     private static Events singleton;
+    private static Comparator<TouchListener> comparator = new Comparator<TouchListener>() {
+        @Override
+        public int compare(TouchListener a, TouchListener b) {
+            int aValue = a.getTouchListenerPriority().ordinal();
+            int bValue = b.getTouchListenerPriority().ordinal();
+            //noinspection UseCompareMethod
+            return aValue == bValue? 0 : aValue < bValue? 1 : -1;
+        }
+    };
+
+    public enum Priority { LOW, MEDIUM, HIGH }
 
     public static void Initialize() {
         if (singleton != null) return;
@@ -24,7 +37,10 @@ public class Events implements InputProcessor {
 
     public static void AddListener(TouchListener listener){
         if (locked) delayedAdd.add(listener);
-        else touchListeners.add(listener);
+        else {
+            touchListeners.add(listener);
+            Collections.sort(touchListeners, comparator);
+        }
     }
 
     public static void RemoveListener(TouchListener listener){
@@ -51,17 +67,10 @@ public class Events implements InputProcessor {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         locked = true;
         for (TouchListener touchListener : touchListeners) {
-            touchListener.onTouchDown(new ScreenPosition(screenX, screenY), pointer);
+            if (touchListener.onTouchDown(new ScreenPosition(screenX, screenY), pointer)) break;
         }
         locked = false;
-        if (!delayedAdd.isEmpty()) {
-            touchListeners.addAll(delayedAdd);
-            delayedAdd.clear();
-        }
-        if (!delayedRemove.isEmpty()) {
-            touchListeners.removeAll(delayedRemove);
-            delayedRemove.clear();
-        }
+        updateList();
         return false;
     }
 
@@ -69,17 +78,10 @@ public class Events implements InputProcessor {
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         locked = true;
         for (TouchListener touchListener : touchListeners) {
-            touchListener.onTouchUp(new ScreenPosition(screenX, screenY), pointer);
+            if (touchListener.onTouchUp(new ScreenPosition(screenX, screenY), pointer)) break;
         }
         locked = false;
-        if (!delayedAdd.isEmpty()) {
-            touchListeners.addAll(delayedAdd);
-            delayedAdd.clear();
-        }
-        if (!delayedRemove.isEmpty()) {
-            touchListeners.removeAll(delayedRemove);
-            delayedRemove.clear();
-        }
+        updateList();
         return false;
     }
 
@@ -87,18 +89,23 @@ public class Events implements InputProcessor {
     public boolean touchDragged(int screenX, int screenY, int pointer) {
         locked = true;
         for (TouchListener touchListener : touchListeners) {
-            touchListener.onTouchDragged(new ScreenPosition(screenX, screenY), pointer);
+            if (touchListener.onTouchDragged(new ScreenPosition(screenX, screenY), pointer)) break;
         }
         locked = false;
+        updateList();
+        return false;
+    }
+
+    private void updateList() {
         if (!delayedAdd.isEmpty()) {
             touchListeners.addAll(delayedAdd);
+            Collections.sort(touchListeners, comparator);
             delayedAdd.clear();
         }
         if (!delayedRemove.isEmpty()) {
             touchListeners.removeAll(delayedRemove);
             delayedRemove.clear();
         }
-        return false;
     }
 
     @Override

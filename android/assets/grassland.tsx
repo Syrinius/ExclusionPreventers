@@ -26,16 +26,6 @@
    <property name="type" type="int" value="0"/>
   </properties>
  </tile>
- <tile id="6">
-  <properties>
-   <property name="type" type="int" value="1"/>
-  </properties>
- </tile>
- <tile id="7">
-  <properties>
-   <property name="type" type="int" value="1"/>
-  </properties>
- </tile>
  <tile id="8">
   <properties>
    <property name="type" type="int" value="0"/>
@@ -61,16 +51,6 @@
    <property name="type" type="int" value="0"/>
   </properties>
  </tile>
- <tile id="14">
-  <properties>
-   <property name="type" type="int" value="1"/>
-  </properties>
- </tile>
- <tile id="15">
-  <properties>
-   <property name="type" type="int" value="1"/>
-  </properties>
- </tile>
  <tile id="16">
   <properties>
    <property name="type" type="int" value="0"/>
@@ -91,57 +71,7 @@
    <property name="type" type="int" value="0"/>
   </properties>
  </tile>
- <tile id="22">
-  <properties>
-   <property name="type" type="int" value="1"/>
-  </properties>
- </tile>
- <tile id="23">
-  <properties>
-   <property name="type" type="int" value="1"/>
-  </properties>
- </tile>
- <tile id="30">
-  <properties>
-   <property name="type" type="int" value="1"/>
-  </properties>
- </tile>
- <tile id="31">
-  <properties>
-   <property name="type" type="int" value="1"/>
-  </properties>
- </tile>
- <tile id="38">
-  <properties>
-   <property name="type" type="int" value="1"/>
-  </properties>
- </tile>
- <tile id="39">
-  <properties>
-   <property name="type" type="int" value="1"/>
-  </properties>
- </tile>
- <tile id="46">
-  <properties>
-   <property name="type" type="int" value="1"/>
-  </properties>
- </tile>
- <tile id="47">
-  <properties>
-   <property name="type" type="int" value="1"/>
-  </properties>
- </tile>
- <tile id="54">
-  <properties>
-   <property name="type" type="int" value="1"/>
-  </properties>
- </tile>
- <tile id="55">
-  <properties>
-   <property name="type" type="int" value="1"/>
-  </properties>
- </tile>
- <tile id="62">
+ <tile id="26">
   <properties>
    <property name="type" type="int" value="1"/>
   </properties>

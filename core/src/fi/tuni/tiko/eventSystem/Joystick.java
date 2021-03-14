@@ -45,24 +45,32 @@ public class Joystick implements HudElement, TouchListener {
     }
 
     @Override
-    public void onTouchDown(ScreenPosition position, int pointer) {
-        onTouchDragged(position, pointer);
+    public boolean onTouchDown(ScreenPosition position, int pointer) {
+        return onTouchDragged(position, pointer);
     }
 
     @Override
-    public void onTouchUp(ScreenPosition position, int pointer) {
+    public boolean onTouchUp(ScreenPosition position, int pointer) {
         knob.setPosition(background.getX(), background.getY());
+        return false;
     }
 
     @Override
-    public void onTouchDragged(ScreenPosition screenPosition, int pointer) {
+    public boolean onTouchDragged(ScreenPosition screenPosition, int pointer) {
         MenuPosition point = screenPosition.ToMenuPosition();
         if (point.dst2(position) <= 25*25) {
             knob.setPosition(point.x, point.y);
             MenuPosition toReturn = new MenuPosition(point.x - position.x, point.y - position.y);
             for (JoystickListener listener : joystickListeners) {
                 listener.joystickMoved(toReturn);
+                return true;
             }
         }
+        return false;
+    }
+
+    @Override
+    public Events.Priority getTouchListenerPriority() {
+        return Events.Priority.MEDIUM;
     }
 }

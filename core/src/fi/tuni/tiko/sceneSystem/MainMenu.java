@@ -4,7 +4,9 @@ import com.badlogic.gdx.graphics.Texture;
 
 import fi.tuni.tiko.Action;
 import fi.tuni.tiko.GameLogic;
+import fi.tuni.tiko.MainGame;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
+import fi.tuni.tiko.eventSystem.Events;
 import fi.tuni.tiko.hud.Button;
 import fi.tuni.tiko.sceneSystem.Scene;
 

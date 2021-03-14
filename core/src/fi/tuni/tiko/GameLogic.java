@@ -59,10 +59,11 @@ public class GameLogic {
                 break;
             case MAP_LOADING_SCREEN:
                 SceneManager.SetActiveScene(new MapLoadingScreen());
-                MapManager.getSelectedMap().LoadMap(new Action() {
+                final GameScene scene = new GameScene();
+                MapManager.getSelectedMap().LoadMap(scene, new Action() {
                     @Override
                     public void run() {
-                        SceneManager.SetActiveScene(new GameScene());
+                        SceneManager.SetActiveScene(scene);
                     }
                 });
                 break;

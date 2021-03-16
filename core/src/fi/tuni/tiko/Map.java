@@ -14,6 +14,14 @@ import fi.tuni.tiko.coordinateSystem.MapPosition;
 import fi.tuni.tiko.hud.HudElementManager;
 import fi.tuni.tiko.sceneSystem.GameScene;
 
+/**
+ * Handles all functionalities of maps
+ * All individual maps will be implementations of this class
+ * Includes methods to fetch properties from tiles in the map
+ * Fetches all initial information such as tower locations upon map load
+ * Extends timer to add a delay to map load so other code can perform actions before execution freezes during map load
+ *
+ */
 public class Map extends Timer.Task {
 
     String path;

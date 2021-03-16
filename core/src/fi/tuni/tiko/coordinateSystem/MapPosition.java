@@ -3,11 +3,17 @@ package fi.tuni.tiko.coordinateSystem;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * Coordinate system for  all elements that adhere to the map
+ * 1 unit = 1 tile
+ * Includes methods for converting between different coordinate systems
+ * Extends Vector2 so you can use all functions of vector2 without conversions
+ */
 public class MapPosition extends Vector2 {
 
     public static final float SCALE = 1/16f;
-    public static final float VIEWPORT_WIDTH = 40;
-    public static final float VIEWPORT_HEIGHT = 20;
+    public static final float VIEWPORT_WIDTH = 32;
+    public static final float VIEWPORT_HEIGHT = 16;
     public static final int SIZE_X = 60;
     public static final int SIZE_Y = 30;
     public static OrthographicCamera camera;

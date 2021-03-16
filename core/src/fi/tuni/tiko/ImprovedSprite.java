@@ -4,6 +4,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+/**
+ * Moves the position of the sprite to the center
+ * Adds and modifies methods to be able to do calculations based on the current position and current size of the sprite
+ * Extends Sprite to have basic functionalities of libGDX Sprite such as the texture
+ */
 public class ImprovedSprite extends Sprite {
 
     public ImprovedSprite(Texture texture) {

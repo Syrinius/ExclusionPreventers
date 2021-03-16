@@ -7,6 +7,10 @@ import java.util.ArrayList;
 
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 
+/**
+ * Dispatches Ontick and render events to GameObjects
+ * All GameObjects should subscribe to gameObjects list
+ */
 public class GameObjectManager extends Timer.Task {
 
     private final ArrayList<GameObject> gameObjects = new ArrayList<>();

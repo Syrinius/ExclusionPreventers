@@ -5,6 +5,11 @@ import fi.tuni.tiko.coordinateSystem.ScreenPosition;
 import fi.tuni.tiko.eventSystem.Events;
 import fi.tuni.tiko.eventSystem.TouchListener;
 
+/**
+ * Listable positions where towers can be built on the map
+ * OnTouch functionalities of towers
+ * Calls the implementation classes of specific towers for Ontick functionalities
+ */
 public class TowerLocation extends GameObjectSprite implements GameObject, TouchListener {
 
     Tower tower;

@@ -2,6 +2,11 @@ package fi.tuni.tiko;
 
 import com.badlogic.gdx.graphics.Texture;
 
+/**
+ * Ontouch functionalities are in TowerLocation class
+ * Implements the functionalities of a tower location with no tower in it:
+ * Visual cue for player to click on the location
+ */
 public class EmptyTower implements Tower {
 
     private static EmptyTower instance;

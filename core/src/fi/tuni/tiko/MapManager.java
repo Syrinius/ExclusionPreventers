@@ -2,6 +2,11 @@ package fi.tuni.tiko;
 
 import java.util.ArrayList;
 
+/**
+ * Includes a static list of all implemented maps
+ * Handles selection of maps
+ * Passes reference to selected maps
+ */
 public class MapManager {
 
     static ArrayList<Map> availableMaps = new ArrayList<>();

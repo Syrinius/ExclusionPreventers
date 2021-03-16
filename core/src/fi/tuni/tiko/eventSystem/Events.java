@@ -9,6 +9,12 @@ import java.util.Comparator;
 
 import fi.tuni.tiko.coordinateSystem.ScreenPosition;
 
+/**
+ * Dispatcher for Ontouch events
+ * All elements that need user input should subscribe to touchListeners
+ * Arranges the listeners in priority list so higher priority elements can consume touch events first
+ * Usually higher priority elements should be elements that are on top of everything else, such as in a popout element
+ */
 public class Events implements InputProcessor {
 
     private static Events singleton;

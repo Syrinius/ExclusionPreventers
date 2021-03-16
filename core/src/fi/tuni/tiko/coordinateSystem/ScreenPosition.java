@@ -1,5 +1,10 @@
 package fi.tuni.tiko.coordinateSystem;
 
+/**
+ * Coordinate system for elements that adhere to actual screen pixels, such as player input
+ * Not to be used for implemented elements, use the other two coordinate systems instead
+ * Includes methods for converting between different coordinate systems
+ */
 public class ScreenPosition {
     public static int WIDTH;
     public static int HEIGHT;

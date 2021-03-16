@@ -6,6 +6,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 
+/**
+ * Adds functionalities to ImprovedSprite that are specific to GameObjects
+ * Implements GameObject to add generic implementations for GameObject methods
+ */
 public abstract class GameObjectSprite extends ImprovedSprite implements GameObject {
 
     MapPosition position;

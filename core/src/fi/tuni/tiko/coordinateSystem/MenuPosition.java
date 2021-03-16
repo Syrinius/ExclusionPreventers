@@ -2,6 +2,11 @@ package fi.tuni.tiko.coordinateSystem;
 
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * Coordinate system for all hud and menu elements
+ * Units arbitrarily chosen to be used for all menus
+ * Includes methods for converting between different coordinate systems
+ */
 public class MenuPosition extends Vector2 {
     public static final float WIDTH = 400;
     public static final float HEIGHT = 200;

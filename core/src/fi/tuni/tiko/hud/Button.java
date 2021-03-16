@@ -1,7 +1,6 @@
 package fi.tuni.tiko.hud;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import fi.tuni.tiko.Action;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;

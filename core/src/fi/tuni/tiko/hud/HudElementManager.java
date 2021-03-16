@@ -7,6 +7,10 @@ import java.util.ArrayList;
 
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
 
+/**
+ * Dispatches render events to HudElements
+ * All HudElements should subscribe to hudElements list
+ */
 public class HudElementManager {
 
     private final ArrayList<HudElement> hudElements = new ArrayList<>();

@@ -10,6 +10,9 @@ import fi.tuni.tiko.eventSystem.Events;
 import fi.tuni.tiko.hud.Button;
 import fi.tuni.tiko.sceneSystem.Scene;
 
+/**
+ * Specific implementation of the main menu screen and all the elements it contains
+ */
 public class MainMenu extends Scene {
 
     Button playButton;

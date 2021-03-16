@@ -10,10 +10,15 @@ import fi.tuni.tiko.sceneSystem.MapLoadingScreen;
 import fi.tuni.tiko.sceneSystem.MapSelectionMenu;
 import fi.tuni.tiko.sceneSystem.SceneManager;
 
+/**
+ * Class for handling changes of game state
+ * Dispatcher of StateChanged events to classes that need to listen to that
+ * All elements that need to listen to game state changes should subscribe to gameLogicListeners list
+ */
 public class GameLogic {
 
     /**
-     * enum to trigger correct events based on what state the game is currently in
+     * Enum to trigger correct events based on what state the game is currently in
      * for instance clicking the settings button in main menu will change change the game state to SETTINGS_SCREEN
      * and will trigger all the events needed for the settings screen
      */

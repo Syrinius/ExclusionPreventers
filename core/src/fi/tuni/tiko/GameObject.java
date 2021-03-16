@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
  * All objects on the maps should implement this
+ * Or extend a class that implements this
  */
 public interface GameObject {
 

@@ -8,6 +8,9 @@ import fi.tuni.tiko.MapManager;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.hud.Button;
 
+/**
+ * Specific implementation of the map selection screen and all the elements it contains
+ */
 public class MapSelectionMenu extends Scene {
 
     Button backButton;

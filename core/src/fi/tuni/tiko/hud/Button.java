@@ -8,6 +8,10 @@ import fi.tuni.tiko.coordinateSystem.ScreenPosition;
 import fi.tuni.tiko.eventSystem.Events;
 import fi.tuni.tiko.eventSystem.TouchListener;
 
+/**
+ * Generic implementation of button to add to various menus
+ * Menus should create instances of this class
+ */
 public class Button extends HudSprite implements HudElement, TouchListener {
 
     private final Action toExecute;

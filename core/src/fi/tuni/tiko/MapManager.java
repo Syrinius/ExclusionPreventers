@@ -14,7 +14,7 @@ public class MapManager {
 
     static {
         //Test map, won't be in the final game
-        availableMaps.add(new Map("map.tmx"));
+        availableMaps.add(new Map("map1.tmx"));
     }
 
     public static Map selectMap(int index) {

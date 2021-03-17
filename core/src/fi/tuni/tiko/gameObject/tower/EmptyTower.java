@@ -1,4 +1,4 @@
-package fi.tuni.tiko;
+package fi.tuni.tiko.gameObject.tower;
 
 import com.badlogic.gdx.graphics.Texture;
 
@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 public class EmptyTower implements Tower {
 
     private static EmptyTower instance;
-    private static Texture texture;
+    private static final Texture texture = new Texture("empty_tower.png");
 
     public static EmptyTower getInstance() {
         if (instance == null) instance = new EmptyTower();
@@ -24,7 +24,6 @@ public class EmptyTower implements Tower {
 
     @Override
     public Texture getTexture() {
-        if (texture == null) texture = new Texture("empty_tower.png");
         return texture;
     }
 }

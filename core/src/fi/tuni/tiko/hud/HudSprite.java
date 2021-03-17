@@ -11,7 +11,7 @@ import fi.tuni.tiko.coordinateSystem.MenuPosition;
  * Adds all the functionalities to ImprovedSprite, specific to HudElements
  * Implements HudElement to add generic implementations of HudElement methods
  */
-public abstract class HudSprite extends ImprovedSprite implements HudElement {
+public class HudSprite extends ImprovedSprite implements HudElement {
 
     public HudSprite(Texture texture, MenuPosition position, float size) {
         super(texture);
@@ -33,5 +33,10 @@ public abstract class HudSprite extends ImprovedSprite implements HudElement {
     @Override
     public void render(SpriteBatch batch) {
         draw(batch);
+    }
+
+    @Override
+    public void dispose() {
+
     }
 }

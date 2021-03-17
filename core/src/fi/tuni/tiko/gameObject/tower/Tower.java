@@ -1,4 +1,4 @@
-package fi.tuni.tiko;
+package fi.tuni.tiko.gameObject.tower;
 
 import com.badlogic.gdx.graphics.Texture;
 

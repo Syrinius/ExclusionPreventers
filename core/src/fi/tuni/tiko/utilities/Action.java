@@ -1,4 +1,4 @@
-package fi.tuni.tiko;
+package fi.tuni.tiko.utilities;
 
 public interface Action {
 

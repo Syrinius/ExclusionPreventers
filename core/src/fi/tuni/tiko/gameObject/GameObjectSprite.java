@@ -1,8 +1,11 @@
-package fi.tuni.tiko;
+package fi.tuni.tiko.gameObject;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
+import fi.tuni.tiko.ImprovedSprite;
+import fi.tuni.tiko.Map;
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 
 /**
@@ -12,7 +15,7 @@ import fi.tuni.tiko.coordinateSystem.MapPosition;
 public abstract class GameObjectSprite extends ImprovedSprite implements GameObject {
 
     MapPosition position;
-    Map map;
+    public Map map;
 
     public GameObjectSprite(TextureRegion texture, MapPosition position, Map map) {
         super(texture);
@@ -30,6 +33,11 @@ public abstract class GameObjectSprite extends ImprovedSprite implements GameObj
         setScale(MapPosition.SCALE);
         setPosition(position.x, position.y);
         map.getGameObjectManager().addGameObject(this);
+    }
+
+    public boolean IsInside(MapPosition position) {
+        return (position.x > getX() - getActualOriginX() && position.x < getX() - getActualOriginX() + getActualWidth() &&
+                position.y > getY() - getActualOriginY() && position.y < getY() - getActualOriginY() + getActualHeight());
     }
 
     @Override

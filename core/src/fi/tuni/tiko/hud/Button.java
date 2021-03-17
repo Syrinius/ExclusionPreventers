@@ -2,7 +2,7 @@ package fi.tuni.tiko.hud;
 
 import com.badlogic.gdx.graphics.Texture;
 
-import fi.tuni.tiko.Action;
+import fi.tuni.tiko.utilities.Action;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.coordinateSystem.ScreenPosition;
 import fi.tuni.tiko.eventSystem.Events;

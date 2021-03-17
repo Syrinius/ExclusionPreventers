@@ -11,11 +11,11 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class MapPosition extends Vector2 {
 
-    public static final float SCALE = 1/16f;
-    public static final float VIEWPORT_WIDTH = 32;
-    public static final float VIEWPORT_HEIGHT = 16;
-    public static final int SIZE_X = 60;
-    public static final int SIZE_Y = 30;
+    public static final float SCALE = 1/32f;
+    public static final float VIEWPORT_WIDTH = 36;
+    public static final float VIEWPORT_HEIGHT = 18;
+    public static final int SIZE_X = 40;
+    public static final int SIZE_Y = 20;
     public static OrthographicCamera camera;
 
     public static void Initialize() {

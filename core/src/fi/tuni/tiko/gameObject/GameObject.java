@@ -1,4 +1,4 @@
-package fi.tuni.tiko;
+package fi.tuni.tiko.gameObject;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 

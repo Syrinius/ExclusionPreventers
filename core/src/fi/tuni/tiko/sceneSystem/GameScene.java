@@ -9,7 +9,7 @@ public class GameScene extends Scene {
 
     @Override
     void render() {
-        super.render();
         MapManager.render();
+        super.render();
     }
 }

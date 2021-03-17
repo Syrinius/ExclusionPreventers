@@ -9,6 +9,7 @@ import fi.tuni.tiko.sceneSystem.MainMenu;
 import fi.tuni.tiko.sceneSystem.MapLoadingScreen;
 import fi.tuni.tiko.sceneSystem.MapSelectionMenu;
 import fi.tuni.tiko.sceneSystem.SceneManager;
+import fi.tuni.tiko.utilities.Action;
 
 /**
  * Class for handling changes of game state

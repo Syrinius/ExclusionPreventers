@@ -11,7 +11,10 @@ import fi.tuni.tiko.utilities.NextButtonPosition;
  */
 public class MenuPosition extends Vector2 {
     public static final float WIDTH = 400;
+    public static final float CENTER_X = WIDTH/2;
     public static final float HEIGHT = 200;
+    public static final float CENTER_Y = HEIGHT/2;
+    public static final MenuPosition CENTER = new MenuPosition(CENTER_X, CENTER_Y);
 
     public MenuPosition(float x, float y) {
         this.x = x;

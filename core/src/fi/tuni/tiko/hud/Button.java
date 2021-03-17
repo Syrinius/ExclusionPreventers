@@ -12,7 +12,7 @@ import fi.tuni.tiko.eventSystem.TouchListener;
  * Generic implementation of button to add to various menus
  * Menus should create instances of this class
  */
-public class Button extends HudSprite implements HudElement, TouchListener {
+public class Button extends HudSprite implements TouchListener {
 
     private final Action toExecute;
     private final Events.Priority priority;

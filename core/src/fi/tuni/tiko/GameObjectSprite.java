@@ -3,7 +3,6 @@ package fi.tuni.tiko;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 
 /**

@@ -17,6 +17,7 @@ public class MainMenu extends Scene {
 
     Button playButton;
 
+
     public MainMenu() {
         playButton = new Button(new Texture("play_button.png"), new MenuPosition(200, 150), 100,
             new Action() {

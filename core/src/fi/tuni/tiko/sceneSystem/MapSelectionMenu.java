@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import fi.tuni.tiko.hud.HudSprite;
 import fi.tuni.tiko.utilities.Action;
 import fi.tuni.tiko.GameLogic;
-import fi.tuni.tiko.MapManager;
+import fi.tuni.tiko.map.MapManager;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.hud.Button;
 

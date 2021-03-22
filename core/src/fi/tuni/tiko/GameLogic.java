@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 import fi.tuni.tiko.eventSystem.Events;
+import fi.tuni.tiko.map.MapManager;
 import fi.tuni.tiko.sceneSystem.GameScene;
 import fi.tuni.tiko.sceneSystem.MainMenu;
 import fi.tuni.tiko.sceneSystem.MapLoadingScreen;

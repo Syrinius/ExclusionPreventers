@@ -2,7 +2,7 @@ package fi.tuni.tiko.gameObject.tower;
 
 import fi.tuni.tiko.gameObject.GameObject;
 import fi.tuni.tiko.gameObject.GameObjectSprite;
-import fi.tuni.tiko.Map;
+import fi.tuni.tiko.map.Map;
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.coordinateSystem.ScreenPosition;
@@ -15,7 +15,7 @@ import fi.tuni.tiko.hud.TowerSelectionPopOutMenu;
  * OnTouch functionalities of towers
  * Calls the implementation classes of specific towers for Ontick functionalities
  */
-public class TowerLocation extends GameObjectSprite implements GameObject, TouchListener {
+public class TowerLocation extends GameObjectSprite implements TouchListener {
 
     private Tower tower;
 

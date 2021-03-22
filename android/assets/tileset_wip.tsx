@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.4" tiledversion="1.4.3" name="tileset_wip" tilewidth="32" tileheight="32" tilecount="60" columns="6">
  <image source="tileset_wip.png" width="192" height="320"/>
+ <tile id="5">
+  <properties>
+   <property name="type" value="room"/>
+  </properties>
+ </tile>
  <tile id="11">
   <properties>
-   <property name="type" type="int" value="1"/>
+   <property name="type" value="tower"/>
+  </properties>
+ </tile>
+ <tile id="17">
+  <properties>
+   <property name="type" value="corridor"/>
   </properties>
  </tile>
  <tile id="23">
   <properties>
-   <property name="type" type="int" value="2"/>
+   <property name="type" value="right"/>
   </properties>
  </tile>
  <tile id="29">
   <properties>
-   <property name="type" type="int" value="3"/>
+   <property name="type" value="down"/>
   </properties>
  </tile>
  <tile id="35">
   <properties>
-   <property name="type" type="int" value="4"/>
+   <property name="type" value="left"/>
   </properties>
  </tile>
  <tile id="41">
   <properties>
-   <property name="type" type="int" value="5"/>
+   <property name="type" value="up"/>
   </properties>
  </tile>
- <tile id="54">
+ <tile id="58">
   <properties>
-   <property name="type" type="int" value="0"/>
+   <property name="type" value="start"/>
   </properties>
  </tile>
- <tile id="55">
+ <tile id="59">
   <properties>
-   <property name="type" type="int" value="0"/>
-  </properties>
- </tile>
- <tile id="56">
-  <properties>
-   <property name="type" type="int" value="0"/>
-  </properties>
- </tile>
- <tile id="57">
-  <properties>
-   <property name="type" type="int" value="0"/>
+   <property name="type" value="end"/>
   </properties>
  </tile>
  <wangsets>

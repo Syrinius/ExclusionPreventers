@@ -1,6 +1,6 @@
 package fi.tuni.tiko.sceneSystem;
 
-import fi.tuni.tiko.MapManager;
+import fi.tuni.tiko.map.MapManager;
 
 /**
  * Implementation for map Scenes

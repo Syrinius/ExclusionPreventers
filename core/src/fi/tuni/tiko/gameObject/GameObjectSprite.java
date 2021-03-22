@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import fi.tuni.tiko.ImprovedSprite;
-import fi.tuni.tiko.Map;
+import fi.tuni.tiko.map.Map;
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 
 /**

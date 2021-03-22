@@ -1,4 +1,4 @@
-package fi.tuni.tiko;
+package fi.tuni.tiko.map;
 
 import java.util.ArrayList;
 

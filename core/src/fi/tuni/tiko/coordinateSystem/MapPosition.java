@@ -26,6 +26,10 @@ public class MapPosition extends Vector2 {
         this.y = y;
     }
 
+    public MapPosition clone() {
+        return new MapPosition(x, y);
+    }
+
     public ScreenPosition ToScreenPosition() {
         return new ScreenPosition(
                 (int)((x - (camera.position.x - VIEWPORT_WIDTH / 2)) * ScreenPosition.WIDTH / VIEWPORT_WIDTH),

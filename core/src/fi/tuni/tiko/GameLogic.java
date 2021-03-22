@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 import fi.tuni.tiko.eventSystem.Events;
+import fi.tuni.tiko.gameObject.student.Student1;
+import fi.tuni.tiko.gameObject.student.StudentContainer;
+import fi.tuni.tiko.map.Map;
 import fi.tuni.tiko.map.MapManager;
 import fi.tuni.tiko.sceneSystem.GameScene;
 import fi.tuni.tiko.sceneSystem.MainMenu;
@@ -71,10 +74,13 @@ public class GameLogic {
                     @Override
                     public void run() {
                         SceneManager.SetActiveScene(scene);
+                        SetState(GameState.BUILD_PHASE);
                     }
                 });
                 break;
             case BUILD_PHASE:
+                Map map = MapManager.getSelectedMap();
+                new StudentContainer(Student1.getInstance(), map, map.paths.get(1));
                 break;
         }
     }

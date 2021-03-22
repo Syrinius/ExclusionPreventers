@@ -32,7 +32,7 @@ import fi.tuni.tiko.utilities.Action;
  * Includes methods to fetch properties from tiles in the map
  * Fetches all initial information such as tower locations upon map load
  * Extends timer to add a delay to map load so other code can perform actions before execution freezes during map load
- *
+ * Automatically generates all possible paths for student movement on maps
  */
 public class Map extends Timer.Task {
 
@@ -176,6 +176,7 @@ public class Map extends Timer.Task {
             return;
         }
         String startDirection = startPosition.x == 0 ? "right" : startPosition.x == width - 1 ? "left" : startPosition.y == 0 ? "up" : "down";
+        startPosition.add(0.5f, 0.5f);
         generatePaths(new Path(startPosition), startPosition, startDirection);
         MapPosition.camera.position.set(width/2f, height/2f, 0);
         toExecute.run();

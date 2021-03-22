@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public interface Student {
 
-
+    float getSpeed();
     void tick(StudentContainer container);
-    TextureRegion getTextureRegion();
+    TextureRegion getTextureRegion(float time);
 }

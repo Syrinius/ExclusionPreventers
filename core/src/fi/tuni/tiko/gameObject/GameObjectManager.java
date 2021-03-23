@@ -19,7 +19,20 @@ public class GameObjectManager extends Timer.Task {
     private final ArrayList<GameObject> delayedRemove = new ArrayList<>();
     private boolean locked;
     private long lastTick;
-    private SpriteBatch batch;
+    private final SpriteBatch batch;
+    private boolean active = false;
+
+    public void pause() {
+        active = false;
+    }
+
+    public void resume() {
+        active = true;
+    }
+
+    public boolean isPaused() {
+        return !active;
+    }
 
     public void addGameObject(GameObject object){
         if(locked) delayedAdd.add(object);
@@ -60,6 +73,7 @@ public class GameObjectManager extends Timer.Task {
 
     @Override
     public void run() {
+        if (!active) return;
         long currentTime = System.nanoTime();
         float delta = (currentTime - lastTick) / 1000000000f; //to seconds
         lastTick = currentTime;

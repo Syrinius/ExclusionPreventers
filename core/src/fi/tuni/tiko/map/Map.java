@@ -47,6 +47,21 @@ public class Map extends Timer.Task {
     private GameObjectManager gameObjectManager;
     private GameScene scene;
     public ArrayList<Path> paths = new ArrayList<>();
+    private boolean active = false;
+
+    public void pause() {
+        active = false;
+        gameObjectManager.pause();
+    }
+
+    public void resume() {
+        active = true;
+        gameObjectManager.resume();
+    }
+
+    public boolean isPaused() {
+        return !active;
+    }
 
     public GameObjectManager getGameObjectManager() {
         return gameObjectManager;
@@ -180,20 +195,5 @@ public class Map extends Timer.Task {
         generatePaths(new Path(startPosition), startPosition, startDirection);
         MapPosition.camera.position.set(width/2f, height/2f, 0);
         toExecute.run();
-    }
-}
-
-class Direction {
-
-    private static final java.util.Map<String, List<String>> directions = new HashMap<>();
-    static {
-        directions.put("down", Arrays.asList("right", "left"));
-        directions.put("up", Arrays.asList("left", "right"));
-        directions.put("right", Arrays.asList("down", "up"));
-        directions.put("left", Arrays.asList("up", "down"));
-    }
-
-    static List<String> GetDirection(String to) {
-        return directions.get(to);
     }
 }

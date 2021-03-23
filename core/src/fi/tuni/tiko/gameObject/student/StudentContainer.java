@@ -12,7 +12,7 @@ public class StudentContainer extends GameObjectSprite {
 
     private Student student;
     private float animationTime = 0;
-    private Path path;
+    private final Path path;
     private int nextCheckpoint = 1;
 
     public StudentContainer(Student student, Map map, Path path) {

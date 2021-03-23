@@ -9,9 +9,11 @@ public class Student1 implements Student {
     private static final Animation<TextureRegion> animation;
     static {
         Texture texture = new Texture("student_sprites/student1.png");
-        animation = new Animation<TextureRegion>(2,
-                new TextureRegion(texture, 0, 0, 17, 17),
-                new TextureRegion(texture, 17, 0, 17, 17));
+        animation = new Animation<TextureRegion>(0.3f,
+                new TextureRegion(texture, 0, 0, 30, 30),
+                new TextureRegion(texture, 30, 0, 30, 30),
+                new TextureRegion(texture, 60, 0, 30, 30),
+                new TextureRegion(texture, 90, 0, 30, 30));
     }
 
     private static final Student1 instance = new Student1();
@@ -24,7 +26,7 @@ public class Student1 implements Student {
 
     @Override
     public float getSpeed() {
-        return 0.08f;
+        return 0.03f;
     }
 
     @Override

@@ -28,7 +28,7 @@ public class GameLogic {
      * and will trigger all the events needed for the settings screen
      */
     public enum GameState {
-        SPLASH_SCREEN, MAIN_MENU, MAP_SELECTION_SCREEN, MAP_CONFIRM_SCREEN, SETTINGS_SCREEN, MAP_LOADING_SCREEN, BUILD_PHASE, WAVE_PHASE, END_SCREEN
+        SPLASH_SCREEN, MAIN_MENU, MAP_SELECTION_SCREEN, MAP_CONFIRM_SCREEN, SETTINGS_SCREEN, MAP_LOADING_SCREEN, GAME_SCREEN, END_SCREEN
     }
 
     private static final ArrayList<GameLogicListener> gameLogicListeners = new ArrayList<>();
@@ -74,13 +74,13 @@ public class GameLogic {
                     @Override
                     public void run() {
                         SceneManager.SetActiveScene(scene);
-                        SetState(GameState.BUILD_PHASE);
+                        SetState(GameState.GAME_SCREEN);
                     }
                 });
                 break;
-            case BUILD_PHASE:
-                Map map = MapManager.getSelectedMap();
-                new StudentContainer(Student1.getInstance(), map, map.paths.get(1));
+            case GAME_SCREEN:
+                Map map = MapManager.getSelectedMap(); //temporary
+                new StudentContainer(Student1.getInstance(), map, map.paths.get(1)); //temporary
                 break;
         }
     }

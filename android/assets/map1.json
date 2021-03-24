@@ -1,0 +1,26 @@
+{
+  "starting_funds": 1000,
+  "waves": [
+      { "students" :
+        [{ "student_type" : "student1",
+          "amount" : 10,
+          "base_cooldown" : 1
+        },
+        { "student_type" : "student2",
+          "amount" : 5,
+          "base_cooldown" : 4
+        }],
+        "funding_reward": 250
+    },
+    { "students" :
+    [{ "student_type" : "student1",
+      "amount" : 10,
+      "base_cooldown" : 1
+    },
+      { "student_type" : "student2",
+        "amount" : 5,
+        "base_cooldown" : 4
+      }]
+    }
+  ]
+}

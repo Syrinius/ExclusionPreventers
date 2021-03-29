@@ -2,6 +2,10 @@ package fi.tuni.tiko.gameObject.tower;
 
 import com.badlogic.gdx.graphics.Texture;
 
+import java.util.Set;
+
+import fi.tuni.tiko.gameObject.student.StudentContainer;
+
 /**
  * Ontouch functionalities are in TowerLocation class
  * Implements the functionalities of a tower location with no tower in it:
@@ -18,12 +22,17 @@ public class EmptyTower implements Tower {
     }
 
     @Override
-    public void tick(TowerLocation location) {
-
+    public float act(TowerLocation location, int level, Set<StudentContainer> currentTargets) {
+        return -1;
     }
 
     @Override
-    public Texture getTexture() {
+    public Texture getTexture(int level) {
         return texture;
+    }
+
+    @Override
+    public float getRange(int level) {
+        return 0;
     }
 }

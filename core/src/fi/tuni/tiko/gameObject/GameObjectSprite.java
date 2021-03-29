@@ -14,8 +14,8 @@ import fi.tuni.tiko.coordinateSystem.MapPosition;
  */
 public abstract class GameObjectSprite extends ImprovedSprite implements GameObject {
 
-    MapPosition position;
     public Map map;
+    private boolean invalid = false;
 
     public GameObjectSprite(TextureRegion texture, MapPosition position, Map map) {
         super(texture);
@@ -28,7 +28,6 @@ public abstract class GameObjectSprite extends ImprovedSprite implements GameObj
     }
 
     private void initialize(MapPosition position, Map map) {
-        this.position = position;
         this.map = map;
         setScale(MapPosition.SCALE);
         setPosition(position.x, position.y);
@@ -48,5 +47,15 @@ public abstract class GameObjectSprite extends ImprovedSprite implements GameObj
     @Override
     public void destroy() {
         map.getGameObjectManager().removeGameObject(this);
+        invalid = true;
+    }
+
+    @Override
+    public boolean isValid() {
+        return !invalid;
+    }
+
+    public MapPosition getPosition() {
+        return new MapPosition(getX(), getY());
     }
 }

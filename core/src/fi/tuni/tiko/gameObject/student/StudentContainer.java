@@ -2,8 +2,10 @@ package fi.tuni.tiko.gameObject.student;
 
 import com.badlogic.gdx.math.Vector2;
 
+import fi.tuni.tiko.MainGame;
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 import fi.tuni.tiko.gameObject.GameObjectSprite;
+import fi.tuni.tiko.gameObject.tower.TowerLocation;
 import fi.tuni.tiko.map.Map;
 import fi.tuni.tiko.map.Path;
 import fi.tuni.tiko.utilities.FancyMath;
@@ -33,10 +35,12 @@ public class StudentContainer extends GameObjectSprite {
     }
 
     @Override
-    public void onTick(float deltaTime) {
+    public void onTick(float deltaTime, boolean revalidate) {
         student.tick(this);
         setRegion(student.getTextureRegion(animationTime += deltaTime));
         float remainingMove = student.getSpeed();
+        int oldX = (int)getX();
+        int oldY = (int)getY();
         while (remainingMove > 0) {
             MapPosition thisPosition = new MapPosition(getX(), getY());
             float distance = path.checkPoints.get(nextCheckpoint).clone().sub(thisPosition).len();
@@ -53,6 +57,19 @@ public class StudentContainer extends GameObjectSprite {
             remainingMove -= (1 / alpha) * remainingMove;
             setPosition(newPosition.x, newPosition.y);
         }
+        if(oldX != (int)getX() || oldY != (int)getY() || revalidate) notifyTowers();
+    }
+
+    private void notifyTowers() {
+        for (TowerLocation tower : map.towerLocations) {
+            if(!isValid() || Math.pow(tower.getX() - (Math.floor(getX()) + 0.5), 2) + Math.pow(tower.getY() - (Math.floor(getY()) + 0.5), 2) > Math.pow(tower.getRange(), 2)) {
+                tower.removeTarget(this);
+            } else tower.addTarget(this);
+        }
+    }
+
+    public void addParticipation(TowerLocation tower) {
+        //TODO
     }
 
     public void reachedEnd() {

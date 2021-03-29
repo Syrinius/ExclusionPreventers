@@ -21,6 +21,11 @@ public class GameObjectManager extends Timer.Task {
     private long lastTick;
     private final SpriteBatch batch;
     private boolean active = false;
+    private boolean dirty = false;
+
+    public void invalidate() {
+        dirty = true;
+    }
 
     public void pause() {
         active = false;
@@ -78,8 +83,10 @@ public class GameObjectManager extends Timer.Task {
         float delta = (currentTime - lastTick) / 1000000000f; //to seconds
         lastTick = currentTime;
         locked = true;
+        boolean revalidate = dirty;
+        dirty = false;
         for (GameObject object : gameObjects) {
-            object.onTick(delta);
+            object.onTick(delta, revalidate);
         }
         locked = false;
         if (!delayedAdd.isEmpty()) {

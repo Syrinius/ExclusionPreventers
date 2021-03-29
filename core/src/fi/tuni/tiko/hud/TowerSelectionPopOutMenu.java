@@ -34,7 +34,7 @@ public class TowerSelectionPopOutMenu extends HudSprite implements TouchListener
                 new Action() {
                     @Override
                     public void run() {
-                        location.setTower(CookingTower.getInstance());
+                        location.setTower(CookingTower.getInstance(), true);
                         dispose();
                     }
                 }, Events.Priority.HIGH);

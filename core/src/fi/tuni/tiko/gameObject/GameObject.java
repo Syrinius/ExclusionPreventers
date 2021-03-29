@@ -11,7 +11,8 @@ public interface GameObject {
     enum TYPE { STUDENT, TOWER, PROJECTILE }
 
     TYPE getType();
-    void onTick(float deltaTime);
+    void onTick(float deltaTime, boolean revalidate);
     void render(SpriteBatch renderer);
     void destroy();
+    boolean isValid();
 }

@@ -41,7 +41,7 @@ public class Map extends Timer.Task {
     TiledMapRenderer tiledMapRenderer;
     boolean initialized;
     Action toExecute;
-    ArrayList<TowerLocation> towerLocations;
+    public ArrayList<TowerLocation> towerLocations;
     private int width;
     private int height;
     private GameObjectManager gameObjectManager;

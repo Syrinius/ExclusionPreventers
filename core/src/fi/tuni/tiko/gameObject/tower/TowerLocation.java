@@ -1,7 +1,13 @@
 package fi.tuni.tiko.gameObject.tower;
 
-import fi.tuni.tiko.gameObject.GameObject;
+import com.badlogic.gdx.graphics.Texture;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import fi.tuni.tiko.gameObject.GameObjectSprite;
+import fi.tuni.tiko.gameObject.Projectile;
+import fi.tuni.tiko.gameObject.student.StudentContainer;
 import fi.tuni.tiko.map.Map;
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
@@ -18,16 +24,27 @@ import fi.tuni.tiko.hud.TowerSelectionPopOutMenu;
 public class TowerLocation extends GameObjectSprite implements TouchListener {
 
     private Tower tower;
+    private Set<StudentContainer> currentTargets;
+    private int level = 0;
+    private float cooldown = 0;
 
     public TowerLocation(MapPosition position, Map map) {
-        super(EmptyTower.getInstance().getTexture(), position, map);
-        tower = EmptyTower.getInstance();
+        super(EmptyTower.getInstance().getTexture(0), position, map);
+        setTower(EmptyTower.getInstance(), true);
         Events.AddListener(this);
     }
 
-    public void setTower(Tower toSet) {
+    public void setTower(Tower toSet, boolean flushData) {
         tower = toSet;
-        setTexture(tower.getTexture());
+        setTexture(tower.getTexture(level));
+        if (flushData) {
+            currentTargets = new HashSet<>();
+            cooldown = 0;
+        }
+    }
+
+    public float getRange() {
+        return tower.getRange(level);
     }
 
     @Override
@@ -36,8 +53,9 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
     }
 
     @Override
-    public void onTick(float deltaTime) {
-        tower.tick(this);
+    public void onTick(float deltaTime, boolean revalidate) {
+        if (cooldown > 0) cooldown = Math.max(cooldown - deltaTime, 0);
+        else if (cooldown == 0) cooldown = tower.act(this, level, currentTargets);
     }
 
     @Override
@@ -72,5 +90,17 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
     public void destroy() {
         super.destroy();
         Events.RemoveListener(this);
+    }
+
+    public void addTarget(StudentContainer studentContainer) {
+        currentTargets.add(studentContainer);
+    }
+
+    public void removeTarget(StudentContainer studentContainer) {
+        currentTargets.remove(studentContainer);
+    }
+
+    public Projectile spawnProjectile(Texture texture, StudentContainer target) {
+        return new Projectile(texture, new MapPosition(getX(), getY()), map, this, target);
     }
 }

@@ -8,6 +8,7 @@ import fi.tuni.tiko.GameLogic;
 import fi.tuni.tiko.map.MapManager;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.hud.Button;
+import fi.tuni.tiko.utilities.NextButtonPosition;
 
 /**
  * Specific implementation of the map selection screen and all the elements it contains
@@ -36,7 +37,7 @@ public class MapSelectionMenu extends Scene {
                 });
         hudElementManager.AddHudElement(backButton);
         MenuPosition mapButtonPosition = new MenuPosition(50, 150);
-        map1Button = new Button(new Texture("map_1_button.png"), mapButtonPosition, 50,
+        map1Button = new Button(new Texture("menu/levels/l1.png"), mapButtonPosition, 50,
                 new Action() {
                     @Override
                     public void run() {
@@ -45,8 +46,8 @@ public class MapSelectionMenu extends Scene {
                     }
                 });
         hudElementManager.AddHudElement(map1Button);
-        /*mapButtonPosition = NextButtonPosition.nextMenuPosition(mapButtonPosition);
-        map2Button = new Button(new Texture("map_1_button.png"), mapButtonPosition, 50,
+        mapButtonPosition = NextButtonPosition.nextLevelPosition(mapButtonPosition);
+        map2Button = new Button(new Texture("menu/levels/l2.png"), mapButtonPosition, 50,
                 new Action() {
                     @Override
                     public void run() {
@@ -54,6 +55,6 @@ public class MapSelectionMenu extends Scene {
                         GameLogic.SetState(GameLogic.GameState.MAP_LOADING_SCREEN);
                     }
                 });
-        hudElementManager.AddHudElement(map2Button);*/
+        hudElementManager.AddHudElement(map2Button);
     }
 }

@@ -12,5 +12,8 @@ public class NextButtonPosition {
     public static MenuPosition nextMenuPosition(MenuPosition position){
         return new MenuPosition(200,100);
     }
+    public static MenuPosition nextLevelPosition(MenuPosition position){
+        return new MenuPosition(150, 150);
+    }
 
 }

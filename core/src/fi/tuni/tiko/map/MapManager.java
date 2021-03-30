@@ -13,8 +13,7 @@ public class MapManager {
     static Map selectedMap;
 
     static {
-        //Test map, won't be in the final game
-        availableMaps.add(new Map("map1.tmx"));
+        availableMaps.add(new Map("map1.tmx", "map1.json"));
     }
 
     public static Map selectMap(int index) {

@@ -11,6 +11,7 @@ public class Projectile extends GameObjectSprite {
 
     private final TowerLocation tower;
     private final StudentContainer target;
+    private float lifetime = 10;
 
     public Projectile(Texture texture, MapPosition position, Map map, TowerLocation tower, StudentContainer target) {
         super(texture, position, map);
@@ -25,6 +26,8 @@ public class Projectile extends GameObjectSprite {
 
     @Override
     public void onTick(float deltaTime, boolean revalidate) {
+        lifetime -= deltaTime;
+        if (lifetime <= 0) destroy();
         //use target.getPosition() to get the position of the student and just getPosition() to get the position of this projectile
     }
 

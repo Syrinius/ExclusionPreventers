@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 import fi.tuni.tiko.eventSystem.Events;
 import fi.tuni.tiko.gameObject.student.Student1;
+import fi.tuni.tiko.gameObject.student.Student2;
+import fi.tuni.tiko.gameObject.student.Student3;
 import fi.tuni.tiko.gameObject.student.StudentContainer;
 import fi.tuni.tiko.map.Map;
 import fi.tuni.tiko.map.MapManager;
@@ -79,8 +81,6 @@ public class GameLogic {
                 });
                 break;
             case GAME_SCREEN:
-                Map map = MapManager.getSelectedMap(); //temporary
-                new StudentContainer(Student1.getInstance(), map, map.paths.get(1)); //temporary
                 break;
         }
     }

@@ -6,23 +6,22 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import fi.tuni.tiko.utilities.FancyMath;
 
-public class Student1 implements Student {
-
+public class Student2 implements Student {
     private static final Animation<TextureRegion> animation;
     static {
-        Texture texture = new Texture("student_sprites/student1.png");
-        animation = FancyMath.getAnimationStrip(texture, 23, 23, 4, 0.3f);
+        Texture texture = new Texture("student_sprites/student2.png");
+        animation = FancyMath.getAnimationStrip(texture, 21, 21, 4, 0.35f);
     }
 
-    private static final Student1 instance = new Student1();
+    private static final Student2 instance = new Student2();
 
-    public static Student1 getInstance() {
+    public static Student2 getInstance() {
         return instance;
     }
 
     @Override
     public float getSpeed() {
-        return 0.03f;
+        return 0.02f;
     }
 
     @Override

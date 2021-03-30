@@ -39,11 +39,6 @@ public class MainGame extends ApplicationAdapter {
 
 	@Override
 	public void create() {
-
-		/*Json json = new Json();
-		MapData data = json.fromJson(MapData.class, Gdx.files.internal("map1.json"));
-		data.waves.get(0).students.get(0).amount*/
-
 		instance = this;
 		font = new BitmapFont();
 		debugBatch = new SpriteBatch();

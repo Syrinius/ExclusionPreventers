@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public interface GameObject {
 
-    enum TYPE { STUDENT, TOWER, PROJECTILE }
+    enum TYPE { STUDENT, TOWER, PROJECTILE, SYSTEM }
 
     TYPE getType();
     void onTick(float deltaTime, boolean revalidate);

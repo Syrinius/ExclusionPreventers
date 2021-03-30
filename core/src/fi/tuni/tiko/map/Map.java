@@ -1,22 +1,16 @@
 package fi.tuni.tiko.map;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.Timer;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Dictionary;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Set;
 
 import fi.tuni.tiko.MainGame;
 import fi.tuni.tiko.coordinateSystem.MapPosition;
@@ -25,6 +19,8 @@ import fi.tuni.tiko.hud.HudElementManager;
 import fi.tuni.tiko.sceneSystem.GameScene;
 import fi.tuni.tiko.gameObject.tower.TowerLocation;
 import fi.tuni.tiko.utilities.Action;
+import fi.tuni.tiko.wave.MapData;
+import fi.tuni.tiko.wave.WaveManager;
 
 /**
  * Handles all functionalities of maps
@@ -36,7 +32,8 @@ import fi.tuni.tiko.utilities.Action;
  */
 public class Map extends Timer.Task {
 
-    String fileLocation;
+    final String fileLocation;
+    final String jsonLocation;
     TiledMap tiledMap;
     TiledMapRenderer tiledMapRenderer;
     boolean initialized;
@@ -48,6 +45,12 @@ public class Map extends Timer.Task {
     private GameScene scene;
     public ArrayList<Path> paths = new ArrayList<>();
     private boolean active = false;
+    public MapData mapData;
+    public WaveManager waveManager;
+
+    public Path getRandomPath() {
+        return paths.get((int)(Math.random() * (float)paths.size()));
+    }
 
     public void pause() {
         active = false;
@@ -78,8 +81,9 @@ public class Map extends Timer.Task {
         return height;
     }
 
-    public Map(String fileLocation) {
+    public Map(String fileLocation, String jsonLocation) {
         this.fileLocation = fileLocation;
+        this.jsonLocation = jsonLocation;
     }
 
     public void LoadMap(GameScene scene, Action mapLoaded) {
@@ -194,6 +198,14 @@ public class Map extends Timer.Task {
         startPosition.add(0.5f, 0.5f);
         generatePaths(new Path(startPosition), startPosition, startDirection);
         MapPosition.camera.position.set(width/2f, height/2f, 0);
+
+
+
+		Json json = new Json();
+		mapData = json.fromJson(MapData.class, Gdx.files.internal(jsonLocation));
+		waveManager = new WaveManager(this);
+
+
         toExecute.run();
     }
 }

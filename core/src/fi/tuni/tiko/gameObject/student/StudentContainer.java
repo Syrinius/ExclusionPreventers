@@ -73,8 +73,13 @@ public class StudentContainer extends GameObjectSprite {
     }
 
     public void reachedEnd() {
-        new StudentContainer(Student1.getInstance(), map, map.paths.get((int)Math.round(Math.random()))); //temporary stuff
         destroy();
         //TODO
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+        map.waveManager.studentRemoved();
     }
 }

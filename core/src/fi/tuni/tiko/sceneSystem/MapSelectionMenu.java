@@ -28,7 +28,7 @@ public class MapSelectionMenu extends Scene {
         hudElementManager.AddHudElement(background);
 
         MenuPosition currentPosition = new MenuPosition(200, 50);
-        backButton = new Button(new Texture("back_button.png"),currentPosition, 50,
+        backButton = new Button(new Texture("menu/back.png"),currentPosition, 50,
                 new Action() {
                     @Override
                     public void run() {

@@ -30,12 +30,17 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
 
     public TowerLocation(MapPosition position, Map map) {
         super(EmptyTower.getInstance().getTexture(0), position, map);
-        setTower(EmptyTower.getInstance(), true);
+        setTower(EmptyTower.getInstance(), 0, true);
         Events.AddListener(this);
     }
 
     public void setTower(Tower toSet, boolean flushData) {
+        setTower(toSet, 1, flushData);
+    }
+
+    public void setTower(Tower toSet, int level, boolean flushData) {
         tower = toSet;
+        this.level = level;
         setTexture(tower.getTexture(level));
         if (flushData) {
             currentTargets = new HashSet<>();
@@ -45,6 +50,10 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
 
     public float getRange() {
         return tower.getRange(level);
+    }
+
+    public int getParticipation() {
+        return tower.getParticipation(level);
     }
 
     @Override

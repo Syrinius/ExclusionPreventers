@@ -13,10 +13,14 @@ public class FancyMath {
     }
 
     public static Animation<TextureRegion> getAnimationStrip(Texture texture, int width, int height, int numberOfFrames, float frameDuration) {
+        return new Animation<>(frameDuration, getTextureRegionArray(texture, width, height, numberOfFrames));
+    }
+
+    public static Array<TextureRegion> getTextureRegionArray(Texture texture, int width, int height, int numberOfFrames) {
         Array<TextureRegion> frames = new Array<>();
         for (int i = 0; i < numberOfFrames; i++) {
             frames.add(new TextureRegion(texture, i * width, 0, width, height));
         }
-        return new Animation<>(frameDuration, frames);
+        return frames;
     }
 }

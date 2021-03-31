@@ -1,16 +1,19 @@
 package fi.tuni.tiko.gameObject;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Vector2;
 
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 import fi.tuni.tiko.gameObject.student.StudentContainer;
 import fi.tuni.tiko.gameObject.tower.TowerLocation;
 import fi.tuni.tiko.map.Map;
+import fi.tuni.tiko.utilities.FancyMath;
 
 public class Projectile extends GameObjectSprite {
 
     private final TowerLocation tower;
     private final StudentContainer target;
+    private final float SPEED = 3f;
     private float lifetime = 10;
 
     public Projectile(Texture texture, MapPosition position, Map map, TowerLocation tower, StudentContainer target) {
@@ -28,7 +31,13 @@ public class Projectile extends GameObjectSprite {
     public void onTick(float deltaTime, boolean revalidate) {
         lifetime -= deltaTime;
         if (lifetime <= 0) destroy();
-        //use target.getPosition() to get the position of the student and just getPosition() to get the position of this projectile
+        float distance = target.getPosition().sub(getPosition()).len();
+        float alpha = Math.min((SPEED * deltaTime)/distance, 1);
+        Vector2 newPosition = getPosition().lerp(target.getPosition(), alpha);
+        setPosition(newPosition.x, newPosition.y);
+        if (alpha == 1) {
+            hitTarget();
+        }
     }
 
     public void hitTarget() {

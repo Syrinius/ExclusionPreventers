@@ -38,7 +38,7 @@ public class WaveManager implements GameObject {
                 studentCountList.put(type, wave.students.get(type).amount);
             }
             cooldown = 0;
-            map.pause();
+            GameLogic.Pause();
         }
     }
 
@@ -62,6 +62,7 @@ public class WaveManager implements GameObject {
                         cooldown = studentData.baseCooldown;
                         new StudentContainer(student.type, map, map.getRandomPath());
                         studentCountList.put(student, studentCountList.get(student) - 1);
+                        break;
                     }
                 }
             }

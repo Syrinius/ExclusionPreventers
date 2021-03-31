@@ -8,6 +8,7 @@ import fi.tuni.tiko.utilities.FancyMath;
 
 public class Student2 implements Student {
     private static final Animation<TextureRegion> animation;
+    private static final int REQUIREDPARTICIPATION = 20;
     static {
         Texture texture = new Texture("student_sprites/student2.png");
         animation = FancyMath.getAnimationStrip(texture, 21, 21, 4, 0.35f);
@@ -22,6 +23,11 @@ public class Student2 implements Student {
     @Override
     public float getSpeed() {
         return 0.02f;
+    }
+
+    @Override
+    public int getRequiredParticipation() {
+        return REQUIREDPARTICIPATION;
     }
 
     @Override

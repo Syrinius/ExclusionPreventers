@@ -12,6 +12,8 @@ import com.badlogic.gdx.utils.Timer;
 
 import java.util.ArrayList;
 
+import fi.tuni.tiko.GameLogic;
+import fi.tuni.tiko.GameLogicListener;
 import fi.tuni.tiko.MainGame;
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 import fi.tuni.tiko.gameObject.GameObjectManager;
@@ -30,7 +32,7 @@ import fi.tuni.tiko.wave.WaveManager;
  * Extends timer to add a delay to map load so other code can perform actions before execution freezes during map load
  * Automatically generates all possible paths for student movement on maps
  */
-public class Map extends Timer.Task {
+public class Map extends Timer.Task implements GameLogicListener {
 
     final String fileLocation;
     final String jsonLocation;
@@ -44,26 +46,12 @@ public class Map extends Timer.Task {
     private GameObjectManager gameObjectManager;
     private GameScene scene;
     public ArrayList<Path> paths = new ArrayList<>();
-    private boolean active = false;
     public MapData mapData;
     public WaveManager waveManager;
+    private boolean firstTimeCreated = true;
 
     public Path getRandomPath() {
         return paths.get((int)(Math.random() * (float)paths.size()));
-    }
-
-    public void pause() {
-        active = false;
-        gameObjectManager.pause();
-    }
-
-    public void resume() {
-        active = true;
-        gameObjectManager.resume();
-    }
-
-    public boolean isPaused() {
-        return !active;
     }
 
     public GameObjectManager getGameObjectManager() {
@@ -84,6 +72,11 @@ public class Map extends Timer.Task {
     public Map(String fileLocation, String jsonLocation) {
         this.fileLocation = fileLocation;
         this.jsonLocation = jsonLocation;
+        GameLogic.AddListener(this);
+    }
+
+    public void dispose() {
+        gameObjectManager.dispose();
     }
 
     public void LoadMap(GameScene scene, Action mapLoaded) {
@@ -168,9 +161,12 @@ public class Map extends Timer.Task {
 
     @Override
     public void run() {
-        tiledMap = new TmxMapLoader().load(fileLocation);
-        tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, MapPosition.SCALE);
-        initialized = true;
+        if (firstTimeCreated) {
+            tiledMap = new TmxMapLoader().load(fileLocation);
+            tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, MapPosition.SCALE);
+            initialized = true;
+        }
+
         gameObjectManager = new GameObjectManager();
         towerLocations = new ArrayList<>();
         height = ((TiledMapTileLayer)tiledMap.getLayers().get(0)).getHeight();
@@ -181,7 +177,7 @@ public class Map extends Timer.Task {
                 String currentType = getTileType(j, i);
                 if (currentType.equals("tower")){
                     towerLocations.add(new TowerLocation(new MapPosition(j, i), this));
-                } else if (currentType.equals("start")){
+                } else if (firstTimeCreated && currentType.equals("start")){
                     if (startPosition != null) {
                         MainGame.SetDebugText("Too many starting points!");
                         return;
@@ -190,22 +186,44 @@ public class Map extends Timer.Task {
                 }
             }
         }
-        if (startPosition == null) {
-            MainGame.SetDebugText("No starting point found!");
-            return;
+
+        if (firstTimeCreated) {
+            if (startPosition == null) {
+                MainGame.SetDebugText("No starting point found!");
+                return;
+            }
+            String startDirection = startPosition.x == 0 ? "right" : startPosition.x == width - 1 ? "left" : startPosition.y == 0 ? "up" : "down";
+            startPosition.add(0.5f, 0.5f);
+            generatePaths(new Path(startPosition), startPosition, startDirection);
+            MapPosition.camera.position.set(width / 2f, height / 2f, 0);
+            Json json = new Json();
+            mapData = json.fromJson(MapData.class, Gdx.files.internal(jsonLocation));
         }
-        String startDirection = startPosition.x == 0 ? "right" : startPosition.x == width - 1 ? "left" : startPosition.y == 0 ? "up" : "down";
-        startPosition.add(0.5f, 0.5f);
-        generatePaths(new Path(startPosition), startPosition, startDirection);
-        MapPosition.camera.position.set(width/2f, height/2f, 0);
 
-
-
-		Json json = new Json();
-		mapData = json.fromJson(MapData.class, Gdx.files.internal(jsonLocation));
 		waveManager = new WaveManager(this);
-
-
+        GameLogic.setFunds(mapData.starting_funds);
+        GameLogic.setLives(mapData.starting_lives);
+        firstTimeCreated = false;
         toExecute.run();
+    }
+
+    @Override
+    public void onPause() {
+        gameObjectManager.pause();
+    }
+
+    @Override
+    public void onResume() {
+        gameObjectManager.resume();
+    }
+
+    @Override
+    public void onLivesChanged(int newValue) {
+
+    }
+
+    @Override
+    public void onFundsChanged(int newValue) {
+
     }
 }

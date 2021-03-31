@@ -14,4 +14,5 @@ public interface Tower {
     float act(TowerLocation location, int level, Set<StudentContainer> currentTargets);
     Texture getTexture(int level);
     float getRange(int level);
+    int getParticipation(int level);
 }

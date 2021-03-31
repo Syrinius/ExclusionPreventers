@@ -4,12 +4,8 @@ import java.util.ArrayList;
 
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 import fi.tuni.tiko.eventSystem.Events;
-import fi.tuni.tiko.gameObject.student.Student1;
-import fi.tuni.tiko.gameObject.student.Student2;
-import fi.tuni.tiko.gameObject.student.Student3;
-import fi.tuni.tiko.gameObject.student.StudentContainer;
-import fi.tuni.tiko.map.Map;
 import fi.tuni.tiko.map.MapManager;
+import fi.tuni.tiko.sceneSystem.GameOverScene;
 import fi.tuni.tiko.sceneSystem.GameScene;
 import fi.tuni.tiko.sceneSystem.MainMenu;
 import fi.tuni.tiko.sceneSystem.MapLoadingScreen;
@@ -39,15 +35,41 @@ public class GameLogic {
 
     private static GameState gameState = GameState.SPLASH_SCREEN;
     private static boolean lock;
+    private static boolean paused = true;
+    private static int funds;
+    private static int lives;
 
-    public static void SetState(GameState state){
-        gameState = state;
+    public static int getLives() {
+        return lives;
+    }
+
+    public static void setLives(int lives) {
+        GameLogic.lives = lives;
         lock = true;
         for (GameLogicListener listener :
                 gameLogicListeners) {
-            listener.StateChanged(state);
+            listener.onLivesChanged(lives);
         }
         lock = false;
+        if (lives == 0) SetState(GameState.END_SCREEN);
+    }
+
+    public static int getFunds() {
+        return funds;
+    }
+
+    public static void setFunds(int funds) {
+        GameLogic.funds = funds;
+        lock = true;
+        for (GameLogicListener listener :
+                gameLogicListeners) {
+            listener.onFundsChanged(funds);
+        }
+        lock = false;
+    }
+
+    public static void SetState(GameState state){
+        gameState = state;
         if (!toRemove.isEmpty()) {
             gameLogicListeners.removeAll(toRemove);
             toRemove.clear();
@@ -82,6 +104,10 @@ public class GameLogic {
                 break;
             case GAME_SCREEN:
                 break;
+            case END_SCREEN:
+                MapManager.getSelectedMap().dispose();
+                SceneManager.SetActiveScene(new GameOverScene());
+                break;
         }
     }
 
@@ -97,5 +123,31 @@ public class GameLogic {
     public static void RemoveListener(GameLogicListener listener){
         if (lock) toRemove.add(listener);
         else gameLogicListeners.remove(listener);
+    }
+
+    public static void Pause() {
+        if (paused) return;
+        paused = true;
+        lock = true;
+        for (GameLogicListener listener :
+                gameLogicListeners) {
+            listener.onPause();
+        }
+        lock = false;
+    }
+
+    public static void Resume() {
+        if (!paused) return;
+        paused = false;
+        lock = true;
+        for (GameLogicListener listener :
+                gameLogicListeners) {
+            listener.onResume();
+        }
+        lock = false;
+    }
+
+    public static boolean isPaused() {
+        return paused;
     }
 }

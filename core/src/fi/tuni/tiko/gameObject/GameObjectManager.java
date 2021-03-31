@@ -5,6 +5,7 @@ import com.badlogic.gdx.utils.Timer;
 
 import java.util.ArrayList;
 
+import fi.tuni.tiko.MainGame;
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 
 /**
@@ -22,6 +23,7 @@ public class GameObjectManager extends Timer.Task {
     private final SpriteBatch batch;
     private boolean active = false;
     private boolean dirty = false;
+    private boolean dispose = false;
 
     public void invalidate() {
         dirty = true;
@@ -56,6 +58,7 @@ public class GameObjectManager extends Timer.Task {
     }
 
     public void dispose() {
+        dispose = true;
         if (locked) return;
         locked = true;
         gameObjects.clear();
@@ -78,10 +81,10 @@ public class GameObjectManager extends Timer.Task {
 
     @Override
     public void run() {
-        if (!active) return;
         long currentTime = System.nanoTime();
         float delta = (currentTime - lastTick) / 1000000000f; //to seconds
         lastTick = currentTime;
+        if (!active) return;
         locked = true;
         boolean revalidate = dirty;
         dirty = false;
@@ -89,6 +92,10 @@ public class GameObjectManager extends Timer.Task {
             object.onTick(delta, revalidate);
         }
         locked = false;
+        if (dispose) {
+            dispose();
+            return;
+        }
         if (!delayedAdd.isEmpty()) {
             gameObjects.addAll(delayedAdd);
             delayedAdd.clear();

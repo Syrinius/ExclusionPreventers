@@ -2,6 +2,7 @@ package fi.tuni.tiko.gameObject.student;
 
 import com.badlogic.gdx.math.Vector2;
 
+import fi.tuni.tiko.GameLogic;
 import fi.tuni.tiko.MainGame;
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 import fi.tuni.tiko.gameObject.GameObjectSprite;
@@ -16,6 +17,7 @@ public class StudentContainer extends GameObjectSprite {
     private float animationTime = 0;
     private final Path path;
     private int nextCheckpoint = 1;
+    private int currentParticipation = 0;
 
     public StudentContainer(Student student, Map map, Path path) {
         super(student.getTextureRegion(0), path.checkPoints.get(0), map);
@@ -36,6 +38,7 @@ public class StudentContainer extends GameObjectSprite {
 
     @Override
     public void onTick(float deltaTime, boolean revalidate) {
+        if(!isValid()) return;
         student.tick(this);
         setRegion(student.getTextureRegion(animationTime += deltaTime));
         float remainingMove = student.getSpeed();
@@ -69,10 +72,16 @@ public class StudentContainer extends GameObjectSprite {
     }
 
     public void addParticipation(TowerLocation tower) {
-        //TODO
+        if(!isValid()) return;
+        currentParticipation += tower.getParticipation();
+        if (currentParticipation >= student.getRequiredParticipation()) {
+            destroy();
+            //TODO
+        }
     }
 
     public void reachedEnd() {
+        GameLogic.setLives(GameLogic.getLives() - 1);
         destroy();
         //TODO
     }
@@ -80,6 +89,8 @@ public class StudentContainer extends GameObjectSprite {
     @Override
     public void destroy() {
         super.destroy();
+        notifyTowers();
+        map.getGameObjectManager().invalidate();
         map.waveManager.studentRemoved();
     }
 }

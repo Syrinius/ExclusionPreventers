@@ -11,7 +11,8 @@ public class CookingTower implements Tower {
     private static CookingTower instance;
     private static final Texture texture = new Texture("cooking_tower.png");
     private static final Texture projectileTexture = new Texture("wip.png");
-    private static final float COOLDOWN = 10;
+    private static final float COOLDOWN = 5;
+    private static final float RANGE = 6;
 
     public static CookingTower getInstance() {
         if (instance == null) instance = new CookingTower();
@@ -22,7 +23,14 @@ public class CookingTower implements Tower {
     public float act(TowerLocation location, int level, Set<StudentContainer> currentTargets) {
         for (StudentContainer currentTarget : currentTargets) {
             location.spawnProjectile(projectileTexture, currentTarget);
-            return COOLDOWN;
+            switch (level) {
+                case 1:
+                    return COOLDOWN;
+                case 2:
+                    return COOLDOWN * 0.8f;
+                case 3:
+                    return COOLDOWN * 0.6f;
+            }
         }
         return 0;
     }
@@ -34,6 +42,27 @@ public class CookingTower implements Tower {
 
     @Override
     public float getRange(int level) {
-        return 6;
+        switch (level) {
+            case 1:
+                return RANGE;
+            case 2:
+                return RANGE * 1.25f;
+            case 3:
+                return RANGE * 1.5f;
+        }
+        return 0;
+    }
+
+    @Override
+    public int getParticipation(int level) {
+        switch (level) {
+            case 1:
+                return 4;
+            case 2:
+                return 6;
+            case 3:
+                return 8;
+        }
+        return 0;
     }
 }

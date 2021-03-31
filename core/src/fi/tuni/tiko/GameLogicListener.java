@@ -5,5 +5,8 @@ package fi.tuni.tiko;
  * All classes that need information about game state changes should implement this
  */
 public interface GameLogicListener {
-    void StateChanged(GameLogic.GameState state);
+    void onPause();
+    void onResume();
+    void onLivesChanged(int newValue);
+    void onFundsChanged(int newValue);
 }

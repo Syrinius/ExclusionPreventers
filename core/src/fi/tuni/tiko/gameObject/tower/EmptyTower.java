@@ -35,4 +35,9 @@ public class EmptyTower implements Tower {
     public float getRange(int level) {
         return 0;
     }
+
+    @Override
+    public int getParticipation(int level) {
+        return 0;
+    }
 }

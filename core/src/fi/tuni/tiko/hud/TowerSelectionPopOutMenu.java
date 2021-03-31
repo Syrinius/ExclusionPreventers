@@ -15,12 +15,12 @@ import fi.tuni.tiko.utilities.NextButtonPosition;
 public class TowerSelectionPopOutMenu extends HudSprite implements TouchListener {
 
 
-    private static final Texture backgroundTexture = new Texture("tower_selection_background.png");
-    private static final Texture cookingTowerTexture = new Texture("cooking_tower.png");
+    private static final Texture backgroundTexture = new Texture("towers/tower_selection_background.png");
+    private static final Texture cookingTowerTexture = new Texture("towers/cooking_tower.png");
     private static final Texture sportTowerTexture = new Texture("towers/sport.png");
     private static final Texture atkTowerTexture = new Texture("towers/atk.png");
     private static final Texture bookTowerTexture = new Texture("towers/book.png");
-    private static final Texture musicTowerTexture = new Texture("note_tower.png");
+    private static final Texture musicTowerTexture = new Texture("towers/note_tower.png");
     private static final float BACKGROUND_SIZE = 100;
     HudElementManager manager;
     Button cookingTowerButton, sportTowerButton, atkTowerButton, bookTowerButton, musicTowerButton;

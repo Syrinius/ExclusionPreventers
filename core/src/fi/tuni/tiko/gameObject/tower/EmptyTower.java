@@ -14,7 +14,7 @@ import fi.tuni.tiko.gameObject.student.StudentContainer;
 public class EmptyTower implements Tower {
 
     private static EmptyTower instance;
-    private static final Texture texture = new Texture("empty_tower.png");
+    private static final Texture texture = new Texture("towers/empty_tower.png");
 
     public static EmptyTower getInstance() {
         if (instance == null) instance = new EmptyTower();

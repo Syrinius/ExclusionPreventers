@@ -9,8 +9,8 @@ import fi.tuni.tiko.gameObject.student.StudentContainer;
 public class CookingTower implements Tower {
 
     private static CookingTower instance;
-    private static final Texture texture = new Texture("cooking_tower.png");
-    private static final Texture projectileTexture = new Texture("wip.png");
+    private static final Texture texture = new Texture("towers/cooking_tower.png");
+    private static final Texture projectileTexture = new Texture("towers/wip.png");
     private static final float COOLDOWN = 5;
     private static final float RANGE = 6;
 

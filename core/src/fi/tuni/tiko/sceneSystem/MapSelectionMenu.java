@@ -15,7 +15,7 @@ import fi.tuni.tiko.utilities.NextButtonPosition;
  */
 public class MapSelectionMenu extends Scene {
 
-    private static final Texture menuBackground = new Texture("menu_background.png");
+    private static final Texture menuBackground = new Texture("menu/menu_background.png");
 
     HudSprite background;
     Button backButton;

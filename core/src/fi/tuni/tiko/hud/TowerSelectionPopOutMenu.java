@@ -16,7 +16,7 @@ public class TowerSelectionPopOutMenu extends HudSprite implements TouchListener
 
 
     private static final Texture backgroundTexture = new Texture("towers/tower_selection_background.png");
-    private static final Texture cookingTowerTexture = new Texture("towers/cooking_tower.png");
+    private static final Texture cookingTowerTexture = new Texture("towers/cook_tower.png");
     private static final Texture sportTowerTexture = new Texture("towers/sport.png");
     private static final Texture atkTowerTexture = new Texture("towers/atk.png");
     private static final Texture bookTowerTexture = new Texture("towers/book.png");

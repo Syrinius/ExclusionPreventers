@@ -3,7 +3,11 @@ package fi.tuni.tiko.hud;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import fi.tuni.tiko.gameObject.tower.AtkTower;
+import fi.tuni.tiko.gameObject.tower.BookTower;
 import fi.tuni.tiko.gameObject.tower.CookingTower;
+import fi.tuni.tiko.gameObject.tower.MusicTower;
+import fi.tuni.tiko.gameObject.tower.SportTower;
 import fi.tuni.tiko.utilities.Action;
 import fi.tuni.tiko.gameObject.tower.TowerLocation;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
@@ -52,7 +56,7 @@ public class TowerSelectionPopOutMenu extends HudSprite implements TouchListener
                 new Action() {
                     @Override
                     public void run() {
-                        location.setTower(CookingTower.getInstance(), true);
+                        location.setTower(SportTower.getInstance(), true);
                         dispose();
                     }
                 }, Events.Priority.HIGH);
@@ -62,7 +66,7 @@ public class TowerSelectionPopOutMenu extends HudSprite implements TouchListener
                 new Action() {
                     @Override
                     public void run() {
-                        location.setTower(CookingTower.getInstance(), true);
+                        location.setTower(AtkTower.getInstance(), true);
                         dispose();
                     }
                 }, Events.Priority.HIGH);
@@ -72,7 +76,7 @@ public class TowerSelectionPopOutMenu extends HudSprite implements TouchListener
                 new Action() {
                     @Override
                     public void run() {
-                        location.setTower(CookingTower.getInstance(), true);
+                        location.setTower(BookTower.getInstance(), true);
                         dispose();
                     }
                 }, Events.Priority.HIGH);
@@ -82,7 +86,7 @@ public class TowerSelectionPopOutMenu extends HudSprite implements TouchListener
                 new Action() {
                     @Override
                     public void run() {
-                        location.setTower(CookingTower.getInstance(), true);
+                        location.setTower(MusicTower.getInstance(), true);
                         dispose();
                     }
                 }, Events.Priority.HIGH);

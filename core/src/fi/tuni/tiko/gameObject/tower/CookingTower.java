@@ -11,8 +11,12 @@ public class CookingTower implements Tower {
     private static CookingTower instance;
     private static final Texture texture = new Texture("towers/cook_tower.png");
     private static final Texture projectileTexture = new Texture("towers/wip.png");
-    private static final float COOLDOWN = 5;
-    private static final float RANGE = 6;
+    private static final float[] COOLDOWN = {5, 4, 3};
+    private static final float[] RANGE = {6, 7, 8};
+    private static final int[] PARTICIPATION = {4, 6, 8};
+    private static final int[] COST = {20, 40, 80};
+
+
 
     public static CookingTower getInstance() {
         if (instance == null) instance = new CookingTower();
@@ -23,14 +27,7 @@ public class CookingTower implements Tower {
     public float act(TowerLocation location, int level, Set<StudentContainer> currentTargets) {
         for (StudentContainer currentTarget : currentTargets) {
             location.spawnProjectile(projectileTexture, currentTarget);
-            switch (level) {
-                case 1:
-                    return COOLDOWN;
-                case 2:
-                    return COOLDOWN * 0.8f;
-                case 3:
-                    return COOLDOWN * 0.6f;
-            }
+            return COOLDOWN[level - 1];
         }
         return 0;
     }
@@ -42,27 +39,16 @@ public class CookingTower implements Tower {
 
     @Override
     public float getRange(int level) {
-        switch (level) {
-            case 1:
-                return RANGE;
-            case 2:
-                return RANGE * 1.25f;
-            case 3:
-                return RANGE * 1.5f;
-        }
-        return 0;
+        return RANGE[level - 1];
     }
 
     @Override
     public int getParticipation(int level) {
-        switch (level) {
-            case 1:
-                return 4;
-            case 2:
-                return 6;
-            case 3:
-                return 8;
-        }
-        return 0;
+        return PARTICIPATION[level -1];
+    }
+
+    @Override
+    public int getCost(int level) {
+        return COST[level -1];
     }
 }

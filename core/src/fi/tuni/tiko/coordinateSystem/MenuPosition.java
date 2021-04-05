@@ -21,6 +21,10 @@ public class MenuPosition extends Vector2 {
         this.y = y;
     }
 
+    public MenuPosition clone() {
+        return new MenuPosition(this.x, this.y);
+    }
+
     public MapPosition ToMapPosition() {
         return new MapPosition(
                 (x*MapPosition.VIEWPORT_WIDTH / WIDTH) + (MapPosition.camera.position.x - MapPosition.VIEWPORT_WIDTH / 2),

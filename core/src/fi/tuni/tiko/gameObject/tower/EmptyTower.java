@@ -40,4 +40,9 @@ public class EmptyTower implements Tower {
     public int getParticipation(int level) {
         return 0;
     }
+
+    @Override
+    public int getCost(int level) {
+        return 0;
+    }
 }

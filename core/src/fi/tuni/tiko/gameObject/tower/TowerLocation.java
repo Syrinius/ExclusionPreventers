@@ -27,11 +27,13 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
     private Set<StudentContainer> currentTargets;
     private int level = 0;
     private float cooldown = 0;
+    public MapPosition[] room  = new MapPosition[4];
 
     public TowerLocation(MapPosition position, Map map) {
         super(EmptyTower.getInstance().getTexture(0), position, map);
         setTower(EmptyTower.getInstance(), 0, true);
         Events.AddListener(this);
+        createRoom(position);
     }
 
     public void setTower(Tower toSet, boolean flushData) {
@@ -46,6 +48,47 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
             currentTargets = new HashSet<>();
             cooldown = 0;
         }
+    }
+
+    public MapPosition getCheeringSpawnPosition() {
+        MapPosition position = new MapPosition(0, 0);
+        do {
+            position.set((float)(Math.random() * (room[0].x - room[1].x) + room[1].x),
+                        (float)(Math.random() * (room[0].y - room[1].y) + room[1].y));
+        } while (position.x <= room[2].x && position.x >= room[3].x && position.y <= room[2].y && position.y >= room[3].y);
+        return position;
+    }
+
+    public void createRoom(MapPosition position) {
+        MapPosition currentPosition = position.clone();
+        do {
+            currentPosition.add(1, 0);
+        } while (map.getTileType(currentPosition).equals("room"));
+        currentPosition.add(-1, 0);
+        do {
+            currentPosition.add(0, 1);
+        } while (map.getTileType(currentPosition).equals("room"));
+        currentPosition.add(0.7f, -0.3f);
+        room[0] = currentPosition;
+
+        currentPosition = position.clone();
+        do {
+            currentPosition.add(-1, 0);
+        } while (map.getTileType(currentPosition).equals("room"));
+        currentPosition.add(1, 0);
+        do {
+            currentPosition.add(0, -1);
+        } while (map.getTileType(currentPosition).equals("room"));
+        currentPosition.add(0.3f, 1.3f);
+        room[1] = currentPosition;
+
+        currentPosition = position.clone();
+        currentPosition.add(1, 1);
+        room[2] = currentPosition;
+
+        currentPosition = position.clone();
+        currentPosition.add(-1, -1);
+        room[3] = currentPosition;
     }
 
     public float getRange() {

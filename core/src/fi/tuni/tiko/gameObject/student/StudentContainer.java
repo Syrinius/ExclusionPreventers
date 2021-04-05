@@ -3,7 +3,6 @@ package fi.tuni.tiko.gameObject.student;
 import com.badlogic.gdx.math.Vector2;
 
 import fi.tuni.tiko.GameLogic;
-import fi.tuni.tiko.MainGame;
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 import fi.tuni.tiko.gameObject.GameObjectSprite;
 import fi.tuni.tiko.gameObject.tower.TowerLocation;
@@ -20,7 +19,7 @@ public class StudentContainer extends GameObjectSprite {
     private int currentParticipation = 0;
 
     public StudentContainer(Student student, Map map, Path path) {
-        super(student.getTextureRegion(0), path.checkPoints.get(0), map);
+        super(student.getWalkingTextureRegion(0), path.checkPoints.get(0), map);
         this.student = student;
         this.path = path;
         setRotation((float) FancyMath.angleDegs(path.checkPoints.get(0), path.checkPoints.get(1)));
@@ -28,7 +27,7 @@ public class StudentContainer extends GameObjectSprite {
 
     public void setStudent(Student student) {
         this.student = student;
-        setRegion(student.getTextureRegion(animationTime));
+        setRegion(student.getWalkingTextureRegion(animationTime));
     }
 
     @Override
@@ -40,7 +39,7 @@ public class StudentContainer extends GameObjectSprite {
     public void onTick(float deltaTime, boolean revalidate) {
         if(!isValid()) return;
         student.tick(this);
-        setRegion(student.getTextureRegion(animationTime += deltaTime));
+        setRegion(student.getWalkingTextureRegion(animationTime += deltaTime));
         float remainingMove = student.getSpeed();
         int oldX = (int)getX();
         int oldY = (int)getY();
@@ -76,6 +75,7 @@ public class StudentContainer extends GameObjectSprite {
         currentParticipation += tower.getParticipation();
         if (currentParticipation >= student.getRequiredParticipation()) {
             destroy();
+            new CheeringContainer(student, tower.getCheeringSpawnPosition(), map);
             //TODO
         }
     }

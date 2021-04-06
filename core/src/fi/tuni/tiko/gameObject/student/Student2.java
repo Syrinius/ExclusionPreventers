@@ -7,11 +7,13 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import fi.tuni.tiko.utilities.FancyMath;
 
 public class Student2 implements Student {
-    private static final Animation<TextureRegion> animation;
+    private static final Animation<TextureRegion> walkingAnimation;
+    private static final Animation<TextureRegion> cheeringAnimation;
     private static final int REQUIREDPARTICIPATION = 20;
     static {
         Texture texture = new Texture("student_sprites/student2.png");
-        animation = FancyMath.getAnimationStrip(texture, 21, 21, 4, 0.35f);
+        walkingAnimation = FancyMath.getAnimationStrip(texture, 21, 21, 4, 0.35f);
+        cheeringAnimation = FancyMath.getAnimationStrip(texture, 21, 21, 4, 1f);
     }
 
     private static final Student2 instance = new Student2();
@@ -36,7 +38,12 @@ public class Student2 implements Student {
     }
 
     @Override
-    public TextureRegion getTextureRegion(float time) {
-        return animation.getKeyFrame(time, true);
+    public TextureRegion getWalkingTextureRegion(float time) {
+        return walkingAnimation.getKeyFrame(time, true);
+    }
+
+    @Override
+    public TextureRegion getCheeringTextureRegion(float time) {
+        return cheeringAnimation.getKeyFrame(time, true);
     }
 }

@@ -7,5 +7,6 @@ public interface Student {
     float getSpeed();
     int getRequiredParticipation();
     void tick(StudentContainer container);
-    TextureRegion getTextureRegion(float time);
+    TextureRegion getWalkingTextureRegion(float time);
+    TextureRegion getCheeringTextureRegion(float time);
 }

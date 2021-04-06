@@ -209,12 +209,12 @@ public class Map extends Timer.Task implements GameLogicListener {
 
     @Override
     public void onPause() {
-        gameObjectManager.pause();
+        if (gameObjectManager != null) gameObjectManager.pause();
     }
 
     @Override
     public void onResume() {
-        gameObjectManager.resume();
+         if (gameObjectManager != null) gameObjectManager.resume();
     }
 
     @Override

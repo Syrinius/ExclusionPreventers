@@ -4,23 +4,111 @@
   "waves": [
     {
         "STUDENT1" : {
-          "amount" : 10,
-          "baseCooldown" : 4
+          "amount": 6,
+          "baseCooldown": 2
         },
         "STUDENT2" : {
-          "amount" : 5,
-          "baseCooldown" : 10
+          "amount": 1,
+          "baseCooldown": 4
         }
     },
     {
-      "STUDENT1" : {
-        "amount" : 20,
-        "baseCooldown" : 5
-      },
-      "STUDENT2" : {
-        "amount" : 7,
-        "baseCooldown" : 10
+        "STUDENT1" : {
+          "amount": 3,
+          "baseCooldown": 3
+        },
+        "STUDENT2" : {
+          "amount": 2,
+          "baseCooldown": 4
+        },
+      "STUDENT3" : {
+        "amount": 5,
+        "baseCooldown": 2
       }
+    },
+    {
+        "STUDENT1" : {
+          "amount": 10,
+          "baseCooldown": 1
+        },
+        "STUDENT2" : {
+          "amount": 3,
+          "baseCooldown": 10
+        }
+    },
+    {
+        "STUDENT1" : {
+          "amount": 14,
+          "baseCooldown": 3
+        },
+        "STUDENT2" : {
+          "amount": 3,
+          "baseCooldown": 3
+        }
+    },
+    {
+        "STUDENT1" : {
+          "amount": 6,
+          "baseCooldown": 3
+        },
+        "STUDENT2" : {
+          "amount": 4,
+          "baseCooldown": 5
+        },
+      "STUDENT3" : {
+        "amount": 8,
+        "baseCooldown": 6
+      }
+    },
+    {
+        "STUDENT1" : {
+          "amount": 16,
+          "baseCooldown": 5
+        },
+        "STUDENT2" : {
+          "amount": 7,
+          "baseCooldown": 2
+        }
+    },
+    {
+        "STUDENT1" : {
+          "amount": 20,
+          "baseCooldown": 3
+        },
+        "STUDENT2" : {
+          "amount": 6,
+          "baseCooldown": 4
+        }
+    },
+    {
+        "STUDENT1" : {
+          "amount": 24,
+          "baseCooldown": 2
+        },
+        "STUDENT2" : {
+          "amount": 4,
+          "baseCooldown": 8
+        }
+    },
+    {
+        "STUDENT1" : {
+          "amount": 22,
+          "baseCooldown": 3
+        },
+        "STUDENT2" : {
+          "amount": 8,
+          "baseCooldown": 4
+        }
+    },
+    {
+        "STUDENT1" : {
+          "amount": 15,
+          "baseCooldown": 3
+        },
+        "STUDENT2" : {
+          "amount": 15,
+          "baseCooldown": 5
+        }
     }
-  ]
+    ]
 }

@@ -14,6 +14,7 @@ public class MapManager {
 
     static {
         availableMaps.add(new Map("map1.tmx", "map1.json"));
+        availableMaps.add(new Map("map2.tmx", "map1.json"));
     }
 
     public static Map selectMap(int index) {

@@ -1,0 +1,26 @@
+{
+  "starting_funds": 100,
+  "starting_lives": 5,
+  "waves": [
+    {
+        "STUDENT1" : {
+          "amount" : 10,
+          "baseCooldown" : 4
+        },
+        "STUDENT2" : {
+          "amount" : 5,
+          "baseCooldown" : 10
+        }
+    },
+    {
+      "STUDENT1" : {
+        "amount" : 20,
+        "baseCooldown" : 5
+      },
+      "STUDENT2" : {
+        "amount" : 7,
+        "baseCooldown" : 10
+      }
+    }
+  ]
+}

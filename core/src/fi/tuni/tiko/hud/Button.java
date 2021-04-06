@@ -14,7 +14,7 @@ import fi.tuni.tiko.eventSystem.TouchListener;
  */
 public class Button extends HudSprite implements TouchListener {
 
-    private final Action toExecute;
+    final Action toExecute;
     private final Events.Priority priority;
 
     public Button(Texture texture, MenuPosition position, float size, Action toExecute) {

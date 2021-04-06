@@ -54,7 +54,7 @@ public class MapSelectionMenu extends Scene {
                 new Action() {
                     @Override
                     public void run() {
-                        MapManager.selectMap(0);
+                        MapManager.selectMap(1);
                         GameLogic.SetState(GameLogic.GameState.MAP_LOADING_SCREEN);
                     }
                 });

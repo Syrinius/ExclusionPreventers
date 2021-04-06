@@ -15,4 +15,5 @@ public interface Tower {
     Texture getTexture(int level);
     float getRange(int level);
     int getParticipation(int level);
+    int getCost(int level);
 }

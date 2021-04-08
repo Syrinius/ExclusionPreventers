@@ -23,12 +23,15 @@ public class GameScene extends Scene implements GameLogicListener {
     private final Button playPauseButton;
     private final GlyphRenderer funds;
     private final GlyphRenderer lives;
+    private final GlyphRenderer workers;
 
     public GameScene() {
         funds = new GlyphRenderer(new MenuPosition(MenuPosition.WIDTH/2, 180), .5f, GlyphRenderer.Type.FUNDS, GameLogic.getFunds());
         hudElementManager.AddHudElement(funds);
         lives = new GlyphRenderer(new MenuPosition(10, 180), .5f, GlyphRenderer.Type.LIVES, GameLogic.getLives());
         hudElementManager.AddHudElement(lives);
+        workers = new GlyphRenderer(new MenuPosition(MenuPosition.WIDTH/4, 180), .5f, GlyphRenderer.Type.WORKERS, GameLogic.getWorkers());
+        hudElementManager.AddHudElement(workers);
 
         GameLogic.AddListener(this);
         playPauseButton = new Button(resumeTexture, new MenuPosition(MenuPosition.WIDTH - 25, MenuPosition.HEIGHT - 25), 25, new Action() {
@@ -71,5 +74,10 @@ public class GameScene extends Scene implements GameLogicListener {
     @Override
     public void onFundsChanged(int newValue) {
         funds.setValue(newValue);
+    }
+
+    @Override
+    public void onWorkersChanged(int newValue) {
+        workers.setValue(newValue);
     }
 }

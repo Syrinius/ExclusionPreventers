@@ -20,6 +20,8 @@ import fi.tuni.tiko.utilities.Action;
  */
 public class GameLogic {
 
+
+
     /**
      * Enum to trigger correct events based on what state the game is currently in
      * for instance clicking the settings button in main menu will change change the game state to SETTINGS_SCREEN
@@ -38,9 +40,14 @@ public class GameLogic {
     private static boolean paused = true;
     private static int funds;
     private static int lives;
+    private static int workers;
 
     public static int getLives() {
         return lives;
+    }
+
+    public static void addLives(int toAdd) {
+        setLives(lives + toAdd);
     }
 
     public static void setLives(int lives) {
@@ -54,8 +61,30 @@ public class GameLogic {
         if (lives == 0) SetState(GameState.END_SCREEN);
     }
 
+    public static int getWorkers() {
+        return workers;
+    }
+
+    public static void addWorkers(int toAdd) {
+        setWorkers(workers + toAdd);
+    }
+
+    public static void setWorkers(int workers) {
+        GameLogic.workers = workers;
+        lock = true;
+        for (GameLogicListener listener :
+                gameLogicListeners) {
+            listener.onWorkersChanged(workers);
+        }
+        lock = false;
+    }
+
     public static int getFunds() {
         return funds;
+    }
+
+    public static void addFunds(int toAdd) {
+        setFunds(funds + toAdd);
     }
 
     public static void setFunds(int funds) {

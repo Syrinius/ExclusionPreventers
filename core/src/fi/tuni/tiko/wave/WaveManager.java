@@ -13,33 +13,43 @@ import fi.tuni.tiko.map.Map;
 public class WaveManager implements GameObject {
     private final Map map;
     private float cooldown = 0;
-    private int remaining = 1;
-    private int currentWave = -1;
+    private int remaining = 0;
+    private int currentWave = 0;
     private final HashMap<StudentType, Integer> studentCountList;
 
     public WaveManager(Map map) {
         this.map = map;
         studentCountList = new HashMap<>();
-        studentRemoved();
+        nextWave();
         map.getGameObjectManager().addGameObject(this);
     }
 
     public void studentRemoved() {
-        if(--remaining == 0) {
-            if(++currentWave == map.mapData.waves.size) {
-                GameLogic.SetState(GameLogic.GameState.END_SCREEN);
-                return;
-            }
+        if(--remaining == 0) waveCleared();
+    }
 
-            WaveData wave = map.mapData.waves.get(currentWave);
-            for (StudentType type :
-                    wave.students.keySet()) {
-                remaining += wave.students.get(type).amount;
-                studentCountList.put(type, wave.students.get(type).amount);
-            }
-            cooldown = 0;
-            GameLogic.Pause();
+    private void waveCleared() {
+        WaveData wave = map.mapData.waves.get(currentWave);
+        GameLogic.addFunds(wave.fund_reward);
+        GameLogic.addWorkers(wave.worker_reward);
+
+        if(++currentWave == map.mapData.waves.size) {
+            GameLogic.SetState(GameLogic.GameState.END_SCREEN);
+            return;
         }
+
+        nextWave();
+    }
+
+    private void nextWave() {
+        WaveData wave = map.mapData.waves.get(currentWave);
+        for (StudentType type :
+                wave.students.keySet()) {
+            remaining += wave.students.get(type).amount;
+            studentCountList.put(type, wave.students.get(type).amount);
+        }
+        cooldown = 0;
+        GameLogic.Pause();
     }
 
     @Override

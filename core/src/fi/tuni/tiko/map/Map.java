@@ -203,6 +203,7 @@ public class Map extends Timer.Task implements GameLogicListener {
 		waveManager = new WaveManager(this);
         GameLogic.setFunds(mapData.starting_funds);
         GameLogic.setLives(mapData.starting_lives);
+        GameLogic.setWorkers(mapData.starting_workers);
         firstTimeCreated = false;
         toExecute.run();
     }
@@ -224,6 +225,11 @@ public class Map extends Timer.Task implements GameLogicListener {
 
     @Override
     public void onFundsChanged(int newValue) {
+
+    }
+
+    @Override
+    public void onWorkersChanged(int newValue) {
 
     }
 }

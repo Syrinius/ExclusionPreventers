@@ -9,4 +9,5 @@ public interface GameLogicListener {
     void onResume();
     void onLivesChanged(int newValue);
     void onFundsChanged(int newValue);
+    void onWorkersChanged(int newValue);
 }

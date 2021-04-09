@@ -34,21 +34,19 @@ public class TowerImprovementPopOutMenu extends HudSprite implements TouchListen
         super(backgroundTexture, towerPosition, BACKGROUND_SIZE);
         this.manager = manager;
 
-        float gapY = -50;
-
         Action disposer = new Action() {
             @Override
             public void run() {
                 dispose();
             }
         };
-        towerPosition.add(0,50);
+        towerPosition.add(0,40);
 
         upgradeButton = new TowerButton(location.getTower(), location, towerPosition, location.getLevel() + 1, 25, disposer);
-        towerPosition = NextButtonPosition.nextTowerPosition(towerPosition, 0, gapY);
+        towerPosition = NextButtonPosition.nextTowerPosition(towerPosition, 0, -50);
 
         removeButton = new TowerButton(EmptyTower.getInstance(), location, towerPosition, 0, 25, disposer);
-        towerPosition = NextButtonPosition.nextTowerPosition(towerPosition, -30, gapY);
+        towerPosition = NextButtonPosition.nextTowerPosition(towerPosition, -30, -40);
 
         removeWorkerButton = new Button(minusTexture, towerPosition, 20, new Action() {
             @Override

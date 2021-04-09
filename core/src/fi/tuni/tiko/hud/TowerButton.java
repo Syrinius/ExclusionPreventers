@@ -1,10 +1,12 @@
 package fi.tuni.tiko.hud;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import fi.tuni.tiko.GameLogic;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.coordinateSystem.ScreenPosition;
+import fi.tuni.tiko.gameObject.tower.EmptyTower;
 import fi.tuni.tiko.gameObject.tower.Tower;
 import fi.tuni.tiko.gameObject.tower.TowerLocation;
 import fi.tuni.tiko.utilities.Action;
@@ -16,13 +18,14 @@ public class TowerButton extends Button {
     private final TowerLocation location;
     private final int level;
     private final GlyphRenderer glyphRenderer;
+    private static final Texture removeTexture = new Texture("menu/remove_tower.png");
 
     public TowerButton(Tower tower, TowerLocation location, MenuPosition position, int level, float size, Action toExecute) {
-        super(tower.getTexture(level), position, size, toExecute);
+        super(tower.getClass().equals(EmptyTower.class) ? removeTexture : tower.getTexture(level), position, size, toExecute);
         this.tower = tower;
         this.location = location;
         this.level = level;
-        glyphRenderer = new GlyphRenderer(position.clone(), 0.3f, GlyphRenderer.Type.FUNDS, tower.getCost(level));
+        glyphRenderer = new GlyphRenderer(new MenuPosition(position.x, position.y + size/2), 0.3f, GlyphRenderer.Type.FUNDS, tower.getCost(level));
     }
 
     @Override

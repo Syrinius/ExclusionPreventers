@@ -50,7 +50,7 @@ public class TowerSelectionPopOutMenu extends HudSprite implements TouchListener
         towerPosition.add(-20,40);
 
         for (TowerType towerType : TowerType.values()) {
-            buttons.add(new TowerButton(towerType.tower, location, towerPosition, 1, 30, disposer));
+            buttons.add(new TowerButton(towerType.tower, location, towerPosition, 1, 25, disposer));
             towerPosition = NextButtonPosition.nextTowerPosition(towerPosition, gapX, gapY);
         }
         Events.AddListener(this);

@@ -8,6 +8,7 @@ import java.util.Set;
 import fi.tuni.tiko.gameObject.GameObjectSprite;
 import fi.tuni.tiko.gameObject.Projectile;
 import fi.tuni.tiko.gameObject.student.StudentContainer;
+import fi.tuni.tiko.hud.TowerImprovementPopOutMenu;
 import fi.tuni.tiko.map.Map;
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
@@ -34,6 +35,14 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
         setTower(EmptyTower.getInstance(), 0, true);
         Events.AddListener(this);
         createRoom(position);
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public Tower getTower() {
+        return tower;
     }
 
     public void setTower(Tower toSet, boolean flushData) {
@@ -116,6 +125,10 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
             if (tower == EmptyTower.getInstance()){
                 TowerSelectionPopOutMenu.GetInstance(map.getHudElementManager(), new MenuPosition(
                         position.x > ScreenPosition.WIDTH / 2 ? MenuPosition.WIDTH / 4f : MenuPosition.WIDTH * 3 / 4f, MenuPosition.HEIGHT / 2f),
+                        this);
+            } else {
+                TowerImprovementPopOutMenu.GetInstance(map.getHudElementManager(), new MenuPosition(
+                                position.x > ScreenPosition.WIDTH / 2 ? MenuPosition.WIDTH / 4f : MenuPosition.WIDTH * 3 / 4f, MenuPosition.HEIGHT / 2f),
                         this);
             }
             return true;

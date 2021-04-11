@@ -10,6 +10,8 @@ import fi.tuni.tiko.gameObject.student.StudentType;
 public class WaveData implements Json.Serializable {
 
     public HashMap<StudentType, StudentData> students;
+    public int worker_reward = 0;
+    public int fund_reward = 0;
 
     @Override
     public void write(Json json) {
@@ -21,7 +23,21 @@ public class WaveData implements Json.Serializable {
         students = new HashMap<>();
         JsonValue currentField = jsonData.child();
         while (currentField != null) {
-            students.put(StudentType.valueOf(currentField.name), json.readValue(StudentData.class, currentField));
+            switch (currentField.name) {
+                case "composition":
+                    JsonValue studentField = currentField.child();
+                    while (studentField != null) {
+                        students.put(StudentType.valueOf(studentField.name), json.readValue(StudentData.class, studentField));
+                        studentField = studentField.next;
+                    }
+                    break;
+                case "fund_reward":
+                    fund_reward = currentField.asInt();
+                    break;
+                case "worker_reward":
+                    worker_reward = currentField.asInt();
+                    break;
+            }
             currentField = currentField.next;
         }
     }

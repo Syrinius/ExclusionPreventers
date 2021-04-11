@@ -7,4 +7,5 @@ public class MapData {
     public Array<WaveData> waves;
     public int starting_funds;
     public int starting_lives;
+    public int starting_workers;
 }

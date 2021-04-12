@@ -12,7 +12,7 @@ public class BookTower implements Tower {
     private static final Texture texture = new Texture("towers/book.png");
     private static final Texture projectileTexture = new Texture("towers/wip.png");
     private static final float[] COOLDOWN = {5, 4, 3};
-    private static final float[] RANGE = {6, 7, 8};
+    private static final float[] RANGE = {7, 8, 9};
     private static final int[] PARTICIPATION = {4, 6, 8};
     private static final int[] COST = {20, 40, 80};
 

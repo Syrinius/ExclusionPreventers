@@ -10,7 +10,7 @@ public class SportTower implements Tower {
 
     private static SportTower instance;
     private static final Texture texture = new Texture("towers/sport.png");
-    private static final Texture projectileTexture = new Texture("towers/wip.png");
+    private static final Texture projectileTexture = new Texture("towers/heart.png");
     private static final float[] COOLDOWN = {4, 3, 2};
     private static final float[] RANGE = {5, 6, 7};
     private static final int[] PARTICIPATION = {3, 4, 5};
@@ -22,7 +22,7 @@ public class SportTower implements Tower {
     }
 
     @Override
-    public float act(TowerLocation location, int level, Set<StudentContainer> currentTargets) {
+    public float act(TowerLocation location, int level, int workers, Set<StudentContainer> currentTargets) {
         if (!currentTargets.isEmpty()) {
             int count = 0;
             for (StudentContainer currentTarget : currentTargets) {
@@ -45,12 +45,21 @@ public class SportTower implements Tower {
     }
 
     @Override
-    public int getParticipation(int level) {
-        return PARTICIPATION[level -1];
+    public int getParticipation(int level, int workers) {
+        return PARTICIPATION[level -1] + workers;
     }
 
     @Override
     public int getCost(int level) {
         return COST[level -1];
+    }
+
+    @Override
+    public int getRefund(int level) {
+        int toReturn = 0;
+        while (--level >= 0) {
+            toReturn += COST[level];
+        }
+        return (toReturn * 4) / 5;
     }
 }

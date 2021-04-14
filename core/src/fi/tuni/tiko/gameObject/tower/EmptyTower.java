@@ -22,7 +22,7 @@ public class EmptyTower implements Tower {
     }
 
     @Override
-    public float act(TowerLocation location, int level, Set<StudentContainer> currentTargets) {
+    public float act(TowerLocation location, int level, int workers, Set<StudentContainer> currentTargets) {
         return -1;
     }
 
@@ -37,12 +37,17 @@ public class EmptyTower implements Tower {
     }
 
     @Override
-    public int getParticipation(int level) {
+    public int getParticipation(int level, int workers) {
         return 0;
     }
 
     @Override
     public int getCost(int level) {
+        return 0;
+    }
+
+    @Override
+    public int getRefund(int level) {
         return 0;
     }
 }

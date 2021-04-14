@@ -3,6 +3,7 @@ package fi.tuni.tiko.hud;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import fi.tuni.tiko.GameLogic;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.coordinateSystem.ScreenPosition;
 import fi.tuni.tiko.eventSystem.Events;
@@ -23,6 +24,7 @@ public class TowerImprovementPopOutMenu extends HudSprite implements TouchListen
     private final TowerButton removeButton;
     private final Button addWorkerButton;
     private final Button removeWorkerButton;
+    private final GlyphRenderer workerRenderer;
 
     public static TowerImprovementPopOutMenu GetInstance(HudElementManager manager, MenuPosition position, final TowerLocation location) {
         TowerImprovementPopOutMenu toReturn = new TowerImprovementPopOutMenu(manager, position, location);
@@ -45,13 +47,16 @@ public class TowerImprovementPopOutMenu extends HudSprite implements TouchListen
         upgradeButton = new TowerButton(location.getTower(), location, towerPosition, location.getLevel() + 1, 25, disposer);
         towerPosition = NextButtonPosition.nextTowerPosition(towerPosition, 0, -50);
 
-        removeButton = new TowerButton(EmptyTower.getInstance(), location, towerPosition, 0, 25, disposer);
+        removeButton = new RemoveTowerButton(location, towerPosition, 0, 25, disposer);
         towerPosition = NextButtonPosition.nextTowerPosition(towerPosition, -30, -40);
 
         removeWorkerButton = new Button(minusTexture, towerPosition, 20, new Action() {
             @Override
             public void run() {
-                dispose();
+                if (location.getWorkers() > 0) {
+                    location.addWorkers(-1);
+                    workerRenderer.setValue(location.getWorkers());
+                }
             }
         });
         towerPosition = NextButtonPosition.nextTowerPosition(towerPosition, 60, 0);
@@ -59,9 +64,15 @@ public class TowerImprovementPopOutMenu extends HudSprite implements TouchListen
         addWorkerButton = new Button(plusTexture, towerPosition, 20, new Action() {
             @Override
             public void run() {
-                dispose();
+                if (GameLogic.getWorkers() > 0) {
+                    location.addWorkers(1);
+                    workerRenderer.setValue(location.getWorkers());
+                }
             }
         });
+        towerPosition = NextButtonPosition.nextTowerPosition(towerPosition, -30, 0);
+
+        workerRenderer = new GlyphRenderer(towerPosition, 0.5f, GlyphRenderer.Type.WORKERS, location.getWorkers());
 
         Events.AddListener(this);
     }
@@ -73,6 +84,7 @@ public class TowerImprovementPopOutMenu extends HudSprite implements TouchListen
         removeButton.render(batch);
         addWorkerButton.render(batch);
         removeWorkerButton.render(batch);
+        workerRenderer.render(batch);
     }
 
     @Override
@@ -106,5 +118,6 @@ public class TowerImprovementPopOutMenu extends HudSprite implements TouchListen
         removeButton.dispose();
         addWorkerButton.dispose();
         removeWorkerButton.dispose();
+        workerRenderer.dispose();
     }
 }

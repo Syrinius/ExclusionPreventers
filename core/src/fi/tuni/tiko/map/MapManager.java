@@ -25,6 +25,10 @@ public class MapManager {
         return availableMaps.get(index);
     }
 
+    public static int getIndex(Map map) {
+        return availableMaps.indexOf(map);
+    }
+
     public static Map getSelectedMap() {
         return selectedMap;
     }

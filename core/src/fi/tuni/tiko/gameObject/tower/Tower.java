@@ -11,9 +11,10 @@ import fi.tuni.tiko.gameObject.student.StudentContainer;
  */
 public interface Tower {
 
-    float act(TowerLocation location, int level, Set<StudentContainer> currentTargets);
+    float act(TowerLocation location, int level, int workers, Set<StudentContainer> currentTargets);
     Texture getTexture(int level);
     float getRange(int level);
-    int getParticipation(int level);
+    int getParticipation(int level, int workers);
     int getCost(int level);
+    int getRefund(int level);
 }

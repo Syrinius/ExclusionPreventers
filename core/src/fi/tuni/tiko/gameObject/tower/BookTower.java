@@ -10,7 +10,7 @@ public class BookTower implements Tower {
 
     private static BookTower instance;
     private static final Texture texture = new Texture("towers/book.png");
-    private static final Texture projectileTexture = new Texture("towers/wip.png");
+    private static final Texture projectileTexture = new Texture("towers/heart.png");
     private static final float[] COOLDOWN = {5, 4, 3};
     private static final float[] RANGE = {7, 8, 9};
     private static final int[] PARTICIPATION = {4, 6, 8};
@@ -22,7 +22,7 @@ public class BookTower implements Tower {
     }
 
     @Override
-    public float act(TowerLocation location, int level, Set<StudentContainer> currentTargets) {
+    public float act(TowerLocation location, int level, int workers, Set<StudentContainer> currentTargets) {
         for (StudentContainer currentTarget : currentTargets) {
             location.spawnProjectile(projectileTexture, currentTarget);
             return COOLDOWN[level - 1];
@@ -41,12 +41,21 @@ public class BookTower implements Tower {
     }
 
     @Override
-    public int getParticipation(int level) {
-        return PARTICIPATION[level -1];
+    public int getParticipation(int level, int workers) {
+        return PARTICIPATION[level -1] + workers;
     }
 
     @Override
     public int getCost(int level) {
         return COST[level -1];
+    }
+
+    @Override
+    public int getRefund(int level) {
+        int toReturn = 0;
+        while (--level >= 0) {
+            toReturn += COST[level];
+        }
+        return (toReturn * 4) / 5;
     }
 }

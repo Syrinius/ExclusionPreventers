@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import java.util.HashSet;
 import java.util.Set;
 
+import fi.tuni.tiko.GameLogic;
+import fi.tuni.tiko.gameObject.AOEVisual;
 import fi.tuni.tiko.gameObject.GameObjectSprite;
 import fi.tuni.tiko.gameObject.Projectile;
 import fi.tuni.tiko.gameObject.student.StudentContainer;
@@ -29,12 +31,31 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
     private int level = 0;
     private float cooldown = 0;
     public MapPosition[] room  = new MapPosition[4];
+    private int workers = 0;
+
+    public int getWorkers() {
+        return workers;
+    }
 
     public TowerLocation(MapPosition position, Map map) {
         super(EmptyTower.getInstance().getTexture(0), position, map);
         setTower(EmptyTower.getInstance(), 0, true);
         Events.AddListener(this);
         createRoom(position);
+    }
+
+    public int getRefund() {
+        return tower.getRefund(level);
+    }
+
+    public void refundWorkers() {
+        GameLogic.addWorkers(workers);
+        workers = 0;
+    }
+
+    public void addWorkers(int amount) {
+        GameLogic.addWorkers(- amount);
+        workers += amount;
     }
 
     public int getLevel() {
@@ -105,7 +126,7 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
     }
 
     public int getParticipation() {
-        return tower.getParticipation(level);
+        return tower.getParticipation(level, workers);
     }
 
     @Override
@@ -116,7 +137,7 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
     @Override
     public void onTick(float deltaTime, boolean revalidate) {
         if (cooldown > 0) cooldown = Math.max(cooldown - deltaTime, 0);
-        else if (cooldown == 0) cooldown = tower.act(this, level, currentTargets);
+        else if (cooldown == 0) cooldown = tower.act(this, level, workers, currentTargets);
     }
 
     @Override
@@ -163,6 +184,10 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
 
     public void removeTarget(StudentContainer studentContainer) {
         currentTargets.remove(studentContainer);
+    }
+
+    public AOEVisual spawnAOEVisual() {
+        return new AOEVisual(new MapPosition(getX(), getY()), map);
     }
 
     public Projectile spawnProjectile(Texture texture, StudentContainer target) {

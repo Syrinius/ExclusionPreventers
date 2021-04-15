@@ -29,7 +29,7 @@ public class GameWinScene extends Scene {
                 new Action() {
                     @Override
                     public void run() {
-                        MapManager.selectMap(1);
+                        MapManager.selectMap(MapManager.getIndex(MapManager.getSelectedMap()) + 1);
                         GameLogic.SetState(GameLogic.GameState.MAP_LOADING_SCREEN);
                     }
                 });

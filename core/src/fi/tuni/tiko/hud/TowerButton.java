@@ -15,7 +15,7 @@ public class TowerButton extends Button {
 
 
     private final Tower tower;
-    private final TowerLocation location;
+    final TowerLocation location;
     private final int level;
     private final GlyphRenderer glyphRenderer;
     private static final Texture removeTexture = new Texture("menu/remove_tower.png");
@@ -31,7 +31,7 @@ public class TowerButton extends Button {
     @Override
     public boolean onTouchDown(ScreenPosition position, int pointer) {
         if (IsInside(position.ToMenuPosition()) && GameLogic.getFunds() >= tower.getCost(level)) {
-            GameLogic.setFunds(GameLogic.getFunds() - tower.getCost(level));
+            GameLogic.addFunds(- tower.getCost(level));
             location.setTower(tower, level, true);
             toExecute.run();
             return true;

@@ -1,5 +1,7 @@
 package fi.tuni.tiko.gameObject.tower;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 
 import java.util.Set;
@@ -15,6 +17,7 @@ public class MusicTower implements Tower {
     private static final float[] RANGE = {6, 7, 8};
     private static final int[] PARTICIPATION = {3, 4, 5};
     private static final int[] COST = {40, 60, 100};
+    private static final Sound musicSound = Gdx.audio.newSound(Gdx.files.internal("sounds/music_sound.mp3"));
 
     public static MusicTower getInstance() {
         if (instance == null) instance = new MusicTower();
@@ -28,6 +31,7 @@ public class MusicTower implements Tower {
                 currentTarget.addParticipation(location);
             }
             location.spawnAOEVisual();
+            musicSound.play();
             return COOLDOWN[level - 1];
         } else return 0;
     }

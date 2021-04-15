@@ -12,6 +12,8 @@ import fi.tuni.tiko.map.Map;
 import fi.tuni.tiko.map.MapManager;
 import fi.tuni.tiko.utilities.Action;
 
+import static fi.tuni.tiko.sceneSystem.MainMenu.menuMusic;
+
 /**
  * Implementation for map Scenes
  */
@@ -32,6 +34,7 @@ public class GameScene extends Scene implements GameLogicListener {
         hudElementManager.AddHudElement(lives);
         workers = new GlyphRenderer(new MenuPosition(MenuPosition.WIDTH/4, 180), .5f, GlyphRenderer.Type.WORKERS, GameLogic.getWorkers());
         hudElementManager.AddHudElement(workers);
+        menuMusic.pause();
 
         GameLogic.AddListener(this);
         playPauseButton = new Button(resumeTexture, new MenuPosition(MenuPosition.WIDTH - 25, MenuPosition.HEIGHT - 25), 25, new Action() {

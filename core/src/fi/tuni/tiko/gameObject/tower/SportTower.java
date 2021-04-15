@@ -1,5 +1,7 @@
 package fi.tuni.tiko.gameObject.tower;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 
 import java.util.Set;
@@ -15,6 +17,7 @@ public class SportTower implements Tower {
     private static final float[] RANGE = {5, 6, 7};
     private static final int[] PARTICIPATION = {3, 4, 5};
     private static final int[] COST = {25, 45, 100};
+    private static final Sound sportSound = Gdx.audio.newSound(Gdx.files.internal("sounds/sport_sound.mp3"));
 
     public static SportTower getInstance() {
         if (instance == null) instance = new SportTower();
@@ -29,6 +32,7 @@ public class SportTower implements Tower {
                 location.spawnProjectile(projectileTexture, currentTarget);
                 if (++count > 1) return COOLDOWN[level - 1];
             }
+            sportSound.play();
             return COOLDOWN[level - 1];
         }
         return 0;

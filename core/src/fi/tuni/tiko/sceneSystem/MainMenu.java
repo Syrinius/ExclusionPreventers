@@ -1,5 +1,8 @@
 package fi.tuni.tiko.sceneSystem;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 
 import fi.tuni.tiko.hud.HudSprite;
@@ -24,12 +27,15 @@ public class MainMenu extends Scene {
     MenuPosition currentPosition = new MenuPosition(200, 160);
     float gapX = 0;
     float gapY = -40;
+    static final Music menuMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/menusong.wav"));
 
 
     public MainMenu() {
         background = new HudSprite(menuBackground, MenuPosition.CENTER, MenuPosition.WIDTH);
         hudElementManager.AddHudElement(background);
-
+        menuMusic.play();
+        menuMusic.setLooping(true);
+        //menuMusic.pause();
 
         playButton = new Button(new Texture("menu/play.png"), currentPosition, 100,
             new Action() {

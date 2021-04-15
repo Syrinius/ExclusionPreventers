@@ -1,5 +1,7 @@
 package fi.tuni.tiko.gameObject.tower;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 
 import java.util.Set;
@@ -15,6 +17,7 @@ public class CookingTower implements Tower {
     private static final float[] RANGE = {7, 8, 9};
     private static final int[] PARTICIPATION = {4, 6, 8};
     private static final int[] COST = {20, 40, 80};
+    private static final Sound cookSound = Gdx.audio.newSound(Gdx.files.internal("sounds/cook_sound.mp3"));
 
 
 
@@ -27,6 +30,7 @@ public class CookingTower implements Tower {
     public float act(TowerLocation location, int level, int workers, Set<StudentContainer> currentTargets) {
         for (StudentContainer currentTarget : currentTargets) {
             location.spawnProjectile(projectileTexture, currentTarget);
+            cookSound.play();
             return COOLDOWN[level - 1];
         }
         return 0;

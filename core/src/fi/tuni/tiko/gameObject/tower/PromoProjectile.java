@@ -14,12 +14,12 @@ public class PromoProjectile extends GameObjectSprite {
 
     public final TowerLocation tower;
     public final PromoData data;
-    public final static Texture texture = new Texture("towers/aoe_texture.png");
+    public final static Texture texture = new Texture("towers/promo_texture.png");
     private float animationTime = 0;
     private float lifetime = 1.6f;
     private static final Animation<TextureRegion> animation;
     static {
-        animation = FancyMath.getAnimationStrip(texture, 96, 96, 3, 0.05f);
+        animation = FancyMath.getAnimationStrip(texture, 96, 96, 3, 0.1f);
     }
 
     public PromoProjectile(MapPosition position, Map map, TowerLocation tower, PromoData data) {

@@ -9,8 +9,8 @@ import fi.tuni.tiko.utilities.Action;
 
 public class RemoveTowerButton extends TowerButton {
 
-    public RemoveTowerButton(TowerLocation location, MenuPosition position, int level, float size, Action toExecute) {
-        super(EmptyTower.getInstance(), location, position, level, size, toExecute);
+    public RemoveTowerButton(TowerLocation location, MenuPosition position, float size, Action toExecute) {
+        super(EmptyTower.getInstance(), location, position, EmptyTower.getInstance().getNewData(), size, toExecute);
     }
 
     @Override

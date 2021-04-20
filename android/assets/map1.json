@@ -10,12 +10,30 @@
           "baseCooldown": 2
         },
         "STUDENT2" : {
-          "amount": 1,
+          "amount": 2,
           "baseCooldown": 4
         }
       },
       "fund_reward": 25,
       "worker_reward": 1
+    },
+    {
+      "composition" : {
+        "STUDENT1" : {
+          "amount": 8,
+          "baseCooldown": 2
+        },
+        "STUDENT2" : {
+          "amount": 2,
+          "baseCooldown": 3
+        },
+        "STUDENT3" : {
+          "amount": 2,
+          "baseCooldown": 4
+        }
+      },
+      "fund_reward": 25,
+      "worker_reward": 0
     },
     {
       "composition" : {
@@ -26,20 +44,10 @@
         "STUDENT2" : {
           "amount": 1,
           "baseCooldown": 4
-        }
-      },
-      "fund_reward": 25,
-      "worker_reward": 1
-    },
-    {
-      "composition" : {
-        "STUDENT1" : {
-          "amount": 6,
-          "baseCooldown": 2
         },
-        "STUDENT2" : {
-          "amount": 1,
-          "baseCooldown": 4
+        "STUDENT3" : {
+          "amount": 6,
+          "baseCooldown": 3
         }
       },
       "fund_reward": 25,

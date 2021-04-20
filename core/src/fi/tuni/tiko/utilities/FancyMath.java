@@ -23,4 +23,8 @@ public class FancyMath {
         }
         return frames;
     }
+
+    public static boolean isInside(float x0, float x1, float y0, float y1, float range) {
+        return Math.pow(x0 - x1, 2) + Math.pow(y0 - y1, 2) <= Math.pow(range, 2);
+    }
 }

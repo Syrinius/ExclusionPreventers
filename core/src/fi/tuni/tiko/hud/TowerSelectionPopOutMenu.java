@@ -10,6 +10,7 @@ import fi.tuni.tiko.gameObject.tower.BookTower;
 import fi.tuni.tiko.gameObject.tower.CookingTower;
 import fi.tuni.tiko.gameObject.tower.MusicTower;
 import fi.tuni.tiko.gameObject.tower.SportTower;
+import fi.tuni.tiko.gameObject.tower.TowerData;
 import fi.tuni.tiko.gameObject.tower.TowerType;
 import fi.tuni.tiko.utilities.Action;
 import fi.tuni.tiko.gameObject.tower.TowerLocation;
@@ -50,7 +51,9 @@ public class TowerSelectionPopOutMenu extends HudSprite implements TouchListener
         towerPosition.add(-20,40);
 
         for (TowerType towerType : TowerType.values()) {
-            buttons.add(new TowerButton(towerType.tower, location, towerPosition, 1, 25, disposer));
+            TowerData data = towerType.tower.getNewData();
+            data.level = 1;
+            buttons.add(new TowerButton(towerType.tower, location, towerPosition, data, 25, disposer));
             towerPosition = NextButtonPosition.nextTowerPosition(towerPosition, gapX, gapY);
         }
         Events.AddListener(this);
@@ -68,8 +71,9 @@ public class TowerSelectionPopOutMenu extends HudSprite implements TouchListener
     public boolean onTouchDown(ScreenPosition position, int pointer) {
         if (!IsInside(position.ToMenuPosition())) {
             dispose();
+            return false;
         }
-        return false;
+        return true;
     }
 
     @Override

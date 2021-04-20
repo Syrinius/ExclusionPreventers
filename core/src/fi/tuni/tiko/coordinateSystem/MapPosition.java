@@ -41,4 +41,8 @@ public class MapPosition extends Vector2 {
                 ((x - (camera.position.x - VIEWPORT_WIDTH / 2)) * MenuPosition.WIDTH / VIEWPORT_WIDTH),
                 ((y - (camera.position.y - VIEWPORT_HEIGHT / 2)) * MenuPosition.HEIGHT /VIEWPORT_HEIGHT));
     }
+
+    public boolean isInside(double x1, double y1, float range) {
+        return Math.pow(x - x1, 2) + Math.pow(y - y1, 2) <= Math.pow(range, 2);
+    }
 }

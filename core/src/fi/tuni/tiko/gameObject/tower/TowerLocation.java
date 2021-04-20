@@ -2,9 +2,6 @@ package fi.tuni.tiko.gameObject.tower;
 
 import com.badlogic.gdx.graphics.Texture;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import fi.tuni.tiko.GameLogic;
 import fi.tuni.tiko.gameObject.AOEVisual;
 import fi.tuni.tiko.gameObject.GameObjectSprite;
@@ -18,6 +15,7 @@ import fi.tuni.tiko.coordinateSystem.ScreenPosition;
 import fi.tuni.tiko.eventSystem.Events;
 import fi.tuni.tiko.eventSystem.TouchListener;
 import fi.tuni.tiko.hud.TowerSelectionPopOutMenu;
+import fi.tuni.tiko.utilities.FancyMath;
 
 /**
  * Listable positions where towers can be built on the map
@@ -26,40 +24,38 @@ import fi.tuni.tiko.hud.TowerSelectionPopOutMenu;
  */
 public class TowerLocation extends GameObjectSprite implements TouchListener {
 
+    private static final Texture placeholderTexture = new Texture("towers/empty_tower.png");
     private Tower tower;
-    private Set<StudentContainer> currentTargets;
-    private int level = 0;
-    private float cooldown = 0;
     public MapPosition[] room  = new MapPosition[4];
-    private int workers = 0;
+    private TowerData towerData;
 
     public int getWorkers() {
-        return workers;
+        return towerData.workers;
     }
 
     public TowerLocation(MapPosition position, Map map) {
-        super(EmptyTower.getInstance().getTexture(0), position, map);
+        super(placeholderTexture, position, map);
         setTower(EmptyTower.getInstance(), 0, true);
         Events.AddListener(this);
         createRoom(position);
     }
 
     public int getRefund() {
-        return tower.getRefund(level);
+        return tower.getRefund(towerData);
     }
 
     public void refundWorkers() {
-        GameLogic.addWorkers(workers);
-        workers = 0;
+        GameLogic.addWorkers(towerData.workers);
+        towerData.workers = 0;
     }
 
     public void addWorkers(int amount) {
         GameLogic.addWorkers(- amount);
-        workers += amount;
+        towerData.workers += amount;
     }
 
     public int getLevel() {
-        return level;
+        return towerData.level;
     }
 
     public Tower getTower() {
@@ -72,12 +68,9 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
 
     public void setTower(Tower toSet, int level, boolean flushData) {
         tower = toSet;
-        this.level = level;
-        setTexture(tower.getTexture(level));
-        if (flushData) {
-            currentTargets = new HashSet<>();
-            cooldown = 0;
-        }
+        if (flushData) towerData = tower.getNewData();
+        setTexture(tower.getTexture(towerData));
+        towerData.level = level;
     }
 
     public MapPosition getCheeringSpawnPosition() {
@@ -122,11 +115,11 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
     }
 
     public float getRange() {
-        return tower.getRange(level);
+        return tower.getRange(towerData);
     }
 
     public int getParticipation() {
-        return tower.getParticipation(level, workers);
+        return tower.getParticipation(towerData);
     }
 
     @Override
@@ -136,8 +129,8 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
 
     @Override
     public void onTick(float deltaTime, boolean revalidate) {
-        if (cooldown > 0) cooldown = Math.max(cooldown - deltaTime, 0);
-        else if (cooldown == 0) cooldown = tower.act(this, level, workers, currentTargets);
+        if (towerData.cooldown > 0) towerData.cooldown = Math.max(towerData.cooldown - deltaTime, 0);
+        else if (towerData.cooldown == 0) towerData.cooldown = tower.act(this, towerData);
     }
 
     @Override
@@ -178,12 +171,20 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
         Events.RemoveListener(this);
     }
 
-    public void addTarget(StudentContainer studentContainer) {
-        currentTargets.add(studentContainer);
+    public void checkTarget(StudentContainer target) {
+        if(!FancyMath.isInside(getX(), target.getTileCenterX(), getY(), target.getTileCenterY(), getRange())) {
+            towerData.currentTargets.remove(target);
+        } else addTarget(target);
+        tower.checkTarget(this, target, towerData);
     }
 
-    public void removeTarget(StudentContainer studentContainer) {
-        currentTargets.remove(studentContainer);
+    public void addTarget(StudentContainer target) {
+        towerData.currentTargets.add(target);
+    }
+
+    public void removeTarget(StudentContainer target) {
+        towerData.currentTargets.remove(target);
+        tower.removeTarget(target, towerData);
     }
 
     public AOEVisual spawnAOEVisual() {

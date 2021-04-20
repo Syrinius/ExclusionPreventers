@@ -9,12 +9,51 @@ import fi.tuni.tiko.gameObject.student.StudentContainer;
 /**
  * Specific kinds of towers should all have their own classes that implement this
  */
-public interface Tower {
+public abstract class Tower {
 
-    float act(TowerLocation location, int level, int workers, Set<StudentContainer> currentTargets);
-    Texture getTexture(int level);
-    float getRange(int level);
-    int getParticipation(int level, int workers);
-    int getCost(int level);
-    int getRefund(int level);
+    public final float[] RANGE;
+    public final int[] PARTICIPATION;
+    public final int[] COST;
+
+    public Tower(float[] RANGE, int[] PARTICIPATION, int[] COST) {
+        this.RANGE = RANGE;
+        this.PARTICIPATION = PARTICIPATION;
+        this.COST = COST;
+    }
+
+    public TowerData getNewData() {
+        return new TowerData();
+    }
+
+    public abstract float act(TowerLocation location, TowerData data);
+
+    public abstract Texture getTexture(TowerData data);
+
+    public float getRange(TowerData data) {
+        return RANGE[data.level - 1];
+    }
+
+    public int getParticipation(TowerData data) {
+        return PARTICIPATION[data.level -1] + data.workers;
+    }
+
+    public int getCost(TowerData data) {
+        return COST[data.level -1];
+    }
+
+    public int getRefund(TowerData data) {
+        int toReturn = 0;
+        while (--data.level >= 0) {
+            toReturn += COST[data.level];
+        }
+        return (toReturn * 4) / 5;
+    }
+
+    public void checkTarget(TowerLocation location, StudentContainer target, TowerData data) {
+
+    }
+
+    public void removeTarget(StudentContainer target, TowerData data) {
+
+    }
 }

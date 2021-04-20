@@ -11,10 +11,14 @@ import fi.tuni.tiko.gameObject.student.StudentContainer;
  * Implements the functionalities of a tower location with no tower in it:
  * Visual cue for player to click on the location
  */
-public class EmptyTower implements Tower {
+public class EmptyTower extends Tower {
 
     private static EmptyTower instance;
     private static final Texture texture = new Texture("towers/empty_tower.png");
+
+    public EmptyTower() {
+        super(new float[]{0}, new int[]{0}, new int[]{0});
+    }
 
     public static EmptyTower getInstance() {
         if (instance == null) instance = new EmptyTower();
@@ -22,32 +26,37 @@ public class EmptyTower implements Tower {
     }
 
     @Override
-    public float act(TowerLocation location, int level, int workers, Set<StudentContainer> currentTargets) {
+    public TowerData getNewData() {
+        return new TowerData();
+    }
+
+    @Override
+    public float act(TowerLocation location, TowerData data) {
         return -1;
     }
 
     @Override
-    public Texture getTexture(int level) {
+    public Texture getTexture(TowerData data) {
         return texture;
     }
 
     @Override
-    public float getRange(int level) {
+    public float getRange(TowerData data) {
         return 0;
     }
 
     @Override
-    public int getParticipation(int level, int workers) {
+    public int getParticipation(TowerData data) {
         return 0;
     }
 
     @Override
-    public int getCost(int level) {
+    public int getCost(TowerData data) {
         return 0;
     }
 
     @Override
-    public int getRefund(int level) {
+    public int getRefund(TowerData data) {
         return 0;
     }
 }

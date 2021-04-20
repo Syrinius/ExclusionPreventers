@@ -64,9 +64,10 @@ public class StudentContainer extends GameObjectSprite {
 
     private void notifyTowers() {
         for (TowerLocation tower : map.towerLocations) {
-            if(!isValid() || Math.pow(tower.getX() - (Math.floor(getX()) + 0.5), 2) + Math.pow(tower.getY() - (Math.floor(getY()) + 0.5), 2) > Math.pow(tower.getRange(), 2)) {
+            if(!isValid()) {
                 tower.removeTarget(this);
-            } else tower.addTarget(this);
+            }
+            else tower.checkTarget(this);
         }
     }
 
@@ -92,5 +93,13 @@ public class StudentContainer extends GameObjectSprite {
         notifyTowers();
         map.getGameObjectManager().invalidate();
         map.waveManager.studentRemoved();
+    }
+
+    public float getTileCenterX() {
+        return (float)Math.floor(getX()) + 0.5f;
+    }
+
+    public float getTileCenterY() {
+        return (float)Math.floor(getY()) + 0.5f;
     }
 }

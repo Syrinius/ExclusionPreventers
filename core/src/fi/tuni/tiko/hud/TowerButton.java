@@ -8,6 +8,7 @@ import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.coordinateSystem.ScreenPosition;
 import fi.tuni.tiko.gameObject.tower.EmptyTower;
 import fi.tuni.tiko.gameObject.tower.Tower;
+import fi.tuni.tiko.gameObject.tower.TowerData;
 import fi.tuni.tiko.gameObject.tower.TowerLocation;
 import fi.tuni.tiko.utilities.Action;
 
@@ -16,24 +17,26 @@ public class TowerButton extends Button {
 
     private final Tower tower;
     final TowerLocation location;
-    private final int level;
+    private final TowerData data;
     private final GlyphRenderer glyphRenderer;
     private static final Texture removeTexture = new Texture("menu/remove_tower.png");
 
-    public TowerButton(Tower tower, TowerLocation location, MenuPosition position, int level, float size, Action toExecute) {
-        super(tower.getClass().equals(EmptyTower.class) ? removeTexture : tower.getTexture(level), position, size, toExecute);
+    public TowerButton(Tower tower, TowerLocation location, MenuPosition position, TowerData data, float size, Action toExecute) {
+        super(tower.getClass().equals(EmptyTower.class) ? removeTexture : tower.getTexture(data), position, size, toExecute);
         this.tower = tower;
         this.location = location;
-        this.level = level;
-        glyphRenderer = new GlyphRenderer(new MenuPosition(position.x, position.y + size/2), 0.3f, GlyphRenderer.Type.FUNDS, tower.getCost(level));
+        this.data = data;
+        glyphRenderer = new GlyphRenderer(new MenuPosition(position.x, position.y + size/2), 0.3f, GlyphRenderer.Type.FUNDS, tower.getCost(data));
     }
 
     @Override
     public boolean onTouchDown(ScreenPosition position, int pointer) {
-        if (IsInside(position.ToMenuPosition()) && GameLogic.getFunds() >= tower.getCost(level)) {
-            GameLogic.addFunds(- tower.getCost(level));
-            location.setTower(tower, level, true);
-            toExecute.run();
+        if (IsInside(position.ToMenuPosition())) {
+            if(GameLogic.getFunds() >= tower.getCost(data)) {
+                GameLogic.addFunds(-tower.getCost(data));
+                location.setTower(tower, data.level, true);
+                toExecute.run();
+            }
             return true;
         }
         return false;

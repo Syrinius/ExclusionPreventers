@@ -8,7 +8,7 @@ import java.util.Set;
 
 import fi.tuni.tiko.gameObject.student.StudentContainer;
 
-public class MusicTower implements Tower {
+public class MusicTower extends Tower {
 
     private static MusicTower instance;
     private static final Texture texture = new Texture("towers/note_tower.png");
@@ -19,49 +19,29 @@ public class MusicTower implements Tower {
     private static final int[] COST = {40, 60, 100};
     private static final Sound musicSound = Gdx.audio.newSound(Gdx.files.internal("sounds/music_sound.mp3"));
 
+    public MusicTower() {
+        super(new float[]{6, 7, 8}, new int[]{3, 4, 5}, new int[]{40, 60, 100});
+    }
+
     public static MusicTower getInstance() {
         if (instance == null) instance = new MusicTower();
         return instance;
     }
 
     @Override
-    public float act(TowerLocation location, int level, int workers, Set<StudentContainer> currentTargets) {
-        if (!currentTargets.isEmpty()) {
-            for (StudentContainer currentTarget : currentTargets) {
+    public float act(TowerLocation location, TowerData data) {
+        if (!data.currentTargets.isEmpty()) {
+            for (StudentContainer currentTarget : data.currentTargets) {
                 currentTarget.addParticipation(location);
             }
             location.spawnAOEVisual();
             musicSound.play();
-            return COOLDOWN[level - 1];
+            return COOLDOWN[data.level - 1];
         } else return 0;
     }
 
     @Override
-    public Texture getTexture(int level) {
+    public Texture getTexture(TowerData data) {
         return texture;
-    }
-
-    @Override
-    public float getRange(int level) {
-        return RANGE[level - 1];
-    }
-
-    @Override
-    public int getParticipation(int level, int workers) {
-        return PARTICIPATION[level -1] + workers;
-    }
-
-    @Override
-    public int getCost(int level) {
-        return COST[level -1];
-    }
-
-    @Override
-    public int getRefund(int level) {
-        int toReturn = 0;
-        while (--level >= 0) {
-            toReturn += COST[level];
-        }
-        return (toReturn * 4) / 5;
     }
 }

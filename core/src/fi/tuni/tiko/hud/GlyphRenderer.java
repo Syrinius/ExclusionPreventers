@@ -10,10 +10,10 @@ import fi.tuni.tiko.utilities.FancyMath;
 
 public class GlyphRenderer implements HudElement {
 
-    public enum Type { FUNDS, LIVES, WORKERS, PLAIN }
+    public enum Type { FUNDS, LIVES, WORKERS, SCORE, PLAIN }
 
     private static final int GLYPH_SIZE = 26;
-    private static final Array<TextureRegion> glyphs = FancyMath.getTextureRegionArray(new Texture("glyphs.png"), GLYPH_SIZE, GLYPH_SIZE, 13);
+    private static final Array<TextureRegion> glyphs = FancyMath.getTextureRegionArray(new Texture("glyphs.png"), GLYPH_SIZE, GLYPH_SIZE, 14);
     private MenuPosition position;
     private final float size;
     private final Type type;
@@ -48,6 +48,10 @@ public class GlyphRenderer implements HudElement {
                 break;
             case WORKERS:
                 batch.draw(glyphs.get(12), positionX, position.y, GLYPH_SIZE * size, GLYPH_SIZE * size);
+                positionX += GLYPH_SIZE * size;
+                break;
+            case SCORE:
+                batch.draw(glyphs.get(13), positionX, position.y, GLYPH_SIZE * size, GLYPH_SIZE * size);
                 positionX += GLYPH_SIZE * size;
                 break;
         }

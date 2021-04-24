@@ -26,14 +26,17 @@ public class GameScene extends Scene implements GameLogicListener {
     private final GlyphRenderer funds;
     private final GlyphRenderer lives;
     private final GlyphRenderer workers;
+    private final GlyphRenderer score;
 
     public GameScene() {
         funds = new GlyphRenderer(new MenuPosition(MenuPosition.WIDTH/2, 180), .5f, GlyphRenderer.Type.FUNDS, GameLogic.getFunds());
         hudElementManager.AddHudElement(funds);
         lives = new GlyphRenderer(new MenuPosition(10, 180), .5f, GlyphRenderer.Type.LIVES, GameLogic.getLives());
         hudElementManager.AddHudElement(lives);
-        workers = new GlyphRenderer(new MenuPosition(MenuPosition.WIDTH/4, 180), .5f, GlyphRenderer.Type.WORKERS, GameLogic.getWorkers());
+        workers = new GlyphRenderer(new MenuPosition(MenuPosition.WIDTH/3, 180), .5f, GlyphRenderer.Type.WORKERS, GameLogic.getWorkers());
         hudElementManager.AddHudElement(workers);
+        score = new GlyphRenderer(new MenuPosition(MenuPosition.WIDTH/6, 180), .5f, GlyphRenderer.Type.SCORE, GameLogic.getScore());
+        hudElementManager.AddHudElement(score);
         menuMusic.pause();
 
         GameLogic.AddListener(this);
@@ -82,5 +85,10 @@ public class GameScene extends Scene implements GameLogicListener {
     @Override
     public void onWorkersChanged(int newValue) {
         workers.setValue(newValue);
+    }
+
+    @Override
+    public void onScoreChanged(int newValue) {
+        score.setValue(newValue);
     }
 }

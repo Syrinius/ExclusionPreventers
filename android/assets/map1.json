@@ -1,5 +1,5 @@
 {
-  "starting_funds": 100,
+  "starting_funds": 1000,
   "starting_lives": 5,
   "starting_workers": 3,
   "waves": [
@@ -7,7 +7,9 @@
       "composition" : {
         "STUDENT1" : {
           "amount": 6,
-          "baseCooldown": 2
+          "baseCooldown": 2,
+          "resistance": "PROMO",
+          "affinity": "ATK"
         },
         "STUDENT2" : {
           "amount": 2,

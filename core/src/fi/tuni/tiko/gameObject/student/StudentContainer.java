@@ -6,6 +6,7 @@ import fi.tuni.tiko.GameLogic;
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 import fi.tuni.tiko.gameObject.GameObjectSprite;
 import fi.tuni.tiko.gameObject.tower.TowerLocation;
+import fi.tuni.tiko.gameObject.tower.TowerType;
 import fi.tuni.tiko.map.Map;
 import fi.tuni.tiko.map.Path;
 import fi.tuni.tiko.utilities.FancyMath;
@@ -17,11 +18,15 @@ public class StudentContainer extends GameObjectSprite {
     private final Path path;
     private int nextCheckpoint = 1;
     private int currentParticipation = 0;
+    private final TowerType resistance;
+    private final TowerType affinity;
 
-    public StudentContainer(Student student, Map map, Path path) {
+    public StudentContainer(Student student, Map map, Path path, TowerType resistance, TowerType affinity) {
         super(student.getWalkingTextureRegion(0), path.checkPoints.get(0), map);
         this.student = student;
         this.path = path;
+        this.resistance = resistance;
+        this.affinity = affinity;
         setRotation((float) FancyMath.angleDegs(path.checkPoints.get(0), path.checkPoints.get(1)));
     }
 
@@ -77,6 +82,7 @@ public class StudentContainer extends GameObjectSprite {
         if (currentParticipation >= student.getRequiredParticipation()) {
             destroy();
             new CheeringContainer(student, tower.getCheeringSpawnPosition(), map);
+            GameLogic.addScore(1);
             //TODO
         }
     }

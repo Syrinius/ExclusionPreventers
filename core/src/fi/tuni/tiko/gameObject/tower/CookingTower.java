@@ -11,7 +11,11 @@ import fi.tuni.tiko.gameObject.student.StudentContainer;
 public class CookingTower extends Tower {
 
     private static CookingTower instance;
-    private static final Texture texture = new Texture("towers/cook_tower.png");
+    private static final Texture[] texture = {
+            new Texture("towers/cook.png"),
+            new Texture("towers/cook2.png"),
+            new Texture("towers/cook3.png")
+    };
     private static final Texture projectileTexture = new Texture("towers/heart.png");
     private static final float[] COOLDOWN = {5, 4, 3};
     private static final Sound cookSound = Gdx.audio.newSound(Gdx.files.internal("sounds/cook_sound.mp3"));
@@ -37,6 +41,6 @@ public class CookingTower extends Tower {
 
     @Override
     public Texture getTexture(TowerData data) {
-        return texture;
+        return texture[data.level - 1];
     }
 }

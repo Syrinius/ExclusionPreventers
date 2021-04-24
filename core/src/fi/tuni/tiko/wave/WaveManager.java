@@ -8,6 +8,7 @@ import fi.tuni.tiko.GameLogic;
 import fi.tuni.tiko.gameObject.GameObject;
 import fi.tuni.tiko.gameObject.student.StudentContainer;
 import fi.tuni.tiko.gameObject.student.StudentType;
+import fi.tuni.tiko.hud.WaveClearedPopOutMenu;
 import fi.tuni.tiko.map.Map;
 
 public class WaveManager implements GameObject {
@@ -50,6 +51,7 @@ public class WaveManager implements GameObject {
         }
         cooldown = 0;
         GameLogic.Pause();
+        WaveClearedPopOutMenu.GetInstance(map.getHudElementManager(), wave);
     }
 
     @Override
@@ -70,7 +72,7 @@ public class WaveManager implements GameObject {
                     if (countWeight >= r) {
                         StudentData studentData = map.mapData.waves.get(currentWave).students.get(student);
                         cooldown = studentData.baseCooldown;
-                        new StudentContainer(student.type, map, map.getRandomPath());
+                        new StudentContainer(student.type, map, map.getRandomPath(), studentData.resistance, studentData.affinity);
                         studentCountList.put(student, studentCountList.get(student) - 1);
                         break;
                     }

@@ -11,7 +11,11 @@ import fi.tuni.tiko.gameObject.student.StudentContainer;
 public class BookTower extends Tower {
 
     private static BookTower instance;
-    private static final Texture texture = new Texture("towers/book.png");
+    private static final Texture[] texture = {
+            new Texture("towers/book.png"),
+            new Texture("towers/book2.png"),
+            new Texture("towers/book3.png")
+    };
     private static final Texture projectileTexture = new Texture("towers/heart.png");
     private static final float[] COOLDOWN = {5, 4, 3};
     private static final Sound bookSound = Gdx.audio.newSound(Gdx.files.internal("sounds/book_sound.mp3"));
@@ -37,6 +41,6 @@ public class BookTower extends Tower {
 
     @Override
     public Texture getTexture(TowerData data) {
-        return texture;
+        return texture[data.level - 1];
     }
 }

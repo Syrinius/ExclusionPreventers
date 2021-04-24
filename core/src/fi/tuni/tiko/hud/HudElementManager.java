@@ -17,13 +17,15 @@ public class HudElementManager {
     private final ArrayList<HudElement> delayedAdd = new ArrayList<>();
     private final ArrayList<HudElement> delayedRemove = new ArrayList<>();
     private boolean locked;
+    private PopOut currentPopOut;
 
+    public void SetPopOut(PopOut toSet) {
+        if (currentPopOut != null) currentPopOut.close();
+        currentPopOut = toSet;
+    }
 
     SpriteBatch batch;
     OrthographicCamera camera;
-
-
-    //Joystick joystick;
 
     public void Dispose() {
         if (locked) return;
@@ -50,11 +52,6 @@ public class HudElementManager {
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
         camera.setToOrtho(false, MenuPosition.WIDTH, MenuPosition.HEIGHT);
-
-        /*joystick = new Joystick(new MenuPosition(50,100));
-		Events.AddListener(this);
-		joystick.addJoystickListener(this);*/
-        //GameObjectManager.AddGameObject(new TestGameObject());
     }
 
     public void Render(){

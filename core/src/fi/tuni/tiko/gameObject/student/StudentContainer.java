@@ -45,7 +45,7 @@ public class StudentContainer extends GameObjectSprite {
         if(!isValid()) return;
         student.tick(this);
         setRegion(student.getWalkingTextureRegion(animationTime += deltaTime));
-        float remainingMove = student.getSpeed();
+        float remainingMove = student.getSpeed() * deltaTime;
         int oldX = (int)getX();
         int oldY = (int)getY();
         while (remainingMove > 0) {

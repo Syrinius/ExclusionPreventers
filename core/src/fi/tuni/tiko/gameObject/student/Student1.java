@@ -25,7 +25,7 @@ public class Student1 implements Student {
 
     @Override
     public float getSpeed() {
-        return 0.03f;
+        return 0.6f;
     }
 
     @Override

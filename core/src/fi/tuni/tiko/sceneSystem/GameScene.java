@@ -22,7 +22,11 @@ public class GameScene extends Scene implements GameLogicListener {
     static final Texture resumeTexture = new Texture("menu/playbutton.png");
     static final Texture pauseTexture = new Texture("menu/pause.png");
 
+    static final Texture normalSpeedTexture = new Texture("menu/1x.png");
+    static final Texture fastSpeedTexture = new Texture("menu/2x.png");
+
     private final Button playPauseButton;
+    private final Button speedChangeButton;
     private final GlyphRenderer funds;
     private final GlyphRenderer lives;
     private final GlyphRenderer workers;
@@ -54,6 +58,21 @@ public class GameScene extends Scene implements GameLogicListener {
             }
         });
         hudElementManager.AddHudElement(playPauseButton);
+
+        speedChangeButton = new Button(fastSpeedTexture, new MenuPosition(MenuPosition.WIDTH - 60, MenuPosition.HEIGHT - 25), 25, new Action() {
+            @Override
+            public void run() {
+                Map map = MapManager.getSelectedMap();
+                if (GameLogic.getCurrentSpeedMultiplier() != 1) {
+                    speedChangeButton.setTexture(fastSpeedTexture);
+                    GameLogic.setCurrentSpeedMultiplier(1);
+                } else {
+                    speedChangeButton.setTexture(normalSpeedTexture);
+                    GameLogic.setCurrentSpeedMultiplier(2);
+                }
+            }
+        });
+        hudElementManager.AddHudElement(speedChangeButton);
     }
 
     @Override

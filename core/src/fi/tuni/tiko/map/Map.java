@@ -205,6 +205,7 @@ public class Map extends Timer.Task implements GameLogicListener {
         GameLogic.setLives(mapData.starting_lives);
         GameLogic.setWorkers(mapData.starting_workers);
         GameLogic.setScore(0);
+        GameLogic.setCurrentSpeedMultiplier(1);
         firstTimeCreated = false;
         toExecute.run();
     }

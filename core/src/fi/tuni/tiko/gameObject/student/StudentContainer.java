@@ -78,10 +78,14 @@ public class StudentContainer extends GameObjectSprite {
 
     public void addParticipation(TowerLocation tower) {
         if(!isValid()) return;
-        currentParticipation += tower.getParticipation();
+        int toAdd = tower.getParticipation();
+        if(resistance != null && resistance.tower.equals(tower.getTower())) toAdd *= 0.5;
+        if(affinity != null && affinity.tower.equals(tower.getTower())) toAdd *= 1.5;
+        currentParticipation += toAdd;
         if (currentParticipation >= student.getRequiredParticipation()) {
             destroy();
             new CheeringContainer(student, tower.getCheeringSpawnPosition(), map);
+            tower.addStudentCount(1);
             GameLogic.addScore(1);
             //TODO
         }

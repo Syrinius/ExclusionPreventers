@@ -49,7 +49,7 @@ public class TowerSelectionPopOutMenu extends HudSprite implements TouchListener
         };
 
         this.manager = manager;
-        towerPosition.add(-20,40);
+        towerPosition.add(-20,50);
 
         for (TowerType towerType : TowerType.values()) {
             TowerData data = towerType.tower.getNewData();

@@ -7,7 +7,8 @@ public enum TowerType {
     COOKING(CookingTower.getInstance()),
     MUSIC(MusicTower.getInstance()),
     SPORT(SportTower.getInstance()),
-    PROMO(PromoTower.getInstance());
+    PROMO(PromoTower.getInstance()),
+    SUPPORT(SupportTower.getInstance());
 
     public final Tower tower;
 

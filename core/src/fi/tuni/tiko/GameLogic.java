@@ -20,7 +20,6 @@ import fi.tuni.tiko.utilities.Action;
  */
 public class GameLogic {
 
-
     /**
      * Enum to trigger correct events based on what state the game is currently in
      * for instance clicking the settings button in main menu will change change the game state to SETTINGS_SCREEN
@@ -30,10 +29,14 @@ public class GameLogic {
         SPLASH_SCREEN, MAIN_MENU, MAP_SELECTION_SCREEN, MAP_CONFIRM_SCREEN, SETTINGS_SCREEN, MAP_LOADING_SCREEN, GAME_SCREEN, END_SCREEN
     }
 
+    public enum Language {
+        ENGLISH, FINNISH
+    }
+
     private static final ArrayList<GameLogicListener> gameLogicListeners = new ArrayList<>();
     private static final ArrayList<GameLogicListener> toAdd = new ArrayList<>();
     private static final ArrayList<GameLogicListener> toRemove = new ArrayList<>();
-
+    private static Language language = Language.ENGLISH;
     private static GameState gameState = GameState.SPLASH_SCREEN;
     private static boolean lock;
     private static boolean paused = true;
@@ -43,6 +46,14 @@ public class GameLogic {
     private static int workers;
     private static int score;
 
+
+    public static Language getLanguage() {
+        return language;
+    }
+
+    public static void setLanguage(Language language) {
+        GameLogic.language = language;
+    }
 
     public static int getCurrentSpeedMultiplier() {
         return currentSpeedMultiplier;

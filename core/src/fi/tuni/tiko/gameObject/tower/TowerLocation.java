@@ -27,7 +27,12 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
     private static final Texture placeholderTexture = new Texture("towers/empty_tower.png");
     private Tower tower;
     public MapPosition[] room  = new MapPosition[4];
+    private int studentsParticipated = 0;
     private TowerData towerData;
+
+    public void addStudentCount(int amount) {
+        studentsParticipated += amount;
+    }
 
     public int getWorkers() {
         return towerData.workers;

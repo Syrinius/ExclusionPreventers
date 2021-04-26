@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import fi.tuni.tiko.GameLogic;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.hud.Button;
+import fi.tuni.tiko.hud.GlyphRenderer;
 import fi.tuni.tiko.hud.HudSprite;
 import fi.tuni.tiko.utilities.Action;
 import fi.tuni.tiko.utilities.NextButtonPosition;
@@ -15,6 +16,7 @@ public class GameOverScene extends Scene {
     HudSprite background;
     private final Button playAgainButton;
     private final Button backToMenuButton;
+    private final GlyphRenderer pointRenderer;
 
     public GameOverScene() {
         MenuPosition currentPosition = new MenuPosition(200, 160);
@@ -44,6 +46,7 @@ public class GameOverScene extends Scene {
                 });
         hudElementManager.AddHudElement(backToMenuButton);
         currentPosition = NextButtonPosition.nextMenuPosition(currentPosition, gapX, gapY);
-
+        pointRenderer = new GlyphRenderer(currentPosition, 1, GlyphRenderer.Type.SCORE, GameLogic.getScore());
+        hudElementManager.AddHudElement(pointRenderer);
     }
 }

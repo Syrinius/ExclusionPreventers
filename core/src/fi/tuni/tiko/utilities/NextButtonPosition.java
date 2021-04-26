@@ -29,7 +29,7 @@ public class NextButtonPosition {
     //use for tower elements
     public static MenuPosition nextTowerPosition(MenuPosition position, float gapX, float gapY){
     if(position.x == 320 || position.x == 120) {
-            position.add(-40, -40);
+            position.add(-40, -35);
         }else {
         position.add(gapX, gapY);
         }

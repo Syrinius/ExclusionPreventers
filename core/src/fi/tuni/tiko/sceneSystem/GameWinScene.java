@@ -15,7 +15,15 @@ public class GameWinScene extends Scene {
     private static final Texture menuBackground = new Texture("menu/menu_background.png");
     HudSprite background;
     private final Button nextLevelButton;
+    Texture[] nextLevelTexture = new Texture[] {
+            new Texture("menu/nextl.png"),
+            new Texture("menu/seuraavat.png")
+    };
     private final Button backToMenuButton;
+    Texture[] backToMenuTexture = new Texture[] {
+            new Texture("menu/menu.png"),
+            new Texture("menu/valikko.png")
+    };
     private final GlyphRenderer pointRenderer;
 
     public GameWinScene() {
@@ -27,7 +35,7 @@ public class GameWinScene extends Scene {
         hudElementManager.AddHudElement(background);
 
 
-        nextLevelButton = new Button(new Texture("menu/nextl.png"), currentPosition, 100,
+        nextLevelButton = new Button(nextLevelTexture[GameLogic.getLanguage().ordinal()], currentPosition, 100,
                 new Action() {
                     @Override
                     public void run() {
@@ -38,7 +46,7 @@ public class GameWinScene extends Scene {
         hudElementManager.AddHudElement(nextLevelButton);
         currentPosition = NextButtonPosition.nextMenuPosition(currentPosition, gapX, gapY);
 
-        backToMenuButton = new Button(new Texture("menu/menu.png"), currentPosition, 100,
+        backToMenuButton = new Button(backToMenuTexture[GameLogic.getLanguage().ordinal()], currentPosition, 100,
                 new Action() {
                     @Override
                     public void run() {

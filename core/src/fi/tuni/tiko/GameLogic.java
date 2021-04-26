@@ -11,6 +11,7 @@ import fi.tuni.tiko.sceneSystem.MainMenu;
 import fi.tuni.tiko.sceneSystem.MapLoadingScreen;
 import fi.tuni.tiko.sceneSystem.MapSelectionMenu;
 import fi.tuni.tiko.sceneSystem.SceneManager;
+import fi.tuni.tiko.sceneSystem.SettingScene;
 import fi.tuni.tiko.utilities.Action;
 
 /**
@@ -156,6 +157,9 @@ public class GameLogic {
                 break;
             case MAIN_MENU:
                 SceneManager.SetActiveScene(new MainMenu());
+                break;
+            case SETTINGS_SCREEN:
+                SceneManager.SetActiveScene(new SettingScene());
                 break;
             case MAP_SELECTION_SCREEN:
                 SceneManager.SetActiveScene(new MapSelectionMenu());

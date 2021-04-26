@@ -15,7 +15,15 @@ public class GameOverScene extends Scene {
     private static final Texture menuBackground = new Texture("menu/menu_background.png");
     HudSprite background;
     private final Button playAgainButton;
+    Texture[] playAgainTexture = new Texture[] {
+            new Texture("menu/playagain.png"),
+            new Texture("menu/pelaauud.png")
+    };
     private final Button backToMenuButton;
+    Texture[] backToMenuTexture = new Texture[] {
+            new Texture("menu/menu.png"),
+            new Texture("menu/valikko.png")
+    };
     private final GlyphRenderer pointRenderer;
 
     public GameOverScene() {
@@ -27,7 +35,7 @@ public class GameOverScene extends Scene {
         hudElementManager.AddHudElement(background);
 
 
-        playAgainButton = new Button(new Texture("menu/playagain.png"), currentPosition, 100,
+        playAgainButton = new Button(playAgainTexture[GameLogic.getLanguage().ordinal()], currentPosition, 100,
                 new Action() {
                     @Override
                     public void run() {
@@ -37,7 +45,7 @@ public class GameOverScene extends Scene {
         hudElementManager.AddHudElement(playAgainButton);
         currentPosition = NextButtonPosition.nextMenuPosition(currentPosition, gapX, gapY);
 
-        backToMenuButton = new Button(new Texture("menu/menu.png"), currentPosition, 100,
+        backToMenuButton = new Button(backToMenuTexture[GameLogic.getLanguage().ordinal()], currentPosition, 100,
                 new Action() {
                     @Override
                     public void run() {

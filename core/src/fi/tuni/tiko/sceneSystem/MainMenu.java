@@ -30,7 +30,15 @@ public class MainMenu extends Scene {
             new Texture("menu/ohjeet.png")
     };
     Button settingButton;
+    Texture[] settingTexture = new Texture[] {
+            new Texture("menu/settings.png"),
+            new Texture("menu/asetukset.png")
+    };
     Button creditButton;
+    Texture[] creditTexture = new Texture[] {
+            new Texture("menu/credits.png"),
+            new Texture("menu/credits.png")
+    };
     Button englishButton;
     Button finnishButton;
     HudSprite background;
@@ -67,17 +75,17 @@ public class MainMenu extends Scene {
         hudElementManager.AddHudElement(helpButton);
         currentPosition = NextButtonPosition.nextMenuPosition(currentPosition, gapX, gapY);
 
-        settingButton = new Button(new Texture("menu/settings.png"), currentPosition, 100,
+        settingButton = new Button(settingTexture[GameLogic.getLanguage().ordinal()], currentPosition, 100,
                 new Action() {
                     @Override
                     public void run() {
-                        GameLogic.SetState(GameLogic.GameState.MAP_SELECTION_SCREEN);
+                        GameLogic.SetState(GameLogic.GameState.SETTINGS_SCREEN);
                     }
                 });
         hudElementManager.AddHudElement(settingButton);
         currentPosition = NextButtonPosition.nextMenuPosition(currentPosition, gapX, gapY);
 
-        creditButton = new Button(new Texture("menu/credits.png"), currentPosition, 100,
+        creditButton = new Button(creditTexture[GameLogic.getLanguage().ordinal()], currentPosition, 100,
                 new Action() {
                     @Override
                     public void run() {

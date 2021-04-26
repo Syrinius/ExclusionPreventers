@@ -204,6 +204,8 @@ public class Map extends Timer.Task implements GameLogicListener {
         GameLogic.setFunds(mapData.starting_funds);
         GameLogic.setLives(mapData.starting_lives);
         GameLogic.setWorkers(mapData.starting_workers);
+        GameLogic.setScore(0);
+        GameLogic.setCurrentSpeedMultiplier(1);
         firstTimeCreated = false;
         toExecute.run();
     }
@@ -230,6 +232,11 @@ public class Map extends Timer.Task implements GameLogicListener {
 
     @Override
     public void onWorkersChanged(int newValue) {
+
+    }
+
+    @Override
+    public void onScoreChanged(int newValue) {
 
     }
 }

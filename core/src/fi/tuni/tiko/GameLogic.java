@@ -21,7 +21,6 @@ import fi.tuni.tiko.utilities.Action;
 public class GameLogic {
 
 
-
     /**
      * Enum to trigger correct events based on what state the game is currently in
      * for instance clicking the settings button in main menu will change change the game state to SETTINGS_SCREEN
@@ -38,9 +37,39 @@ public class GameLogic {
     private static GameState gameState = GameState.SPLASH_SCREEN;
     private static boolean lock;
     private static boolean paused = true;
+    private static int currentSpeedMultiplier = 1;
     private static int funds;
     private static int lives;
     private static int workers;
+    private static int score;
+
+
+    public static int getCurrentSpeedMultiplier() {
+        return currentSpeedMultiplier;
+    }
+
+    public static void setCurrentSpeedMultiplier(int value) {
+        currentSpeedMultiplier = value;
+    }
+
+
+    public static int getScore() {
+        return score;
+    }
+
+    public static void setScore(int score) {
+        GameLogic.score = score;
+        lock = true;
+        for (GameLogicListener listener :
+                gameLogicListeners) {
+            listener.onScoreChanged(score);
+        }
+        lock = false;
+    }
+
+    public static void addScore(int toAdd) {
+        setScore(score + toAdd);
+    }
 
     public static int getLives() {
         return lives;

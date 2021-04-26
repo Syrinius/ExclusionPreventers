@@ -22,18 +22,25 @@ public class GameScene extends Scene implements GameLogicListener {
     static final Texture resumeTexture = new Texture("menu/playbutton.png");
     static final Texture pauseTexture = new Texture("menu/pause.png");
 
+    static final Texture normalSpeedTexture = new Texture("menu/1x.png");
+    static final Texture fastSpeedTexture = new Texture("menu/2x.png");
+
     private final Button playPauseButton;
+    private final Button speedChangeButton;
     private final GlyphRenderer funds;
     private final GlyphRenderer lives;
     private final GlyphRenderer workers;
+    private final GlyphRenderer score;
 
     public GameScene() {
         funds = new GlyphRenderer(new MenuPosition(MenuPosition.WIDTH/2, 180), .5f, GlyphRenderer.Type.FUNDS, GameLogic.getFunds());
         hudElementManager.AddHudElement(funds);
         lives = new GlyphRenderer(new MenuPosition(10, 180), .5f, GlyphRenderer.Type.LIVES, GameLogic.getLives());
         hudElementManager.AddHudElement(lives);
-        workers = new GlyphRenderer(new MenuPosition(MenuPosition.WIDTH/4, 180), .5f, GlyphRenderer.Type.WORKERS, GameLogic.getWorkers());
+        workers = new GlyphRenderer(new MenuPosition(MenuPosition.WIDTH/3, 180), .5f, GlyphRenderer.Type.WORKERS, GameLogic.getWorkers());
         hudElementManager.AddHudElement(workers);
+        score = new GlyphRenderer(new MenuPosition(MenuPosition.WIDTH/6, 180), .5f, GlyphRenderer.Type.SCORE, GameLogic.getScore());
+        hudElementManager.AddHudElement(score);
         menuMusic.pause();
 
         GameLogic.AddListener(this);
@@ -51,6 +58,21 @@ public class GameScene extends Scene implements GameLogicListener {
             }
         });
         hudElementManager.AddHudElement(playPauseButton);
+
+        speedChangeButton = new Button(fastSpeedTexture, new MenuPosition(MenuPosition.WIDTH - 60, MenuPosition.HEIGHT - 25), 25, new Action() {
+            @Override
+            public void run() {
+                Map map = MapManager.getSelectedMap();
+                if (GameLogic.getCurrentSpeedMultiplier() != 1) {
+                    speedChangeButton.setTexture(fastSpeedTexture);
+                    GameLogic.setCurrentSpeedMultiplier(1);
+                } else {
+                    speedChangeButton.setTexture(normalSpeedTexture);
+                    GameLogic.setCurrentSpeedMultiplier(2);
+                }
+            }
+        });
+        hudElementManager.AddHudElement(speedChangeButton);
     }
 
     @Override
@@ -82,5 +104,10 @@ public class GameScene extends Scene implements GameLogicListener {
     @Override
     public void onWorkersChanged(int newValue) {
         workers.setValue(newValue);
+    }
+
+    @Override
+    public void onScoreChanged(int newValue) {
+        score.setValue(newValue);
     }
 }

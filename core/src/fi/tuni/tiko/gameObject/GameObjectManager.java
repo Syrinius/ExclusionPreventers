@@ -5,6 +5,7 @@ import com.badlogic.gdx.utils.Timer;
 
 import java.util.ArrayList;
 
+import fi.tuni.tiko.GameLogic;
 import fi.tuni.tiko.MainGame;
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 
@@ -82,7 +83,7 @@ public class GameObjectManager extends Timer.Task {
     @Override
     public void run() {
         long currentTime = System.nanoTime();
-        float delta = (currentTime - lastTick) / 1000000000f; //to seconds
+        float delta = ((currentTime - lastTick) / 1000000000f) * GameLogic.getCurrentSpeedMultiplier(); //to seconds
         lastTick = currentTime;
         if (!active) return;
         locked = true;

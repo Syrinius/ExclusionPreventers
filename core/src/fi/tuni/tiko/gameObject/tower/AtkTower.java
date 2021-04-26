@@ -11,7 +11,11 @@ import fi.tuni.tiko.gameObject.student.StudentContainer;
 public class AtkTower extends Tower {
 
     private static AtkTower instance;
-    private static final Texture texture = new Texture("towers/atk.png");
+    private static final Texture[] texture = {
+            new Texture("towers/atk.png"),
+            new Texture("towers/atk2.png"),
+            new Texture("towers/atk3.png")
+    };
     private static final Texture projectileTexture = new Texture("towers/heart.png");
     private static final float[] COOLDOWN = {5, 4, 3};
     private static final Sound atkSound = Gdx.audio.newSound(Gdx.files.internal("sounds/computer_sound.mp3"));
@@ -37,6 +41,6 @@ public class AtkTower extends Tower {
 
     @Override
     public Texture getTexture(TowerData data) {
-        return texture;
+        return texture[data.level - 1];
     }
 }

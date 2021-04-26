@@ -69,8 +69,8 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
     public void setTower(Tower toSet, int level, boolean flushData) {
         tower = toSet;
         if (flushData) towerData = tower.getNewData();
-        setTexture(tower.getTexture(towerData));
         towerData.level = level;
+        setTexture(tower.getTexture(towerData));
     }
 
     public MapPosition getCheeringSpawnPosition() {

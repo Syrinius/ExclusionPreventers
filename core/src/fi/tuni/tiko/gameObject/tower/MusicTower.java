@@ -11,7 +11,11 @@ import fi.tuni.tiko.gameObject.student.StudentContainer;
 public class MusicTower extends Tower {
 
     private static MusicTower instance;
-    private static final Texture texture = new Texture("towers/note_tower.png");
+    private static final Texture[] texture = {
+            new Texture("towers/music.png"),
+            new Texture("towers/music2.png"),
+            new Texture("towers/music3.png")
+    };
     private static final Texture projectileTexture = new Texture("towers/heart.png");
     private static final float[] COOLDOWN = {10, 8, 6};
     private static final float[] RANGE = {6, 7, 8};
@@ -42,6 +46,6 @@ public class MusicTower extends Tower {
 
     @Override
     public Texture getTexture(TowerData data) {
-        return texture;
+        return texture[data.level - 1];
     }
 }

@@ -14,14 +14,15 @@ import fi.tuni.tiko.gameObject.tower.TowerLocation;
 import fi.tuni.tiko.utilities.Action;
 import fi.tuni.tiko.utilities.NextButtonPosition;
 
-public class TowerImprovementPopOutMenu extends HudSprite implements TouchListener {
+public class TowerImprovementPopOutMenu extends HudSprite implements TouchListener, PopOut {
 
     private static final Texture backgroundTexture = new Texture("towers/tower_improvement_background.png");
     private static final Texture plusTexture = new Texture("menu/plus.png");
     private static final Texture minusTexture = new Texture("menu/minus.png");
+    private static final Texture maxLevelTexture = new Texture("menu/max_level.png");
     private static final float BACKGROUND_SIZE = 100;
-    HudElementManager manager;
-    private final TowerButton upgradeButton;
+    private final HudElementManager manager;
+    private final Button upgradeButton;
     private final TowerButton removeButton;
     private final Button addWorkerButton;
     private final Button removeWorkerButton;
@@ -30,24 +31,30 @@ public class TowerImprovementPopOutMenu extends HudSprite implements TouchListen
     public static TowerImprovementPopOutMenu GetInstance(HudElementManager manager, MenuPosition position, final TowerLocation location) {
         TowerImprovementPopOutMenu toReturn = new TowerImprovementPopOutMenu(manager, position, location);
         manager.AddHudElement(toReturn);
+        manager.SetPopOut(toReturn);
         return toReturn;
     }
 
-    private TowerImprovementPopOutMenu(HudElementManager manager, MenuPosition towerPosition, final TowerLocation location) {
+    private TowerImprovementPopOutMenu(final HudElementManager manager, MenuPosition towerPosition, final TowerLocation location) {
         super(backgroundTexture, towerPosition, BACKGROUND_SIZE);
         this.manager = manager;
 
         Action disposer = new Action() {
             @Override
             public void run() {
-                dispose();
+                manager.SetPopOut(null);
             }
         };
         towerPosition.add(0,40);
 
-        TowerData data = location.getTower().getNewData();
-        data.level = location.getLevel() + 1;
-        upgradeButton = new TowerButton(location.getTower(), location, towerPosition, data, 25, disposer);
+        int currentLevel = location.getLevel();
+        if (currentLevel == 3) {
+            upgradeButton = new Button(maxLevelTexture, towerPosition, 25, disposer, Events.Priority.HIGH);
+        } else {
+            TowerData data = location.getTower().getNewData();
+            data.level = currentLevel + 1;
+            upgradeButton = new TowerButton(location.getTower(), location, towerPosition, data, 25, disposer);
+        }
         towerPosition = NextButtonPosition.nextTowerPosition(towerPosition, 0, -50);
 
         removeButton = new RemoveTowerButton(location, towerPosition, 25, disposer);
@@ -93,7 +100,7 @@ public class TowerImprovementPopOutMenu extends HudSprite implements TouchListen
     @Override
     public boolean onTouchDown(ScreenPosition position, int pointer) {
         if (!IsInside(position.ToMenuPosition())) {
-            dispose();
+            manager.SetPopOut(null);
             return true;
         }
         return false;
@@ -123,5 +130,10 @@ public class TowerImprovementPopOutMenu extends HudSprite implements TouchListen
         addWorkerButton.dispose();
         removeWorkerButton.dispose();
         workerRenderer.dispose();
+    }
+
+    @Override
+    public void close() {
+        dispose();
     }
 }

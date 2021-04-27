@@ -68,7 +68,7 @@ public class GameScene extends Scene implements GameLogicListener {
                     GameLogic.setCurrentSpeedMultiplier(1);
                 } else {
                     speedChangeButton.setTexture(normalSpeedTexture);
-                    GameLogic.setCurrentSpeedMultiplier(2);
+                    GameLogic.setCurrentSpeedMultiplier(12);
                 }
             }
         });
@@ -79,6 +79,14 @@ public class GameScene extends Scene implements GameLogicListener {
     void render() {
         MapManager.render();
         super.render();
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        GameLogic.RemoveListener(this);
+        playPauseButton.dispose();
+        speedChangeButton.dispose();
     }
 
     @Override

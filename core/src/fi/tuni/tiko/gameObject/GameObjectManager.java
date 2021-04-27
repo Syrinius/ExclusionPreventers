@@ -25,6 +25,7 @@ public class GameObjectManager extends Timer.Task {
     private boolean active = false;
     private boolean dirty = false;
     private boolean dispose = false;
+    private boolean disposed = false;
 
     public void invalidate() {
         dirty = true;
@@ -60,13 +61,15 @@ public class GameObjectManager extends Timer.Task {
 
     public void dispose() {
         dispose = true;
-        if (locked) return;
+        if (locked || disposed) return;
         locked = true;
+        active = false;
         gameObjects.clear();
         delayedAdd.clear();
         delayedRemove.clear();
-        cancel();
         batch.dispose();
+        cancel();
+        disposed = true;
     }
 
     public void render() {

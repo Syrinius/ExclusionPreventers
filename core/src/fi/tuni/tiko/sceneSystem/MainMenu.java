@@ -110,4 +110,15 @@ public class MainMenu extends Scene {
         });
         hudElementManager.AddHudElement(finnishButton);
     }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        playButton.dispose();
+        helpButton.dispose();
+        settingButton.dispose();
+        creditButton.dispose();
+        englishButton.dispose();
+        finnishButton.dispose();
+    }
 }

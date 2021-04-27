@@ -19,7 +19,7 @@ public abstract class Scene {
         hudElementManager.Render();
     }
 
-    void dispose() {
+    public void dispose() {
         hudElementManager.Dispose();
     }
 }

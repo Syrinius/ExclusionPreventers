@@ -70,6 +70,7 @@ public class GameLogic {
     }
 
     public static void setScore(int score) {
+        updateListeners();
         GameLogic.score = score;
         lock = true;
         for (GameLogicListener listener :
@@ -92,6 +93,7 @@ public class GameLogic {
     }
 
     public static void setLives(int lives) {
+        updateListeners();
         GameLogic.lives = lives;
         lock = true;
         for (GameLogicListener listener :
@@ -111,6 +113,7 @@ public class GameLogic {
     }
 
     public static void setWorkers(int workers) {
+        updateListeners();
         GameLogic.workers = workers;
         lock = true;
         for (GameLogicListener listener :
@@ -129,6 +132,7 @@ public class GameLogic {
     }
 
     public static void setFunds(int funds) {
+        updateListeners();
         GameLogic.funds = funds;
         lock = true;
         for (GameLogicListener listener :
@@ -138,8 +142,7 @@ public class GameLogic {
         lock = false;
     }
 
-    public static void SetState(GameState state){
-        gameState = state;
+    private static void updateListeners() {
         if (!toRemove.isEmpty()) {
             gameLogicListeners.removeAll(toRemove);
             toRemove.clear();
@@ -148,6 +151,11 @@ public class GameLogic {
             gameLogicListeners.addAll(toAdd);
             toAdd.clear();
         }
+    }
+
+    public static void SetState(GameState state){
+        gameState = state;
+        updateListeners();
 
         switch (state){
             case SPLASH_SCREEN:
@@ -199,6 +207,7 @@ public class GameLogic {
     }
 
     public static void Pause() {
+        updateListeners();
         if (paused) return;
         paused = true;
         lock = true;
@@ -210,6 +219,7 @@ public class GameLogic {
     }
 
     public static void Resume() {
+        updateListeners();
         if (!paused) return;
         paused = false;
         lock = true;

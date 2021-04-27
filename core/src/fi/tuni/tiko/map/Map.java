@@ -16,6 +16,7 @@ import fi.tuni.tiko.GameLogic;
 import fi.tuni.tiko.GameLogicListener;
 import fi.tuni.tiko.MainGame;
 import fi.tuni.tiko.coordinateSystem.MapPosition;
+import fi.tuni.tiko.eventSystem.Events;
 import fi.tuni.tiko.gameObject.GameObjectManager;
 import fi.tuni.tiko.hud.HudElementManager;
 import fi.tuni.tiko.sceneSystem.GameScene;
@@ -72,11 +73,12 @@ public class Map extends Timer.Task implements GameLogicListener {
     public Map(String fileLocation, String jsonLocation) {
         this.fileLocation = fileLocation;
         this.jsonLocation = jsonLocation;
-        GameLogic.AddListener(this);
     }
 
     public void dispose() {
         gameObjectManager.dispose();
+        for (TowerLocation location : towerLocations) location.destroy();
+        GameLogic.RemoveListener(this);
     }
 
     public void LoadMap(GameScene scene, Action mapLoaded) {
@@ -167,6 +169,7 @@ public class Map extends Timer.Task implements GameLogicListener {
             initialized = true;
         }
 
+        GameLogic.AddListener(this);
         gameObjectManager = new GameObjectManager();
         towerLocations = new ArrayList<>();
         height = ((TiledMapTileLayer)tiledMap.getLayers().get(0)).getHeight();

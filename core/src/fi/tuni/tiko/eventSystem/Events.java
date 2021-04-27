@@ -1,5 +1,6 @@
 package fi.tuni.tiko.eventSystem;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 
@@ -7,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import fi.tuni.tiko.GameLogic;
+import fi.tuni.tiko.MainGame;
 import fi.tuni.tiko.coordinateSystem.ScreenPosition;
 
 /**

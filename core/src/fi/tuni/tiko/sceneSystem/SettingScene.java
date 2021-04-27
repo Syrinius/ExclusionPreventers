@@ -37,4 +37,10 @@ public class SettingScene extends Scene {
 
 
     }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        backButton.dispose();
+    }
 }

@@ -24,7 +24,6 @@ public class GameWinScene extends Scene {
             new Texture("menu/menu.png"),
             new Texture("menu/valikko.png")
     };
-    private final GlyphRenderer pointRenderer;
 
     public GameWinScene() {
         MenuPosition currentPosition = new MenuPosition(200, 160);
@@ -55,7 +54,14 @@ public class GameWinScene extends Scene {
                 });
         hudElementManager.AddHudElement(backToMenuButton);
         currentPosition = NextButtonPosition.nextMenuPosition(currentPosition, gapX, gapY);
-        pointRenderer = new GlyphRenderer(currentPosition, 1, GlyphRenderer.Type.SCORE, GameLogic.getScore());
+        GlyphRenderer pointRenderer = new GlyphRenderer(currentPosition, 1, GlyphRenderer.Type.SCORE, GameLogic.getScore());
         hudElementManager.AddHudElement(pointRenderer);
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        nextLevelButton.dispose();
+        backToMenuButton.dispose();
     }
 }

@@ -6,32 +6,31 @@
     {
       "composition" : {
         "STUDENT1" : {
-          "amount": 6,
-          "baseCooldown": 2,
-          "resistance": "PROMO",
-          "affinity": "ATK"
+          "amount": 4,
+          "baseCooldown": 2
         },
         "STUDENT2" : {
           "amount": 2,
           "baseCooldown": 4
         }
       },
-      "fund_reward": 25,
-      "worker_reward": 1
+      "fund_reward": 25
     },
     {
       "composition" : {
         "STUDENT1" : {
-          "amount": 8,
+          "amount": 5,
           "baseCooldown": 2
         },
         "STUDENT2" : {
           "amount": 2,
-          "baseCooldown": 3
+          "baseCooldown": 3,
+          "resistance": "PROMO"
         },
         "STUDENT3" : {
           "amount": 2,
-          "baseCooldown": 4
+          "baseCooldown": 4,
+          "affinity": "ATK"
         }
       },
       "fund_reward": 25,
@@ -41,19 +40,61 @@
       "composition" : {
         "STUDENT1" : {
           "amount": 6,
-          "baseCooldown": 2
+          "baseCooldown": 3,
+          "affinity": "MUSIC"
         },
         "STUDENT2" : {
           "amount": 1,
           "baseCooldown": 4
         },
         "STUDENT3" : {
-          "amount": 6,
-          "baseCooldown": 3
+          "amount": 5,
+          "baseCooldown": 3,
+          "resistance": "BOOK"
         }
       },
       "fund_reward": 25,
       "worker_reward": 1
+    },
+    {
+      "composition" : {
+        "STUDENT1" : {
+          "amount": 12,
+          "baseCooldown": 2,
+          "affinity": "PROMO",
+          "resistance": "MUSIC"
+        },
+        "STUDENT2" : {
+          "amount": 1,
+          "baseCooldown": 4
+        }
+      },
+      "fund_reward": 25
+    },
+    {
+      "composition" : {
+        "STUDENT1": {
+          "amount": 4,
+          "baseCooldown": 1
+        },
+        "STUDENT3": {
+          "amount": 8,
+          "baseCooldown": 3,
+          "resistance": "SPORT"
+        }
+      },
+      "fund_reward": 25,
+      "worker_reward": 1
+    },
+    {
+      "composition" : {
+        "STUDENT2" : {
+          "amount": 12,
+          "baseCooldown": 4,
+          "affinity": "SUPPORT"
+        }
+      },
+      "fund_reward": 25
     },
     {
       "composition" : {
@@ -80,8 +121,7 @@
           "baseCooldown": 4
         }
       },
-      "fund_reward": 25,
-      "worker_reward": 1
+      "fund_reward": 25
     },
     {
       "composition" : {
@@ -108,8 +148,7 @@
           "baseCooldown": 4
         }
       },
-      "fund_reward": 25,
-      "worker_reward": 1
+      "fund_reward": 25
     },
     {
       "composition" : {
@@ -122,50 +161,7 @@
           "baseCooldown": 4
         }
       },
-      "fund_reward": 25,
-      "worker_reward": 1
-    },
-    {
-      "composition" : {
-        "STUDENT1" : {
-          "amount": 6,
-          "baseCooldown": 2
-        },
-        "STUDENT2" : {
-          "amount": 1,
-          "baseCooldown": 4
-        }
-      },
-      "fund_reward": 25,
-      "worker_reward": 1
-    },
-    {
-      "composition" : {
-        "STUDENT1" : {
-          "amount": 6,
-          "baseCooldown": 2
-        },
-        "STUDENT2" : {
-          "amount": 1,
-          "baseCooldown": 4
-        }
-      },
-      "fund_reward": 25,
-      "worker_reward": 1
-    },
-    {
-      "composition" : {
-        "STUDENT1" : {
-          "amount": 6,
-          "baseCooldown": 2
-        },
-        "STUDENT2" : {
-          "amount": 1,
-          "baseCooldown": 4
-        }
-      },
-      "fund_reward": 25,
-      "worker_reward": 1
+      "fund_reward": 25
     }
   ]
 }

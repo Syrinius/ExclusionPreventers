@@ -14,7 +14,7 @@ public class PromoTower extends Tower {
     private static final int SPLASH_RANGE = 2;
 
     public PromoTower() {
-        super(new float[]{18, 25, 40}, new int[]{1, 1, 1}, new int[]{40, 60, 100});
+        super(new float[]{18, 24, 40}, new float[]{1, 1, 1}, new int[]{40, 60, 100});
     }
 
     public static PromoTower getInstance() {
@@ -31,7 +31,7 @@ public class PromoTower extends Tower {
     public float act(TowerLocation location, TowerData data) {
         PromoData promoData = (PromoData)data;
         if(promoData.promo != null) {
-            return promoData.promo.act() ? COOLDOWN[data.level - 1] : PROMO_COOLDOWN[data.level - 1];
+            return promoData.promo.act() ? (COOLDOWN[data.level - 1] * 10) / (10 * data.workers) : PROMO_COOLDOWN[data.level - 1];
         } else {
             for (StudentContainer currentTarget : data.currentTargets) {
                 promoData.promo = new PromoProjectile(new MapPosition(currentTarget.getTileCenterX(), currentTarget.getTileCenterY()), location.map, location, promoData);
@@ -43,7 +43,7 @@ public class PromoTower extends Tower {
     }
 
     @Override
-    public int getParticipation(TowerData data) {
+    public float getParticipation(TowerData data) {
         return PARTICIPATION[data.level -1];
     }
 

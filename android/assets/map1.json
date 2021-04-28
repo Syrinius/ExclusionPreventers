@@ -1,5 +1,5 @@
 {
-  "starting_funds": 1000,
+  "starting_funds": 100,
   "starting_lives": 5,
   "starting_workers": 3,
   "waves": [
@@ -99,12 +99,22 @@
     {
       "composition" : {
         "STUDENT1" : {
-          "amount": 6,
-          "baseCooldown": 2
+          "amount": 5,
+          "baseCooldown": 3,
+          "resistance": "SPORT",
+          "affinity": "MUSIC"
         },
         "STUDENT2" : {
-          "amount": 1,
-          "baseCooldown": 4
+          "amount": 5,
+          "baseCooldown": 3,
+          "resistance": "PROMO",
+          "affinity": "SPORT"
+        },
+        "STUDENT3" : {
+          "amount": 5,
+          "baseCooldown": 3,
+          "resistance": "MUSIC",
+          "affinity": "PROMO"
         }
       },
       "fund_reward": 25,
@@ -112,13 +122,16 @@
     },
     {
       "composition" : {
-        "STUDENT1" : {
-          "amount": 6,
-          "baseCooldown": 2
-        },
         "STUDENT2" : {
-          "amount": 1,
-          "baseCooldown": 4
+          "amount": 6,
+          "baseCooldown": 2,
+          "resistance": "BOOK",
+          "affinity": "COOK"
+        },
+        "STUDENT3" : {
+          "amount": 10,
+          "baseCooldown": 3,
+          "affinity": "SPORT"
         }
       },
       "fund_reward": 25
@@ -126,42 +139,40 @@
     {
       "composition" : {
         "STUDENT1" : {
-          "amount": 6,
-          "baseCooldown": 2
+          "amount": 10,
+          "baseCooldown": 1,
+          "resistance": "SUPPORT"
         },
-        "STUDENT2" : {
-          "amount": 1,
-          "baseCooldown": 4
+        "STUDENT3" : {
+          "amount": 6,
+          "baseCooldown": 2,
+          "resistance": "ATK"
         }
       },
-      "fund_reward": 25,
+      "fund_reward": 50,
       "worker_reward": 1
     },
     {
       "composition" : {
         "STUDENT1" : {
-          "amount": 6,
-          "baseCooldown": 2
+          "amount": 10,
+          "baseCooldown": 2,
+          "resistance": "ATK",
+          "affinity": "COOK"
         },
         "STUDENT2" : {
-          "amount": 1,
-          "baseCooldown": 4
-        }
-      },
-      "fund_reward": 25
-    },
-    {
-      "composition" : {
-        "STUDENT1" : {
-          "amount": 6,
-          "baseCooldown": 2
+          "amount": 10,
+          "baseCooldown": 3,
+          "resistance": "COOK",
+          "affinity": "BOOK"
         },
-        "STUDENT2" : {
-          "amount": 1,
-          "baseCooldown": 4
+        "STUDENT3" : {
+          "amount": 10,
+          "baseCooldown": 2,
+          "resistance": "BOOK",
+          "affinity": "ATK"
         }
-      },
-      "fund_reward": 25
+      }
     }
   ]
 }

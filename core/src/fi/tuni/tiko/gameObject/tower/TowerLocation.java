@@ -73,7 +73,10 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
 
     public void setTower(Tower toSet, int level, boolean flushData) {
         tower = toSet;
-        if (flushData) towerData = tower.getNewData();
+        if (flushData) {
+            if (towerData != null) refundWorkers();
+            towerData = tower.getNewData();
+        }
         towerData.level = level;
         setTexture(tower.getTexture(towerData));
     }
@@ -123,7 +126,7 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
         return tower.getRange(towerData);
     }
 
-    public int getParticipation() {
+    public float getParticipation() {
         return tower.getParticipation(towerData);
     }
 

@@ -9,7 +9,7 @@ import fi.tuni.tiko.utilities.FancyMath;
 public class Student2 implements Student {
     private static final Animation<TextureRegion> walkingAnimation;
     private static final Animation<TextureRegion> cheeringAnimation;
-    private static final int REQUIREDPARTICIPATION = 20;
+    private static final int REQUIREDPARTICIPATION = 24;
     static {
         Texture texture = new Texture("student_sprites/student2.png");
         walkingAnimation = FancyMath.getAnimationStrip(texture, 21, 21, 4, 0.35f);

@@ -17,7 +17,7 @@ public class EmptyTower extends Tower {
     private static final Texture texture = new Texture("towers/empty_tower.png");
 
     public EmptyTower() {
-        super(new float[]{0}, new int[]{0}, new int[]{0});
+        super(new float[]{0}, new float[]{0}, new int[]{0});
     }
 
     public static EmptyTower getInstance() {
@@ -46,7 +46,7 @@ public class EmptyTower extends Tower {
     }
 
     @Override
-    public int getParticipation(TowerData data) {
+    public float getParticipation(TowerData data) {
         return 0;
     }
 

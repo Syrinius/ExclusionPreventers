@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 import fi.tuni.tiko.eventSystem.Events;
 import fi.tuni.tiko.map.MapManager;
+import fi.tuni.tiko.sceneSystem.FinalScene;
 import fi.tuni.tiko.sceneSystem.GameOverScene;
 import fi.tuni.tiko.sceneSystem.GameScene;
+import fi.tuni.tiko.sceneSystem.GameWinScene;
+import fi.tuni.tiko.sceneSystem.HelpScene;
 import fi.tuni.tiko.sceneSystem.MainMenu;
 import fi.tuni.tiko.sceneSystem.MapLoadingScreen;
 import fi.tuni.tiko.sceneSystem.MapSelectionMenu;
@@ -27,7 +30,8 @@ public class GameLogic {
      * and will trigger all the events needed for the settings screen
      */
     public enum GameState {
-        SPLASH_SCREEN, MAIN_MENU, MAP_SELECTION_SCREEN, MAP_CONFIRM_SCREEN, SETTINGS_SCREEN, MAP_LOADING_SCREEN, GAME_SCREEN, END_SCREEN
+        SPLASH_SCREEN, MAIN_MENU, MAP_SELECTION_SCREEN, SETTINGS_SCREEN,
+        MAP_LOADING_SCREEN, GAME_SCREEN, LOSE_SCREEN, WIN_SCREEN, HELP_SCREEN
     }
 
     public enum Language {
@@ -101,7 +105,7 @@ public class GameLogic {
             listener.onLivesChanged(lives);
         }
         lock = false;
-        if (lives == 0) SetState(GameState.END_SCREEN);
+        if (lives == 0) SetState(GameState.LOSE_SCREEN);
     }
 
     public static int getWorkers() {
@@ -185,9 +189,21 @@ public class GameLogic {
                 break;
             case GAME_SCREEN:
                 break;
-            case END_SCREEN:
+            case LOSE_SCREEN:
                 MapManager.getSelectedMap().dispose();
                 SceneManager.SetActiveScene(new GameOverScene());
+                break;
+            case WIN_SCREEN:
+                if (MapManager.isLastMap()) {
+                    MapManager.getSelectedMap().dispose();
+                    SceneManager.SetActiveScene(new FinalScene());
+                } else {
+                    MapManager.getSelectedMap().dispose();
+                    SceneManager.SetActiveScene(new GameWinScene());
+                }
+                break;
+            case HELP_SCREEN:
+                SceneManager.SetActiveScene(new HelpScene());
                 break;
         }
     }

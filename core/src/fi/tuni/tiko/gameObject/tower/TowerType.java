@@ -4,7 +4,7 @@ public enum TowerType {
 
     ATK(AtkTower.getInstance()),
     BOOK(BookTower.getInstance()),
-    COOKING(CookingTower.getInstance()),
+    COOK(CookingTower.getInstance()),
     MUSIC(MusicTower.getInstance()),
     SPORT(SportTower.getInstance()),
     PROMO(PromoTower.getInstance()),

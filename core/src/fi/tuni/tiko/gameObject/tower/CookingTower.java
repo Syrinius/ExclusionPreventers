@@ -21,7 +21,7 @@ public class CookingTower extends Tower {
     private static final Sound cookSound = Gdx.audio.newSound(Gdx.files.internal("sounds/cook_sound.mp3"));
 
     public CookingTower() {
-        super(new float[]{7, 8, 9}, new int[]{4, 6, 8}, new int[]{20, 40, 80});
+        super(new float[]{7, 8, 9}, new float[]{4, 6, 8}, new int[]{20, 40, 80});
     }
 
     public static CookingTower getInstance() {

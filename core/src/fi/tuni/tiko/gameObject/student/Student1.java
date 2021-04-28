@@ -10,7 +10,7 @@ public class Student1 implements Student {
 
     private static final Animation<TextureRegion> walkingAnimation;
     private static final Animation<TextureRegion> cheeringAnimation;
-    public final int REQUIREDPARTICIPATION = 12;
+    public final int REQUIREDPARTICIPATION = 16;
     static {
         Texture texture = new Texture("student_sprites/student1.png");
         walkingAnimation = FancyMath.getAnimationStrip(texture, 23, 23, 4, 0.3f);

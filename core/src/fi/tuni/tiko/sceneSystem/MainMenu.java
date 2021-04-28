@@ -42,9 +42,7 @@ public class MainMenu extends Scene {
     Button englishButton;
     Button finnishButton;
     HudSprite background;
-    MenuPosition currentPosition = new MenuPosition(200, 160);
-    float gapX = 0;
-    float gapY = -40;
+
     static final Music menuMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/menusong.wav"));
 
 
@@ -53,6 +51,10 @@ public class MainMenu extends Scene {
         hudElementManager.AddHudElement(background);
         menuMusic.play();
         menuMusic.setLooping(true);
+
+        MenuPosition currentPosition = new MenuPosition(200, 160);
+        float gapX = 0;
+        float gapY = -40;
         //menuMusic.pause();
 
         playButton = new Button(playTexture[GameLogic.getLanguage().ordinal()], currentPosition, 100,
@@ -69,7 +71,7 @@ public class MainMenu extends Scene {
                 new Action() {
                     @Override
                     public void run() {
-                        GameLogic.SetState(GameLogic.GameState.MAP_SELECTION_SCREEN);
+                        GameLogic.SetState(GameLogic.GameState.HELP_SCREEN);
                     }
                 });
         hudElementManager.AddHudElement(helpButton);
@@ -111,14 +113,4 @@ public class MainMenu extends Scene {
         hudElementManager.AddHudElement(finnishButton);
     }
 
-    @Override
-    public void dispose() {
-        super.dispose();
-        playButton.dispose();
-        helpButton.dispose();
-        settingButton.dispose();
-        creditButton.dispose();
-        englishButton.dispose();
-        finnishButton.dispose();
-    }
 }

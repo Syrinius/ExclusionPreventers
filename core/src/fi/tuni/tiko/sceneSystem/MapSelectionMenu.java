@@ -65,7 +65,7 @@ public class MapSelectionMenu extends Scene {
                 new Action() {
                     @Override
                     public void run() {
-                        MapManager.selectMap(0);
+                        MapManager.selectMap(2);
                         GameLogic.SetState(GameLogic.GameState.MAP_LOADING_SCREEN);
                     }
                 });
@@ -76,7 +76,7 @@ public class MapSelectionMenu extends Scene {
                 new Action() {
                     @Override
                     public void run() {
-                        MapManager.selectMap(0);
+                        MapManager.selectMap(3);
                         GameLogic.SetState(GameLogic.GameState.MAP_LOADING_SCREEN);
                     }
                 });
@@ -87,7 +87,7 @@ public class MapSelectionMenu extends Scene {
                 new Action() {
                     @Override
                     public void run() {
-                        MapManager.selectMap(0);
+                        MapManager.selectMap(4);
                         GameLogic.SetState(GameLogic.GameState.MAP_LOADING_SCREEN);
                     }
                 });
@@ -98,7 +98,7 @@ public class MapSelectionMenu extends Scene {
                 new Action() {
                     @Override
                     public void run() {
-                        MapManager.selectMap(0);
+                        MapManager.selectMap(5);
                         GameLogic.SetState(GameLogic.GameState.MAP_LOADING_SCREEN);
                     }
                 });
@@ -109,7 +109,7 @@ public class MapSelectionMenu extends Scene {
                 new Action() {
                     @Override
                     public void run() {
-                        MapManager.selectMap(0);
+                        MapManager.selectMap(6);
                         GameLogic.SetState(GameLogic.GameState.MAP_LOADING_SCREEN);
                     }
                 });
@@ -120,7 +120,7 @@ public class MapSelectionMenu extends Scene {
                 new Action() {
                     @Override
                     public void run() {
-                        MapManager.selectMap(0);
+                        MapManager.selectMap(7);
                         GameLogic.SetState(GameLogic.GameState.MAP_LOADING_SCREEN);
                     }
                 });
@@ -131,7 +131,7 @@ public class MapSelectionMenu extends Scene {
                 new Action() {
                     @Override
                     public void run() {
-                        MapManager.selectMap(0);
+                        MapManager.selectMap(8);
                         GameLogic.SetState(GameLogic.GameState.MAP_LOADING_SCREEN);
                     }
                 });
@@ -142,25 +142,10 @@ public class MapSelectionMenu extends Scene {
                 new Action() {
                     @Override
                     public void run() {
-                        MapManager.selectMap(0);
+                        MapManager.selectMap(9);
                         GameLogic.SetState(GameLogic.GameState.MAP_LOADING_SCREEN);
                     }
                 });
         hudElementManager.AddHudElement(map10Button);
-    }
-
-    @Override
-    public void dispose() {
-        backButton.dispose();
-        map1Button.dispose();
-        map2Button.dispose();
-        map3Button.dispose();
-        map4Button.dispose();
-        map5Button.dispose();
-        map6Button.dispose();
-        map7Button.dispose();
-        map8Button.dispose();
-        map9Button.dispose();
-        map10Button.dispose();
     }
 }

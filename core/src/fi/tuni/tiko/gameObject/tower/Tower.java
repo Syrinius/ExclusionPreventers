@@ -12,10 +12,10 @@ import fi.tuni.tiko.gameObject.student.StudentContainer;
 public abstract class Tower {
 
     public final float[] RANGE;
-    public final int[] PARTICIPATION;
+    public final float[] PARTICIPATION;
     public final int[] COST;
 
-    public Tower(float[] RANGE, int[] PARTICIPATION, int[] COST) {
+    public Tower(float[] RANGE, float[] PARTICIPATION, int[] COST) {
         this.RANGE = RANGE;
         this.PARTICIPATION = PARTICIPATION;
         this.COST = COST;
@@ -33,7 +33,7 @@ public abstract class Tower {
         return RANGE[data.level - 1];
     }
 
-    public int getParticipation(TowerData data) {
+    public float getParticipation(TowerData data) {
         return PARTICIPATION[data.level -1] + data.workers;
     }
 

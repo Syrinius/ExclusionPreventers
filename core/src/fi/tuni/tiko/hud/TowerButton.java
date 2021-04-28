@@ -26,7 +26,7 @@ public class TowerButton extends Button {
         this.tower = tower;
         this.location = location;
         this.data = data;
-        glyphRenderer = new GlyphRenderer(new MenuPosition(position.x, position.y + size/2), 0.3f, GlyphRenderer.Type.FUNDS, tower.getCost(data));
+        glyphRenderer = new GlyphRenderer(new MenuPosition(position.x - size / 2, position.y - size / 2.5f), 0.3f, GlyphRenderer.Type.FUNDS, tower.getCost(data));
     }
 
     @Override

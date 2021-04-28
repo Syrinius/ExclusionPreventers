@@ -17,14 +17,14 @@ public class MusicTower extends Tower {
             new Texture("towers/music3.png")
     };
     private static final Texture projectileTexture = new Texture("towers/heart.png");
-    private static final float[] COOLDOWN = {10, 8, 6};
+    private static final float[] COOLDOWN = {12, 10, 8};
     private static final float[] RANGE = {6, 7, 8};
     private static final int[] PARTICIPATION = {3, 4, 5};
     private static final int[] COST = {40, 60, 100};
     private static final Sound musicSound = Gdx.audio.newSound(Gdx.files.internal("sounds/music_sound.mp3"));
 
     public MusicTower() {
-        super(new float[]{6, 7, 8}, new int[]{3, 4, 5}, new int[]{40, 60, 100});
+        super(new float[]{6, 7, 8}, new float[]{3, 4, 5}, new int[]{40, 60, 100});
     }
 
     public static MusicTower getInstance() {

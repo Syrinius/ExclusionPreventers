@@ -80,7 +80,7 @@ public class TowerImprovementPopOutMenu extends HudSprite implements TouchListen
                 }
             }
         });
-        towerPosition = NextButtonPosition.nextTowerPosition(towerPosition, -30, 0);
+        towerPosition = NextButtonPosition.nextTowerPosition(towerPosition, -43, -6);
 
         workerRenderer = new GlyphRenderer(towerPosition, 0.5f, GlyphRenderer.Type.WORKERS, location.getWorkers());
 

@@ -15,6 +15,18 @@ public class MapManager {
     static {
         availableMaps.add(new Map("map1.tmx", "map1.json"));
         availableMaps.add(new Map("map2.tmx", "map1.json"));
+        availableMaps.add(new Map("map3.tmx", "map1.json"));
+        availableMaps.add(new Map("map4.tmx", "map1.json"));
+        availableMaps.add(new Map("map5.tmx", "map1.json"));
+        availableMaps.add(new Map("map6.tmx", "map1.json"));
+        availableMaps.add(new Map("map7.tmx", "map1.json"));
+        availableMaps.add(new Map("map8.tmx", "map1.json"));
+        availableMaps.add(new Map("map9.tmx", "map1.json"));
+        availableMaps.add(new Map("map10.tmx", "map1.json"));
+    }
+
+    public static boolean isLastMap() {
+        return selectedMap == availableMaps.get(availableMaps.size() - 1);
     }
 
     public static Map selectMap(int index) {

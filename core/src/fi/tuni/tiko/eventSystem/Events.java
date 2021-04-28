@@ -106,6 +106,7 @@ public class Events implements InputProcessor {
     }
 
     private void updateList() {
+        //MainGame.SetDebugText("" + touchListeners.size());
         if (!delayedAdd.isEmpty()) {
             touchListeners.addAll(delayedAdd);
             Collections.sort(touchListeners, comparator);

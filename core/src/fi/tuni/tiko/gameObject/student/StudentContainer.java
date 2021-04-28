@@ -17,7 +17,7 @@ public class StudentContainer extends GameObjectSprite {
     private float animationTime = 0;
     private final Path path;
     private int nextCheckpoint = 1;
-    private int currentParticipation = 0;
+    private float currentParticipation = 0;
     private final TowerType resistance;
     private final TowerType affinity;
 
@@ -78,7 +78,7 @@ public class StudentContainer extends GameObjectSprite {
 
     public void addParticipation(TowerLocation tower) {
         if(!isValid()) return;
-        int toAdd = tower.getParticipation();
+        float toAdd = tower.getParticipation();
         if(resistance != null && resistance.tower.equals(tower.getTower())) toAdd *= 0.5;
         if(affinity != null && affinity.tower.equals(tower.getTower())) toAdd *= 1.5;
         currentParticipation += toAdd;

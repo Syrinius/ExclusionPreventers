@@ -8,6 +8,7 @@ import fi.tuni.tiko.GameLogicListener;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.hud.Button;
 import fi.tuni.tiko.hud.GlyphRenderer;
+import fi.tuni.tiko.hud.HelpPopOutMenu;
 import fi.tuni.tiko.map.Map;
 import fi.tuni.tiko.map.MapManager;
 import fi.tuni.tiko.utilities.Action;
@@ -25,6 +26,9 @@ public class GameScene extends Scene implements GameLogicListener {
     static final Texture normalSpeedTexture = new Texture("menu/1x.png");
     static final Texture fastSpeedTexture = new Texture("menu/2x.png");
 
+
+    static final Texture helpTexture = new  Texture("menu/small_help.png");
+    private final Button helpButton;
     private final Button playPauseButton;
     private final Button speedChangeButton;
     private final GlyphRenderer funds;
@@ -47,7 +51,6 @@ public class GameScene extends Scene implements GameLogicListener {
         playPauseButton = new Button(resumeTexture, new MenuPosition(MenuPosition.WIDTH - 25, MenuPosition.HEIGHT - 25), 25, new Action() {
             @Override
             public void run() {
-                Map map = MapManager.getSelectedMap();
                 if (GameLogic.isPaused()) {
                     playPauseButton.setTexture(pauseTexture);
                     GameLogic.Resume();
@@ -62,7 +65,6 @@ public class GameScene extends Scene implements GameLogicListener {
         speedChangeButton = new Button(fastSpeedTexture, new MenuPosition(MenuPosition.WIDTH - 60, MenuPosition.HEIGHT - 25), 25, new Action() {
             @Override
             public void run() {
-                Map map = MapManager.getSelectedMap();
                 if (GameLogic.getCurrentSpeedMultiplier() != 1) {
                     speedChangeButton.setTexture(fastSpeedTexture);
                     GameLogic.setCurrentSpeedMultiplier(1);
@@ -73,6 +75,14 @@ public class GameScene extends Scene implements GameLogicListener {
             }
         });
         hudElementManager.AddHudElement(speedChangeButton);
+
+        helpButton = new Button(helpTexture, new MenuPosition(MenuPosition.WIDTH - 95, MenuPosition.HEIGHT - 25), 25, new Action() {
+            @Override
+            public void run() {
+                HelpPopOutMenu.GetInstance(hudElementManager);
+            }
+        });
+        hudElementManager.AddHudElement(helpButton);
     }
 
     @Override
@@ -85,8 +95,6 @@ public class GameScene extends Scene implements GameLogicListener {
     public void dispose() {
         super.dispose();
         GameLogic.RemoveListener(this);
-        playPauseButton.dispose();
-        speedChangeButton.dispose();
     }
 
     @Override

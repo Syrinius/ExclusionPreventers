@@ -57,11 +57,4 @@ public class GameWinScene extends Scene {
         GlyphRenderer pointRenderer = new GlyphRenderer(currentPosition, 1, GlyphRenderer.Type.SCORE, GameLogic.getScore());
         hudElementManager.AddHudElement(pointRenderer);
     }
-
-    @Override
-    public void dispose() {
-        super.dispose();
-        nextLevelButton.dispose();
-        backToMenuButton.dispose();
-    }
 }

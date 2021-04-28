@@ -35,7 +35,7 @@ public class WaveManager implements GameObject {
         GameLogic.addWorkers(wave.worker_reward);
 
         if(++currentWave == map.mapData.waves.size) {
-            GameLogic.SetState(GameLogic.GameState.END_SCREEN);
+            GameLogic.SetState(GameLogic.GameState.WIN_SCREEN);
             return;
         }
 

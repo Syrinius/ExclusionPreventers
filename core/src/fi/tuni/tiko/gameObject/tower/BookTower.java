@@ -17,16 +17,21 @@ public class BookTower extends Tower {
             new Texture("towers/book3.png")
     };
     private static final Texture projectileTexture = new Texture("towers/heart.png");
-    private static final float[] COOLDOWN = {5, 4, 3};
+    private static final float[] COOLDOWN = {3.5f, 3, 2.5f};
     private static final Sound bookSound = Gdx.audio.newSound(Gdx.files.internal("sounds/book_sound.mp3"));
 
     public BookTower() {
-        super(new float[]{7, 8, 9}, new int[]{4, 6, 8}, new int[]{20, 40, 80});
+        super(new float[]{6, 7, 8}, new float[]{3, 4, 5}, new int[]{25, 50, 80});
     }
 
     public static BookTower getInstance() {
         if (instance == null) instance = new BookTower();
         return instance;
+    }
+
+    @Override
+    public float getParticipation(TowerData data) {
+        return PARTICIPATION[data.level -1] + data.workers / 2f;
     }
 
     @Override

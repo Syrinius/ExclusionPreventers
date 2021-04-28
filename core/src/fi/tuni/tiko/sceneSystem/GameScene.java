@@ -9,7 +9,6 @@ import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.hud.Button;
 import fi.tuni.tiko.hud.GlyphRenderer;
 import fi.tuni.tiko.hud.HelpPopOutMenu;
-import fi.tuni.tiko.map.Map;
 import fi.tuni.tiko.map.MapManager;
 import fi.tuni.tiko.utilities.Action;
 

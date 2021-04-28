@@ -7,7 +7,6 @@ import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.coordinateSystem.ScreenPosition;
 import fi.tuni.tiko.eventSystem.Events;
 import fi.tuni.tiko.eventSystem.TouchListener;
-import fi.tuni.tiko.gameObject.tower.TowerLocation;
 import fi.tuni.tiko.sceneSystem.HelpScene;
 import fi.tuni.tiko.utilities.Action;
 

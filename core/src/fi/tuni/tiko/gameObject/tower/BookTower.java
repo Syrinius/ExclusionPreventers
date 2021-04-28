@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import java.util.Set;
 
 import fi.tuni.tiko.gameObject.student.StudentContainer;
+import fi.tuni.tiko.sceneSystem.MainMenu;
 
 public class BookTower extends Tower {
 
@@ -19,6 +20,7 @@ public class BookTower extends Tower {
     private static final Texture projectileTexture = new Texture("towers/heart.png");
     private static final float[] COOLDOWN = {3.5f, 3, 2.5f};
     private static final Sound bookSound = Gdx.audio.newSound(Gdx.files.internal("sounds/book_sound.mp3"));
+
 
     public BookTower() {
         super(new float[]{6, 7, 8}, new float[]{3, 4, 5}, new int[]{25, 50, 80});
@@ -38,7 +40,7 @@ public class BookTower extends Tower {
     public float act(TowerLocation location, TowerData data) {
         for (StudentContainer currentTarget : data.currentTargets) {
             location.spawnProjectile(projectileTexture, currentTarget);
-            bookSound.play();
+            bookSound.play(MainMenu.soundVolume);
             return COOLDOWN[data.level - 1];
         }
         return 0;

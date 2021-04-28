@@ -95,7 +95,7 @@ public class MainMenu extends Scene {
                             menuMusic.setVolume(0);
                             musicOnButton.setTexture(musicOffTexture[GameLogic.getLanguage().ordinal()]);
                         }
-                        hudElementManager.AddHudElement(musicOnButton);
+
                     }
                 });
         hudElementManager.AddHudElement(musicOnButton);
@@ -112,7 +112,7 @@ public class MainMenu extends Scene {
                             soundVolume = 0f;
                             soundeffectOnButton.setTexture(soundeffectOffTexture[GameLogic.getLanguage().ordinal()]);
                         }
-                        hudElementManager.AddHudElement(soundeffectOnButton);
+
                     }
                 });
         hudElementManager.AddHudElement(soundeffectOnButton);

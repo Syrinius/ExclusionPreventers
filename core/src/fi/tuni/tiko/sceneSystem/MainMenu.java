@@ -29,15 +29,23 @@ public class MainMenu extends Scene {
             new Texture("menu/help.png"),
             new Texture("menu/ohjeet.png")
     };
-    Button settingButton;
-    Texture[] settingTexture = new Texture[] {
-            new Texture("menu/settings.png"),
-            new Texture("menu/asetukset.png")
+    Button musicOnButton;
+    Texture[] musicOnTexture = new Texture[] {
+            new Texture("menu/music_on.png"),
+            new Texture("menu/music_on.png")
     };
-    Button creditButton;
-    Texture[] creditTexture = new Texture[] {
-            new Texture("menu/credits.png"),
-            new Texture("menu/credits.png")
+    Texture[] musicOffTexture = new Texture[] {
+            new Texture("menu/music_off.png"),
+            new Texture("menu/music_off.png")
+    };
+    Button soundeffectOnButton;
+    Texture[] soundeffectOnTexture = new Texture[] {
+            new Texture("menu/sound_on.png"),
+            new Texture("menu/sound_on.png")
+    };
+    Texture[] soundeffectOffTexture = new Texture[] {
+            new Texture("menu/sound_off.png"),
+            new Texture("menu/sound_off.png")
     };
     Button englishButton;
     Button finnishButton;
@@ -46,6 +54,7 @@ public class MainMenu extends Scene {
     float gapX = 0;
     float gapY = -40;
     static final Music menuMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/menusong.wav"));
+    public static float soundVolume = 1f;
 
 
     public MainMenu() {
@@ -75,24 +84,39 @@ public class MainMenu extends Scene {
         hudElementManager.AddHudElement(helpButton);
         currentPosition = NextButtonPosition.nextMenuPosition(currentPosition, gapX, gapY);
 
-        settingButton = new Button(settingTexture[GameLogic.getLanguage().ordinal()], currentPosition, 100,
+        musicOnButton = new Button(musicOnTexture[GameLogic.getLanguage().ordinal()], currentPosition, 100,
                 new Action() {
                     @Override
                     public void run() {
-                        GameLogic.SetState(GameLogic.GameState.SETTINGS_SCREEN);
-                    }
-                });
-        hudElementManager.AddHudElement(settingButton);
-        currentPosition = NextButtonPosition.nextMenuPosition(currentPosition, gapX, gapY);
+                        if(menuMusic.getVolume() < 1){
+                            menuMusic.setVolume(1f);
+                            musicOnButton.setTexture(musicOnTexture[GameLogic.getLanguage().ordinal()]);
+                        }else{
+                            menuMusic.setVolume(0);
+                            musicOnButton.setTexture(musicOffTexture[GameLogic.getLanguage().ordinal()]);
+                        }
+                        hudElementManager.AddHudElement(musicOnButton);
 
-        creditButton = new Button(creditTexture[GameLogic.getLanguage().ordinal()], currentPosition, 100,
+                    }
+                });
+        hudElementManager.AddHudElement(musicOnButton);
+        currentPosition = NextButtonPosition.nextMenuPosition(currentPosition, gapX, gapY);
+        soundeffectOnButton = new Button(soundeffectOnTexture[GameLogic.getLanguage().ordinal()], currentPosition, 100,
                 new Action() {
                     @Override
                     public void run() {
-                        GameLogic.SetState(GameLogic.GameState.MAP_SELECTION_SCREEN);
+                        if(soundVolume < 1){
+                            soundVolume = 1f;
+                            soundeffectOnButton.setTexture(soundeffectOnTexture[GameLogic.getLanguage().ordinal()]);
+                        }else{
+                            soundVolume = 0f;
+                            soundeffectOnButton.setTexture(soundeffectOffTexture[GameLogic.getLanguage().ordinal()]);
+                        }
+                        hudElementManager.AddHudElement(soundeffectOnButton);
+
                     }
                 });
-        hudElementManager.AddHudElement(creditButton);
+        hudElementManager.AddHudElement(soundeffectOnButton);
         englishButton = new Button(new Texture("menu/ukflag.png"), new MenuPosition(MenuPosition.WIDTH - 25, 25), 25, new Action() {
             @Override
             public void run() {

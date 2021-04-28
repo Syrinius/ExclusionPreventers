@@ -29,16 +29,6 @@ public class MainMenu extends Scene {
             new Texture("menu/help.png"),
             new Texture("menu/ohjeet.png")
     };
-    Button settingButton;
-    Texture[] settingTexture = new Texture[] {
-            new Texture("menu/settings.png"),
-            new Texture("menu/asetukset.png")
-    };
-    Button creditButton;
-    Texture[] creditTexture = new Texture[] {
-            new Texture("menu/credits.png"),
-            new Texture("menu/credits.png")
-    };
     Button musicOnButton;
     Texture[] musicOnTexture = new Texture[] {
             new Texture("menu/music_on.png"),

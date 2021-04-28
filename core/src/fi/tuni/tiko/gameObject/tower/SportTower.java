@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import java.util.Set;
 
 import fi.tuni.tiko.gameObject.student.StudentContainer;
+import fi.tuni.tiko.sceneSystem.MainMenu;
 
 public class SportTower extends Tower {
 
@@ -19,6 +20,7 @@ public class SportTower extends Tower {
     private static final Texture projectileTexture = new Texture("towers/heart.png");
     private static final float[] COOLDOWN = {4, 3, 2};
     private static final Sound sportSound = Gdx.audio.newSound(Gdx.files.internal("sounds/sport_sound.mp3"));
+
 
     public SportTower() {
         super(new float[]{5, 6, 7}, new int[]{3, 4, 5}, new int[]{25, 45, 100});
@@ -37,7 +39,7 @@ public class SportTower extends Tower {
                 location.spawnProjectile(projectileTexture, currentTarget);
                 if (++count > 1) return COOLDOWN[data.level - 1];
             }
-            sportSound.play();
+            sportSound.play(MainMenu.soundVolume);
             return COOLDOWN[data.level - 1];
         }
         return 0;

@@ -8,7 +8,11 @@ import fi.tuni.tiko.gameObject.student.StudentContainer;
 public class PromoTower extends Tower {
 
     private static PromoTower instance;
-    private static final Texture texture = new Texture("towers/promo.png");
+    private static final Texture[] texture = {
+            new Texture("towers/promo.png"),
+            new Texture("towers/promo2.png"),
+            new Texture("towers/promo3.png")
+    };
     private static final float[] COOLDOWN = {5, 4, 3};
     private static final float[] PROMO_COOLDOWN = {0.3f, 0.25f, 0.2f};
     private static final int SPLASH_RANGE = 2;
@@ -49,7 +53,7 @@ public class PromoTower extends Tower {
 
     @Override
     public Texture getTexture(TowerData data) {
-        return texture;
+        return texture[data.level - 1];
     }
 
     @Override

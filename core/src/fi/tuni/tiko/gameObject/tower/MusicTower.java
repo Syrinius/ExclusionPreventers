@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import java.util.Set;
 
 import fi.tuni.tiko.gameObject.student.StudentContainer;
+import fi.tuni.tiko.sceneSystem.MainMenu;
 
 public class MusicTower extends Tower {
 
@@ -22,6 +23,7 @@ public class MusicTower extends Tower {
     private static final int[] PARTICIPATION = {3, 4, 5};
     private static final int[] COST = {40, 60, 100};
     private static final Sound musicSound = Gdx.audio.newSound(Gdx.files.internal("sounds/music_sound.mp3"));
+
 
     public MusicTower() {
         super(new float[]{6, 7, 8}, new int[]{3, 4, 5}, new int[]{40, 60, 100});
@@ -39,7 +41,7 @@ public class MusicTower extends Tower {
                 currentTarget.addParticipation(location);
             }
             location.spawnAOEVisual();
-            musicSound.play();
+            musicSound.play(MainMenu.soundVolume);
             return COOLDOWN[data.level - 1];
         } else return 0;
     }

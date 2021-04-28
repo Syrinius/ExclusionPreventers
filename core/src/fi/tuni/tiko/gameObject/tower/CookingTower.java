@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import java.util.Set;
 
 import fi.tuni.tiko.gameObject.student.StudentContainer;
+import fi.tuni.tiko.sceneSystem.MainMenu;
 
 public class CookingTower extends Tower {
 
@@ -19,6 +20,7 @@ public class CookingTower extends Tower {
     private static final Texture projectileTexture = new Texture("towers/heart.png");
     private static final float[] COOLDOWN = {5, 4, 3};
     private static final Sound cookSound = Gdx.audio.newSound(Gdx.files.internal("sounds/cook_sound.mp3"));
+
 
     public CookingTower() {
         super(new float[]{7, 8, 9}, new int[]{4, 6, 8}, new int[]{20, 40, 80});
@@ -33,7 +35,7 @@ public class CookingTower extends Tower {
     public float act(TowerLocation location, TowerData data) {
         for (StudentContainer currentTarget : data.currentTargets) {
             location.spawnProjectile(projectileTexture, currentTarget);
-            cookSound.play();
+            cookSound.play(MainMenu.soundVolume);
             return COOLDOWN[data.level - 1];
         }
         return 0;

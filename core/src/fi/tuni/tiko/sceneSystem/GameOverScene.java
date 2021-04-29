@@ -52,7 +52,7 @@ public class GameOverScene extends Scene {
                     }
                 });
         hudElementManager.AddHudElement(backToMenuButton);
-        currentPosition = NextButtonPosition.nextMenuPosition(currentPosition, gapX, gapY);
+        currentPosition = NextButtonPosition.nextMenuPosition(currentPosition, -20, -50);
         GlyphRenderer pointRenderer = new GlyphRenderer(currentPosition, 1, GlyphRenderer.Type.SCORE, GameLogic.getScore());
         hudElementManager.AddHudElement(pointRenderer);
     }

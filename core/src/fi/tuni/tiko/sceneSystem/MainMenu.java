@@ -78,7 +78,7 @@ public class MainMenu extends Scene {
                 new Action() {
                     @Override
                     public void run() {
-                        GameLogic.SetState(GameLogic.GameState.MAP_SELECTION_SCREEN);
+                        GameLogic.SetState(GameLogic.GameState.HELP_SCREEN);
                     }
                 });
         hudElementManager.AddHudElement(helpButton);

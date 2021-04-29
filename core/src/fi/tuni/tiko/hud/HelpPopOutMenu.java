@@ -12,11 +12,11 @@ import fi.tuni.tiko.utilities.Action;
 
 public class HelpPopOutMenu extends HudSprite implements TouchListener, PopOut{
 
-    private static final Texture backgroundTexture = new Texture("menu/wave_cleared_background.png");
+    private static final Texture backgroundTexture = new Texture("menu/help_background.png");
     private static final Texture backTexture = new Texture("menu/back.png");
     private static final Texture leftTexture = new Texture("menu/left.png");
     private static final Texture rightTexture = new Texture("menu/right.png");
-    private static final float BACKGROUND_SIZE = 250;
+    private static final float BACKGROUND_SIZE = 300;
     private final HudElementManager manager;
     private final Button backButton;
     private final Button leftButton;
@@ -35,23 +35,23 @@ public class HelpPopOutMenu extends HudSprite implements TouchListener, PopOut{
         super(backgroundTexture, new MenuPosition(200, 100), BACKGROUND_SIZE);
         Events.AddListener(this);
         this.manager = manager;
-        helpSprite = new HudSprite(HelpScene.getPage(page), MenuPosition.CENTER, 200);
+        helpSprite = new HudSprite(HelpScene.getPage(page), MenuPosition.CENTER, 250);
 
-        backButton = new Button(backTexture, new MenuPosition(200, 25), 30, new Action() {
+        backButton = new Button(backTexture, new MenuPosition(200, 20), 30, new Action() {
             @Override
             public void run() {
                 manager.SetPopOut(null);
             }
         }, Events.Priority.HIGH);
 
-        leftButton = new Button(leftTexture, new MenuPosition(100, 25), 20, new Action() {
+        leftButton = new Button(leftTexture, new MenuPosition(100, 20), 20, new Action() {
             @Override
             public void run() {
                 if (page != 0) helpSprite.setTexture(HelpScene.getPage(--page));
             }
         }, Events.Priority.HIGH);
 
-        rightButton = new Button(rightTexture, new MenuPosition(300, 25), 20, new Action() {
+        rightButton = new Button(rightTexture, new MenuPosition(300, 20), 20, new Action() {
             @Override
             public void run() {
                 if (page != HelpScene.getHelpImagesLastIndex()) helpSprite.setTexture(HelpScene.getPage(++page));

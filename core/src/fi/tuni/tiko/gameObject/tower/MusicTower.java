@@ -19,9 +19,6 @@ public class MusicTower extends Tower {
     };
     private static final Texture projectileTexture = new Texture("towers/heart.png");
     private static final float[] COOLDOWN = {12, 10, 8};
-    private static final float[] RANGE = {6, 7, 8};
-    private static final int[] PARTICIPATION = {3, 4, 5};
-    private static final int[] COST = {40, 60, 100};
     private static final Sound musicSound = Gdx.audio.newSound(Gdx.files.internal("sounds/music_sound.mp3"));
 
 

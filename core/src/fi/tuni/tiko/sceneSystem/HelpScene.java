@@ -16,13 +16,21 @@ public class HelpScene extends Scene {
     public static final ArrayList<Texture> helpImages = new ArrayList<>();
     public static final ArrayList<Texture> helpImagesFin = new ArrayList<>();
     static {
-        helpImages.add(new Texture("menu/wave_cleared_background.png"));
-        helpImages.add(new Texture("menu/menu_background.png"));
+        helpImages.add(new Texture("menu/help/eng/general.png"));
+        helpImages.add(new Texture("menu/help/eng/help1.png"));
+        helpImages.add(new Texture("menu/help/eng/help2.png"));
+        helpImages.add(new Texture("menu/help/eng/help3.png"));
+        helpImages.add(new Texture("menu/help/eng/help4.png"));
+        helpImages.add(new Texture("menu/help/eng/student_guide.png"));
     }
 
     static {
-        helpImagesFin.add(new Texture("menu/wave_cleared_background.png"));
-        helpImagesFin.add(new Texture("menu/menu_background.png"));
+        helpImagesFin.add(new Texture("menu/help/suomi/yleiset_ohjeet.png"));
+        helpImagesFin.add(new Texture("menu/help/suomi/torni_ohje1.png"));
+        helpImagesFin.add(new Texture("menu/help/suomi/torni_ohje2.png"));
+        helpImagesFin.add(new Texture("menu/help/suomi/torni_ohje3.png"));
+        helpImagesFin.add(new Texture("menu/help/suomi/ohje4.png"));
+        helpImagesFin.add(new Texture("menu/help/suomi/oppilas_ohjeet.png"));
     }
 
     private int page = 0;
@@ -39,10 +47,10 @@ public class HelpScene extends Scene {
         HudSprite background = new HudSprite(menuBackground, MenuPosition.CENTER, MenuPosition.WIDTH);
         hudElementManager.AddHudElement(background);
 
-        final HudSprite helpSprite = new HudSprite(getPage(page), MenuPosition.CENTER, 300);
+        final HudSprite helpSprite = new HudSprite(getPage(page), MenuPosition.CENTER, 250);
         hudElementManager.AddHudElement(helpSprite);
 
-        Button backButton = new Button(new Texture("menu/back.png"), new MenuPosition(MenuPosition.WIDTH / 2, 30), 50, new Action() {
+        Button backButton = new Button(new Texture("menu/back.png"), new MenuPosition(MenuPosition.WIDTH / 2, 20), 50, new Action() {
             @Override
             public void run() {
                 GameLogic.SetState(GameLogic.GameState.MAIN_MENU);
@@ -50,7 +58,7 @@ public class HelpScene extends Scene {
         });
         hudElementManager.AddHudElement(backButton);
 
-        Button leftButton = new Button(new Texture("menu/left.png"), new MenuPosition(40, 30), 30, new Action() {
+        Button leftButton = new Button(new Texture("menu/left.png"), new MenuPosition(40, 20), 30, new Action() {
             @Override
             public void run() {
                 if (page != 0) helpSprite.setTexture(getPage(--page));
@@ -58,7 +66,7 @@ public class HelpScene extends Scene {
         });
         hudElementManager.AddHudElement(leftButton);
 
-        Button rightButton = new Button(new Texture("menu/right.png"), new MenuPosition(MenuPosition.WIDTH - 40, 30), 30, new Action() {
+        Button rightButton = new Button(new Texture("menu/right.png"), new MenuPosition(MenuPosition.WIDTH - 40, 20), 30, new Action() {
             @Override
             public void run() {
                 if (page != getHelpImagesLastIndex()) helpSprite.setTexture(getPage(++page));

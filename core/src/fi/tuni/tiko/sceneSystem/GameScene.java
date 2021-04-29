@@ -69,7 +69,7 @@ public class GameScene extends Scene implements GameLogicListener {
                     GameLogic.setCurrentSpeedMultiplier(1);
                 } else {
                     speedChangeButton.setTexture(normalSpeedTexture);
-                    GameLogic.setCurrentSpeedMultiplier(12);
+                    GameLogic.setCurrentSpeedMultiplier(2);
                 }
             }
         });
@@ -78,6 +78,7 @@ public class GameScene extends Scene implements GameLogicListener {
         helpButton = new Button(helpTexture, new MenuPosition(MenuPosition.WIDTH - 95, MenuPosition.HEIGHT - 25), 25, new Action() {
             @Override
             public void run() {
+                GameLogic.Pause();
                 HelpPopOutMenu.GetInstance(hudElementManager);
             }
         });

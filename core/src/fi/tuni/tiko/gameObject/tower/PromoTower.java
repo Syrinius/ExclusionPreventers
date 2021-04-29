@@ -35,7 +35,7 @@ public class PromoTower extends Tower {
     public float act(TowerLocation location, TowerData data) {
         PromoData promoData = (PromoData)data;
         if(promoData.promo != null) {
-            return promoData.promo.act() ? (COOLDOWN[data.level - 1] * 10) / (10 * data.workers) : PROMO_COOLDOWN[data.level - 1];
+            return promoData.promo.act() ? (COOLDOWN[data.level - 1] * 8) / (8 + data.workers) : PROMO_COOLDOWN[data.level - 1];
         } else {
             for (StudentContainer currentTarget : data.currentTargets) {
                 promoData.promo = new PromoProjectile(new MapPosition(currentTarget.getTileCenterX(), currentTarget.getTileCenterY()), location.map, location, promoData);

@@ -16,7 +16,7 @@ public class SupportTower extends Tower {
             new Texture("towers/support3.png")
     };
     private static final Texture projectileTexture = new Texture("towers/heart.png");
-    private static final float[] COOLDOWN = {7, 6, 5};
+    private static final float[] COOLDOWN = {6, 5, 4};
     private static final Sound cookSound = Gdx.audio.newSound(Gdx.files.internal("sounds/cook_sound.mp3"));
 
     public SupportTower() {
@@ -26,6 +26,11 @@ public class SupportTower extends Tower {
     public static SupportTower getInstance() {
         if (instance == null) instance = new SupportTower();
         return instance;
+    }
+
+    @Override
+    public float getParticipation(TowerData data) {
+        return PARTICIPATION[data.level - 1] + data.workers / 2f;
     }
 
     @Override

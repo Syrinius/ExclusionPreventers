@@ -30,8 +30,17 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
     private int studentsParticipated = 0;
     private TowerData towerData;
 
+    public void addScore() {
+        if (studentsParticipated != 1) {
+            GameLogic.addScore(40 / (6 + studentsParticipated));
+        }
+    }
+
     public void addStudentCount(int amount) {
         studentsParticipated += amount;
+        if (studentsParticipated % 6 == 0 && TowerType.SUPPORT.tower.equals(tower)) {
+            GameLogic.addWorkers(1);
+        }
     }
 
     public int getWorkers() {

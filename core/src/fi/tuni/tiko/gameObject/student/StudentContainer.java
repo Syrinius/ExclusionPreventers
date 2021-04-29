@@ -86,15 +86,13 @@ public class StudentContainer extends GameObjectSprite {
             destroy();
             new CheeringContainer(student, tower.getCheeringSpawnPosition(), map);
             tower.addStudentCount(1);
-            GameLogic.addScore(1);
-            //TODO
+            tower.addScore();
         }
     }
 
     public void reachedEnd() {
         GameLogic.setLives(GameLogic.getLives() - 1);
         destroy();
-        //TODO
     }
 
     @Override

@@ -17,15 +17,15 @@ android {
         exclude 'META-INF/robovm/ios/robovm.xml'
     }
     defaultConfig {
-        applicationId "fi.tuni.tiko"
+        applicationId "fi.tuni.exclusionpreventers"
         minSdkVersion 14
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "3.0.1"
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

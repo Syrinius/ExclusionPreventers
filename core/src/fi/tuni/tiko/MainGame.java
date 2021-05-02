@@ -1,22 +1,15 @@
 package fi.tuni.tiko;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.JsonReader;
-import com.badlogic.gdx.utils.JsonValue;
-import com.badlogic.gdx.utils.JsonWriter;
 
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.coordinateSystem.ScreenPosition;
 import fi.tuni.tiko.sceneSystem.SceneManager;
-import fi.tuni.tiko.wave.MapData;
 
 public class MainGame extends ApplicationAdapter {
 
@@ -44,7 +37,7 @@ public class MainGame extends ApplicationAdapter {
 		debugBatch = new SpriteBatch();
 		debugCamera = new OrthographicCamera();
 		debugCamera.setToOrtho(false, MenuPosition.WIDTH, MenuPosition.HEIGHT);
-		GameLogic.SetState(GameLogic.GameState.SPLASH_SCREEN);
+		fi.tuni.tiko.GameLogic.SetState(GameLogic.GameState.SPLASH_SCREEN);
 	}
 
 	@Override

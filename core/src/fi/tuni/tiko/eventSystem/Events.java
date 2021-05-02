@@ -1,6 +1,5 @@
 package fi.tuni.tiko.eventSystem;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 
@@ -8,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import fi.tuni.tiko.GameLogic;
-import fi.tuni.tiko.MainGame;
 import fi.tuni.tiko.coordinateSystem.ScreenPosition;
 
 /**
@@ -21,9 +18,9 @@ import fi.tuni.tiko.coordinateSystem.ScreenPosition;
 public class Events implements InputProcessor {
 
     private static Events singleton;
-    private static Comparator<TouchListener> comparator = new Comparator<TouchListener>() {
+    private static Comparator<fi.tuni.tiko.eventSystem.TouchListener> comparator = new Comparator<fi.tuni.tiko.eventSystem.TouchListener>() {
         @Override
-        public int compare(TouchListener a, TouchListener b) {
+        public int compare(fi.tuni.tiko.eventSystem.TouchListener a, fi.tuni.tiko.eventSystem.TouchListener b) {
             int aValue = a.getTouchListenerPriority().ordinal();
             int bValue = b.getTouchListenerPriority().ordinal();
             //noinspection UseCompareMethod
@@ -39,12 +36,12 @@ public class Events implements InputProcessor {
         Gdx.input.setInputProcessor(singleton);
     }
 
-    private static final ArrayList<TouchListener> touchListeners = new ArrayList<>();
-    private static final ArrayList<TouchListener> delayedAdd = new ArrayList<>();
-    private static final ArrayList<TouchListener> delayedRemove = new ArrayList<>();
+    private static final ArrayList<fi.tuni.tiko.eventSystem.TouchListener> touchListeners = new ArrayList<>();
+    private static final ArrayList<fi.tuni.tiko.eventSystem.TouchListener> delayedAdd = new ArrayList<>();
+    private static final ArrayList<fi.tuni.tiko.eventSystem.TouchListener> delayedRemove = new ArrayList<>();
     private static boolean locked;
 
-    public static void AddListener(TouchListener listener){
+    public static void AddListener(fi.tuni.tiko.eventSystem.TouchListener listener){
         if (locked) delayedAdd.add(listener);
         else {
             touchListeners.add(listener);
@@ -52,7 +49,7 @@ public class Events implements InputProcessor {
         }
     }
 
-    public static void RemoveListener(TouchListener listener){
+    public static void RemoveListener(fi.tuni.tiko.eventSystem.TouchListener listener){
         if (locked) delayedRemove.add(listener);
         else touchListeners.remove(listener);
     }
@@ -75,7 +72,7 @@ public class Events implements InputProcessor {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         locked = true;
-        for (TouchListener touchListener : touchListeners) {
+        for (fi.tuni.tiko.eventSystem.TouchListener touchListener : touchListeners) {
             if (touchListener.onTouchDown(new ScreenPosition(screenX, screenY), pointer)) break;
         }
         locked = false;
@@ -86,7 +83,7 @@ public class Events implements InputProcessor {
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         locked = true;
-        for (TouchListener touchListener : touchListeners) {
+        for (fi.tuni.tiko.eventSystem.TouchListener touchListener : touchListeners) {
             if (touchListener.onTouchUp(new ScreenPosition(screenX, screenY), pointer)) break;
         }
         locked = false;

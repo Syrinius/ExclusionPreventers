@@ -1,9 +1,9 @@
 package fi.tuni.tiko.hud;
 
-import fi.tuni.tiko.GameLogic;
+import fi.tuni.tiko.gameObject.tower.EmptyTower;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.coordinateSystem.ScreenPosition;
-import fi.tuni.tiko.gameObject.tower.EmptyTower;
+import fi.tuni.tiko.GameLogic;
 import fi.tuni.tiko.gameObject.tower.TowerLocation;
 import fi.tuni.tiko.utilities.Action;
 
@@ -18,7 +18,7 @@ public class RemoveTowerButton extends TowerButton {
         if (IsInside(position.ToMenuPosition())) {
             GameLogic.addFunds(location.getRefund());
             location.refundWorkers();
-            location.setTower(EmptyTower.getInstance(), 0, true);
+            location.setTower(fi.tuni.tiko.gameObject.tower.EmptyTower.getInstance(), 0, true);
             toExecute.run();
             return true;
         }

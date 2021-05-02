@@ -4,8 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 
-import java.util.Set;
-
 import fi.tuni.tiko.gameObject.student.StudentContainer;
 import fi.tuni.tiko.sceneSystem.MainMenu;
 
@@ -32,7 +30,7 @@ public class CookingTower extends Tower {
     }
 
     @Override
-    public float act(TowerLocation location, TowerData data) {
+    public float act(TowerLocation location, fi.tuni.tiko.gameObject.tower.TowerData data) {
         for (StudentContainer currentTarget : data.currentTargets) {
             location.spawnProjectile(projectileTexture, currentTarget);
             cookSound.play(MainMenu.soundVolume);

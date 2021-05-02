@@ -5,19 +5,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.HashSet;
 
-import fi.tuni.tiko.gameObject.tower.AtkTower;
-import fi.tuni.tiko.gameObject.tower.BookTower;
-import fi.tuni.tiko.gameObject.tower.CookingTower;
-import fi.tuni.tiko.gameObject.tower.MusicTower;
-import fi.tuni.tiko.gameObject.tower.SportTower;
+import fi.tuni.tiko.eventSystem.Events;
 import fi.tuni.tiko.gameObject.tower.TowerData;
 import fi.tuni.tiko.gameObject.tower.TowerType;
-import fi.tuni.tiko.utilities.Action;
-import fi.tuni.tiko.gameObject.tower.TowerLocation;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.coordinateSystem.ScreenPosition;
-import fi.tuni.tiko.eventSystem.Events;
 import fi.tuni.tiko.eventSystem.TouchListener;
+import fi.tuni.tiko.gameObject.tower.TowerLocation;
+import fi.tuni.tiko.utilities.Action;
 import fi.tuni.tiko.utilities.NextButtonPosition;
 
 public class TowerSelectionPopOutMenu extends HudSprite implements TouchListener, PopOut {
@@ -26,10 +21,10 @@ public class TowerSelectionPopOutMenu extends HudSprite implements TouchListener
     private static final Texture backgroundTexture = new Texture("towers/tower_selection_background.png");
     private static final float BACKGROUND_SIZE = 100;
     private final HudElementManager manager;
-    private final HashSet<TowerButton> buttons = new HashSet<>();
+    private final HashSet<fi.tuni.tiko.hud.TowerButton> buttons = new HashSet<>();
 
 
-    public static TowerSelectionPopOutMenu GetInstance(HudElementManager manager, MenuPosition position, final TowerLocation location) {
+    public static TowerSelectionPopOutMenu GetInstance(HudElementManager manager, MenuPosition position, final fi.tuni.tiko.gameObject.tower.TowerLocation location) {
         TowerSelectionPopOutMenu toReturn = new TowerSelectionPopOutMenu(manager, position, location);
         manager.AddHudElement(toReturn);
         manager.SetPopOut(toReturn);
@@ -41,7 +36,7 @@ public class TowerSelectionPopOutMenu extends HudSprite implements TouchListener
 
         float gapX = 40;
         float gapY = 0;
-        Action disposer = new Action() {
+        fi.tuni.tiko.utilities.Action disposer = new Action() {
             @Override
             public void run() {
                 manager.SetPopOut(null);
@@ -53,7 +48,7 @@ public class TowerSelectionPopOutMenu extends HudSprite implements TouchListener
 
         for (TowerType towerType : TowerType.values()) {
             TowerData data = towerType.tower.getNewData();
-            buttons.add(new TowerButton(towerType.tower, location, towerPosition, data, 25, disposer));
+            buttons.add(new fi.tuni.tiko.hud.TowerButton(towerType.tower, location, towerPosition, data, 25, disposer));
             towerPosition = NextButtonPosition.nextTowerPosition(towerPosition, gapX, gapY);
         }
         Events.AddListener(this);
@@ -62,7 +57,7 @@ public class TowerSelectionPopOutMenu extends HudSprite implements TouchListener
     @Override
     public void render(SpriteBatch batch) {
         super.render(batch);
-        for (TowerButton button : buttons) {
+        for (fi.tuni.tiko.hud.TowerButton button : buttons) {
             button.render(batch);
         }
     }
@@ -87,14 +82,14 @@ public class TowerSelectionPopOutMenu extends HudSprite implements TouchListener
     }
 
     @Override
-    public Events.Priority getTouchListenerPriority() {
+    public fi.tuni.tiko.eventSystem.Events.Priority getTouchListenerPriority() {
         return Events.Priority.MEDIUM;
     }
 
     @Override
     public void dispose() {
         manager.RemoveHudElement(this);
-        Events.RemoveListener(this);
+        fi.tuni.tiko.eventSystem.Events.RemoveListener(this);
         for (TowerButton button : buttons) {
             button.dispose();
         }

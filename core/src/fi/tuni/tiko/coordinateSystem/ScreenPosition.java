@@ -17,13 +17,13 @@ public class ScreenPosition {
         this.y = y;
     }
 
-    public MapPosition ToMapPosition() {
-        return new MapPosition(
-                (x * MapPosition.VIEWPORT_WIDTH / WIDTH) + (MapPosition.camera.position.x - MapPosition.VIEWPORT_WIDTH / 2),
-                ((HEIGHT - y) * MapPosition.VIEWPORT_HEIGHT/ HEIGHT) + (MapPosition.camera.position.y - MapPosition.VIEWPORT_HEIGHT / 2));
+    public fi.tuni.tiko.coordinateSystem.MapPosition ToMapPosition() {
+        return new fi.tuni.tiko.coordinateSystem.MapPosition(
+                (x * fi.tuni.tiko.coordinateSystem.MapPosition.VIEWPORT_WIDTH / WIDTH) + (fi.tuni.tiko.coordinateSystem.MapPosition.camera.position.x - fi.tuni.tiko.coordinateSystem.MapPosition.VIEWPORT_WIDTH / 2),
+                ((HEIGHT - y) * fi.tuni.tiko.coordinateSystem.MapPosition.VIEWPORT_HEIGHT/ HEIGHT) + (fi.tuni.tiko.coordinateSystem.MapPosition.camera.position.y - MapPosition.VIEWPORT_HEIGHT / 2));
     }
 
-    public MenuPosition ToMenuPosition() {
-        return new MenuPosition(x*MenuPosition.WIDTH / WIDTH, (HEIGHT - y) * MenuPosition.HEIGHT / HEIGHT);
+    public fi.tuni.tiko.coordinateSystem.MenuPosition ToMenuPosition() {
+        return new fi.tuni.tiko.coordinateSystem.MenuPosition(x* fi.tuni.tiko.coordinateSystem.MenuPosition.WIDTH / WIDTH, (HEIGHT - y) * MenuPosition.HEIGHT / HEIGHT);
     }
 }

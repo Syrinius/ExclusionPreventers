@@ -36,9 +36,9 @@ public class MapPosition extends Vector2 {
                 ScreenPosition.HEIGHT - (int)((y - (camera.position.y - VIEWPORT_HEIGHT / 2)) * ScreenPosition.HEIGHT /VIEWPORT_HEIGHT));
     }
 
-    public MenuPosition ToMenuPosition() {
-        return new MenuPosition(
-                ((x - (camera.position.x - VIEWPORT_WIDTH / 2)) * MenuPosition.WIDTH / VIEWPORT_WIDTH),
+    public fi.tuni.tiko.coordinateSystem.MenuPosition ToMenuPosition() {
+        return new fi.tuni.tiko.coordinateSystem.MenuPosition(
+                ((x - (camera.position.x - VIEWPORT_WIDTH / 2)) * fi.tuni.tiko.coordinateSystem.MenuPosition.WIDTH / VIEWPORT_WIDTH),
                 ((y - (camera.position.y - VIEWPORT_HEIGHT / 2)) * MenuPosition.HEIGHT /VIEWPORT_HEIGHT));
     }
 

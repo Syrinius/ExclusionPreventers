@@ -13,17 +13,16 @@ import com.badlogic.gdx.utils.Timer;
 import java.util.ArrayList;
 
 import fi.tuni.tiko.GameLogic;
-import fi.tuni.tiko.GameLogicListener;
 import fi.tuni.tiko.MainGame;
 import fi.tuni.tiko.coordinateSystem.MapPosition;
-import fi.tuni.tiko.eventSystem.Events;
-import fi.tuni.tiko.gameObject.GameObjectManager;
-import fi.tuni.tiko.hud.HudElementManager;
-import fi.tuni.tiko.sceneSystem.GameScene;
-import fi.tuni.tiko.gameObject.tower.TowerLocation;
-import fi.tuni.tiko.utilities.Action;
 import fi.tuni.tiko.wave.MapData;
 import fi.tuni.tiko.wave.WaveManager;
+import fi.tuni.tiko.GameLogicListener;
+import fi.tuni.tiko.gameObject.GameObjectManager;
+import fi.tuni.tiko.gameObject.tower.TowerLocation;
+import fi.tuni.tiko.hud.HudElementManager;
+import fi.tuni.tiko.sceneSystem.GameScene;
+import fi.tuni.tiko.utilities.Action;
 
 /**
  * Handles all functionalities of maps
@@ -40,22 +39,22 @@ public class Map extends Timer.Task implements GameLogicListener {
     TiledMap tiledMap;
     TiledMapRenderer tiledMapRenderer;
     boolean initialized;
-    Action toExecute;
-    public ArrayList<TowerLocation> towerLocations;
+    fi.tuni.tiko.utilities.Action toExecute;
+    public ArrayList<fi.tuni.tiko.gameObject.tower.TowerLocation> towerLocations;
     private int width;
     private int height;
-    private GameObjectManager gameObjectManager;
-    private GameScene scene;
-    public ArrayList<Path> paths = new ArrayList<>();
+    private fi.tuni.tiko.gameObject.GameObjectManager gameObjectManager;
+    private fi.tuni.tiko.sceneSystem.GameScene scene;
+    public ArrayList<fi.tuni.tiko.map.Path> paths = new ArrayList<>();
     public MapData mapData;
     public WaveManager waveManager;
     private boolean firstTimeCreated = true;
 
-    public Path getRandomPath() {
+    public fi.tuni.tiko.map.Path getRandomPath() {
         return paths.get((int)(Math.random() * (float)paths.size()));
     }
 
-    public GameObjectManager getGameObjectManager() {
+    public fi.tuni.tiko.gameObject.GameObjectManager getGameObjectManager() {
         return gameObjectManager;
     }
     public HudElementManager getHudElementManager() {
@@ -77,7 +76,7 @@ public class Map extends Timer.Task implements GameLogicListener {
 
     public void dispose() {
         gameObjectManager.dispose();
-        for (TowerLocation location : towerLocations) location.destroy();
+        for (fi.tuni.tiko.gameObject.tower.TowerLocation location : towerLocations) location.destroy();
         GameLogic.RemoveListener(this);
     }
 
@@ -108,7 +107,7 @@ public class Map extends Timer.Task implements GameLogicListener {
         return (String)props.get("type");
     }
 
-    private void generatePaths(Path path, MapPosition currentPosition, String type) {
+    private void generatePaths(fi.tuni.tiko.map.Path path, MapPosition currentPosition, String type) {
         paths.add(path);
         MapPosition aheadPosition;
         String aheadType;
@@ -121,7 +120,7 @@ public class Map extends Timer.Task implements GameLogicListener {
                     path.checkPoints.add(currentPosition);
                     for (String to : Direction.GetDirection(type)) {
                         if (getTileType(nextPosition(to, currentPosition)).equals(to)) {
-                            generatePaths(new Path(path), nextPosition(to, currentPosition), to);
+                            generatePaths(new fi.tuni.tiko.map.Path(path), nextPosition(to, currentPosition), to);
                         }
                     }
 
@@ -137,7 +136,7 @@ public class Map extends Timer.Task implements GameLogicListener {
                                 aheadPosition = nextPosition(to, currentPosition);
                                 type = to;
                             } else
-                                generatePaths(new Path(path), nextPosition(to, currentPosition), to);
+                                generatePaths(new fi.tuni.tiko.map.Path(path), nextPosition(to, currentPosition), to);
                             first = false;
                         }
                     }
@@ -192,7 +191,7 @@ public class Map extends Timer.Task implements GameLogicListener {
 
         if (firstTimeCreated) {
             if (startPosition == null) {
-                MainGame.SetDebugText("No starting point found!");
+                fi.tuni.tiko.MainGame.SetDebugText("No starting point found!");
                 return;
             }
             String startDirection = startPosition.x == 0 ? "right" : startPosition.x == width - 1 ? "left" : startPosition.y == 0 ? "up" : "down";
@@ -208,7 +207,7 @@ public class Map extends Timer.Task implements GameLogicListener {
         GameLogic.setLives(mapData.starting_lives);
         GameLogic.setWorkers(mapData.starting_workers);
         GameLogic.setScore(0);
-        GameLogic.setCurrentSpeedMultiplier(1);
+        fi.tuni.tiko.GameLogic.setCurrentSpeedMultiplier(1);
         firstTimeCreated = false;
         toExecute.run();
     }

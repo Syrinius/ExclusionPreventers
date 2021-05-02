@@ -7,12 +7,11 @@ import fi.tuni.tiko.coordinateSystem.MapPosition;
 import fi.tuni.tiko.gameObject.student.StudentContainer;
 import fi.tuni.tiko.gameObject.tower.TowerLocation;
 import fi.tuni.tiko.map.Map;
-import fi.tuni.tiko.utilities.FancyMath;
 
 public class Projectile extends GameObjectSprite {
 
-    private final TowerLocation tower;
-    private final StudentContainer target;
+    private final fi.tuni.tiko.gameObject.tower.TowerLocation tower;
+    private final fi.tuni.tiko.gameObject.student.StudentContainer target;
     private final float SPEED = 3f;
     private float lifetime = 10;
 

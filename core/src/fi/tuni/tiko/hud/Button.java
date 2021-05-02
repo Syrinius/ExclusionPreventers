@@ -2,11 +2,11 @@ package fi.tuni.tiko.hud;
 
 import com.badlogic.gdx.graphics.Texture;
 
-import fi.tuni.tiko.utilities.Action;
+import fi.tuni.tiko.eventSystem.Events;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.coordinateSystem.ScreenPosition;
-import fi.tuni.tiko.eventSystem.Events;
 import fi.tuni.tiko.eventSystem.TouchListener;
+import fi.tuni.tiko.utilities.Action;
 
 /**
  * Generic implementation of button to add to various menus
@@ -14,14 +14,14 @@ import fi.tuni.tiko.eventSystem.TouchListener;
  */
 public class Button extends HudSprite implements TouchListener {
 
-    final Action toExecute;
-    private final Events.Priority priority;
+    final fi.tuni.tiko.utilities.Action toExecute;
+    private final fi.tuni.tiko.eventSystem.Events.Priority priority;
 
-    public Button(Texture texture, MenuPosition position, float size, Action toExecute) {
+    public Button(Texture texture, MenuPosition position, float size, fi.tuni.tiko.utilities.Action toExecute) {
         this(texture, position, size, toExecute, Events.Priority.MEDIUM);
     }
 
-    public Button(Texture texture, MenuPosition position, float size, Action toExecute, Events.Priority priority) {
+    public Button(Texture texture, MenuPosition position, float size, Action toExecute, fi.tuni.tiko.eventSystem.Events.Priority priority) {
         super(texture, position, size);
         this.priority = priority;
         this.toExecute = toExecute;
@@ -53,7 +53,7 @@ public class Button extends HudSprite implements TouchListener {
     }
 
     @Override
-    public Events.Priority getTouchListenerPriority() {
+    public fi.tuni.tiko.eventSystem.Events.Priority getTouchListenerPriority() {
         return priority;
     }
 }

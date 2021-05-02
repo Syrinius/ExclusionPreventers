@@ -6,7 +6,6 @@ import com.badlogic.gdx.utils.Timer;
 import java.util.ArrayList;
 
 import fi.tuni.tiko.GameLogic;
-import fi.tuni.tiko.MainGame;
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 
 /**
@@ -16,9 +15,9 @@ import fi.tuni.tiko.coordinateSystem.MapPosition;
  */
 public class GameObjectManager extends Timer.Task {
 
-    private final ArrayList<GameObject> gameObjects = new ArrayList<>();
-    private final ArrayList<GameObject> delayedAdd = new ArrayList<>();
-    private final ArrayList<GameObject> delayedRemove = new ArrayList<>();
+    private final ArrayList<fi.tuni.tiko.gameObject.GameObject> gameObjects = new ArrayList<>();
+    private final ArrayList<fi.tuni.tiko.gameObject.GameObject> delayedAdd = new ArrayList<>();
+    private final ArrayList<fi.tuni.tiko.gameObject.GameObject> delayedRemove = new ArrayList<>();
     private boolean locked;
     private long lastTick;
     private final SpriteBatch batch;
@@ -43,12 +42,12 @@ public class GameObjectManager extends Timer.Task {
         return !active;
     }
 
-    public void addGameObject(GameObject object){
+    public void addGameObject(fi.tuni.tiko.gameObject.GameObject object){
         if(locked) delayedAdd.add(object);
         else gameObjects.add(object);
     }
 
-    public void removeGameObject(GameObject object){
+    public void removeGameObject(fi.tuni.tiko.gameObject.GameObject object){
         if(locked) delayedRemove.add(object);
         else gameObjects.remove(object);
     }
@@ -76,7 +75,7 @@ public class GameObjectManager extends Timer.Task {
         batch.setProjectionMatrix(MapPosition.camera.combined);
         batch.begin();
         locked = true;
-        for (GameObject object : gameObjects) {
+        for (fi.tuni.tiko.gameObject.GameObject object : gameObjects) {
             object.render(batch);
         }
         locked = false;

@@ -44,21 +44,21 @@ public class HelpScene extends Scene {
     }
 
     public HelpScene() {
-        HudSprite background = new HudSprite(menuBackground, MenuPosition.CENTER, MenuPosition.WIDTH);
+        fi.tuni.tiko.hud.HudSprite background = new fi.tuni.tiko.hud.HudSprite(menuBackground, MenuPosition.CENTER, MenuPosition.WIDTH);
         hudElementManager.AddHudElement(background);
 
-        final HudSprite helpSprite = new HudSprite(getPage(page), MenuPosition.CENTER, 250);
+        final fi.tuni.tiko.hud.HudSprite helpSprite = new HudSprite(getPage(page), MenuPosition.CENTER, 250);
         hudElementManager.AddHudElement(helpSprite);
 
-        Button backButton = new Button(new Texture("menu/back.png"), new MenuPosition(MenuPosition.WIDTH / 2, 20), 50, new Action() {
+        fi.tuni.tiko.hud.Button backButton = new fi.tuni.tiko.hud.Button(new Texture("menu/back.png"), new MenuPosition(MenuPosition.WIDTH / 2, 20), 50, new fi.tuni.tiko.utilities.Action() {
             @Override
             public void run() {
-                GameLogic.SetState(GameLogic.GameState.MAIN_MENU);
+                GameLogic.SetState(fi.tuni.tiko.GameLogic.GameState.MAIN_MENU);
             }
         });
         hudElementManager.AddHudElement(backButton);
 
-        Button leftButton = new Button(new Texture("menu/left.png"), new MenuPosition(40, 20), 30, new Action() {
+        fi.tuni.tiko.hud.Button leftButton = new fi.tuni.tiko.hud.Button(new Texture("menu/left.png"), new MenuPosition(40, 20), 30, new fi.tuni.tiko.utilities.Action() {
             @Override
             public void run() {
                 if (page != 0) helpSprite.setTexture(getPage(--page));
@@ -66,7 +66,7 @@ public class HelpScene extends Scene {
         });
         hudElementManager.AddHudElement(leftButton);
 
-        Button rightButton = new Button(new Texture("menu/right.png"), new MenuPosition(MenuPosition.WIDTH - 40, 20), 30, new Action() {
+        fi.tuni.tiko.hud.Button rightButton = new Button(new Texture("menu/right.png"), new MenuPosition(MenuPosition.WIDTH - 40, 20), 30, new Action() {
             @Override
             public void run() {
                 if (page != getHelpImagesLastIndex()) helpSprite.setTexture(getPage(++page));

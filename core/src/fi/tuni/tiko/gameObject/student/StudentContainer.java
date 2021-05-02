@@ -4,12 +4,12 @@ import com.badlogic.gdx.math.Vector2;
 
 import fi.tuni.tiko.GameLogic;
 import fi.tuni.tiko.coordinateSystem.MapPosition;
-import fi.tuni.tiko.gameObject.GameObjectSprite;
-import fi.tuni.tiko.gameObject.tower.TowerLocation;
 import fi.tuni.tiko.gameObject.tower.TowerType;
 import fi.tuni.tiko.map.Map;
 import fi.tuni.tiko.map.Path;
 import fi.tuni.tiko.utilities.FancyMath;
+import fi.tuni.tiko.gameObject.GameObjectSprite;
+import fi.tuni.tiko.gameObject.tower.TowerLocation;
 
 public class StudentContainer extends GameObjectSprite {
 
@@ -68,7 +68,7 @@ public class StudentContainer extends GameObjectSprite {
     }
 
     private void notifyTowers() {
-        for (TowerLocation tower : map.towerLocations) {
+        for (fi.tuni.tiko.gameObject.tower.TowerLocation tower : map.towerLocations) {
             if(!isValid()) {
                 tower.removeTarget(this);
             }
@@ -91,7 +91,7 @@ public class StudentContainer extends GameObjectSprite {
     }
 
     public void reachedEnd() {
-        GameLogic.setLives(GameLogic.getLives() - 1);
+        GameLogic.setLives(fi.tuni.tiko.GameLogic.getLives() - 1);
         destroy();
     }
 

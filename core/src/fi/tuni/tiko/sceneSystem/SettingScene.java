@@ -2,13 +2,11 @@ package fi.tuni.tiko.sceneSystem;
 
 import com.badlogic.gdx.graphics.Texture;
 
-import fi.tuni.tiko.hud.HudSprite;
-import fi.tuni.tiko.utilities.Action;
 import fi.tuni.tiko.GameLogic;
-import fi.tuni.tiko.map.MapManager;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.hud.Button;
-import fi.tuni.tiko.utilities.NextButtonPosition;
+import fi.tuni.tiko.hud.HudSprite;
+import fi.tuni.tiko.utilities.Action;
 
 /**
  * Specific implementation of the map selection screen and all the elements it contains
@@ -17,8 +15,8 @@ public class SettingScene extends Scene {
 
     private static final Texture menuBackground = new Texture("menu/menu_background.png");
 
-    HudSprite background;
-    Button backButton;
+    fi.tuni.tiko.hud.HudSprite background;
+    fi.tuni.tiko.hud.Button backButton;
 
 
     public SettingScene() {

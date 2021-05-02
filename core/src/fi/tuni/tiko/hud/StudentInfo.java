@@ -3,10 +3,10 @@ package fi.tuni.tiko.hud;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import fi.tuni.tiko.utilities.NextButtonPosition;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.gameObject.student.StudentType;
 import fi.tuni.tiko.gameObject.tower.TowerType;
-import fi.tuni.tiko.utilities.NextButtonPosition;
 
 public class StudentInfo implements HudElement {
 
@@ -17,7 +17,7 @@ public class StudentInfo implements HudElement {
     private final HudSprite resistanceSymbol;
     private final GlyphRenderer amount;
 
-    public StudentInfo(MenuPosition position, StudentType studentType, TowerType affinity, TowerType resistance, int amount) {
+    public StudentInfo(MenuPosition position, StudentType studentType, fi.tuni.tiko.gameObject.tower.TowerType affinity, TowerType resistance, int amount) {
         position = position.clone();
         this.amount = new GlyphRenderer(position.clone(), .5f, GlyphRenderer.Type.PLAIN, amount);
         NextButtonPosition.nextMenuPosition(position, 10, 0);
@@ -34,7 +34,7 @@ public class StudentInfo implements HudElement {
             this.resistance = null;
             this.resistanceSymbol = null;
         } else {
-            NextButtonPosition.nextMenuPosition(position, 30, 0);
+            fi.tuni.tiko.utilities.NextButtonPosition.nextMenuPosition(position, 30, 0);
             this.resistance = new HudSprite(resistance.tower.getTexture(resistance.tower.getNewData()), position, 25);
             this.resistanceSymbol = new HudSprite(new Texture("towers/resistance.png"), position, 25);
         }

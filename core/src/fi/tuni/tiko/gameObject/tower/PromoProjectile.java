@@ -5,10 +5,10 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import fi.tuni.tiko.coordinateSystem.MapPosition;
+import fi.tuni.tiko.utilities.FancyMath;
 import fi.tuni.tiko.gameObject.GameObjectSprite;
 import fi.tuni.tiko.gameObject.student.StudentContainer;
 import fi.tuni.tiko.map.Map;
-import fi.tuni.tiko.utilities.FancyMath;
 
 public class PromoProjectile extends GameObjectSprite {
 
@@ -33,7 +33,7 @@ public class PromoProjectile extends GameObjectSprite {
             destroy();
             return true;
         } else {
-            for (StudentContainer currentTarget : data.splashTargets.toArray(new StudentContainer[0])) {
+            for (fi.tuni.tiko.gameObject.student.StudentContainer currentTarget : data.splashTargets.toArray(new StudentContainer[0])) {
                 currentTarget.addParticipation(tower);
             }
         }

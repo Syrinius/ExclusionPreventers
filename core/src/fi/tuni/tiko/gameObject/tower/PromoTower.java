@@ -37,7 +37,7 @@ public class PromoTower extends Tower {
         if(promoData.promo != null) {
             return promoData.promo.act() ? (COOLDOWN[data.level - 1] * 8) / (8 + data.workers) : PROMO_COOLDOWN[data.level - 1];
         } else {
-            for (StudentContainer currentTarget : data.currentTargets) {
+            for (fi.tuni.tiko.gameObject.student.StudentContainer currentTarget : data.currentTargets) {
                 promoData.promo = new PromoProjectile(new MapPosition(currentTarget.getTileCenterX(), currentTarget.getTileCenterY()), location.map, location, promoData);
                 location.map.getGameObjectManager().invalidate();
                 return 0;
@@ -57,7 +57,7 @@ public class PromoTower extends Tower {
     }
 
     @Override
-    public void checkTarget(TowerLocation location, StudentContainer target, TowerData data) {
+    public void checkTarget(TowerLocation location, fi.tuni.tiko.gameObject.student.StudentContainer target, TowerData data) {
         if (((PromoData)data).promo == null) return;
         MapPosition position = ((PromoData)data).promo.getPosition();
         if(position.isInside(target.getTileCenterX(), target.getTileCenterY(), SPLASH_RANGE)) {

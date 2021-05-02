@@ -29,12 +29,12 @@ public class SupportTower extends Tower {
     }
 
     @Override
-    public float getParticipation(TowerData data) {
+    public float getParticipation(fi.tuni.tiko.gameObject.tower.TowerData data) {
         return PARTICIPATION[data.level - 1] + data.workers / 2f;
     }
 
     @Override
-    public float act(TowerLocation location, TowerData data) {
+    public float act(TowerLocation location, fi.tuni.tiko.gameObject.tower.TowerData data) {
         for (StudentContainer currentTarget : data.currentTargets) {
             location.spawnProjectile(projectileTexture, currentTarget);
             cookSound.play(MainMenu.soundVolume);

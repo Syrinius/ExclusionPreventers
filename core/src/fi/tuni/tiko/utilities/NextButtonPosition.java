@@ -1,13 +1,7 @@
 package fi.tuni.tiko.utilities;
 
 
-import com.badlogic.gdx.math.Vector2;
-
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
-import fi.tuni.tiko.gameObject.tower.TowerLocation;
-import fi.tuni.tiko.hud.HudElementManager;
-import fi.tuni.tiko.hud.TowerSelectionPopOutMenu;
-import fi.tuni.tiko.sceneSystem.MainMenu;
 
 public class NextButtonPosition {
 

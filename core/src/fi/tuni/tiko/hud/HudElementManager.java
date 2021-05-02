@@ -13,11 +13,11 @@ import fi.tuni.tiko.coordinateSystem.MenuPosition;
  */
 public class HudElementManager {
 
-    private final ArrayList<HudElement> hudElements = new ArrayList<>();
-    private final ArrayList<HudElement> delayedAdd = new ArrayList<>();
-    private final ArrayList<HudElement> delayedRemove = new ArrayList<>();
+    private final ArrayList<fi.tuni.tiko.hud.HudElement> hudElements = new ArrayList<>();
+    private final ArrayList<fi.tuni.tiko.hud.HudElement> delayedAdd = new ArrayList<>();
+    private final ArrayList<fi.tuni.tiko.hud.HudElement> delayedRemove = new ArrayList<>();
     private boolean locked;
-    private PopOut currentPopOut;
+    private fi.tuni.tiko.hud.PopOut currentPopOut;
 
     public void SetPopOut(PopOut toSet) {
         if (currentPopOut != null) currentPopOut.close();
@@ -30,7 +30,7 @@ public class HudElementManager {
     public void Dispose() {
         if (locked) return;
         locked = true;
-        for (HudElement hudElement : hudElements) {
+        for (fi.tuni.tiko.hud.HudElement hudElement : hudElements) {
             hudElement.dispose();
         }
         hudElements.clear();
@@ -38,12 +38,12 @@ public class HudElementManager {
         delayedRemove.clear();
     }
 
-    public void AddHudElement(HudElement hudElement){
+    public void AddHudElement(fi.tuni.tiko.hud.HudElement hudElement){
         if (!locked) hudElements.add(hudElement);
         else delayedAdd.add(hudElement);
     }
 
-    public void RemoveHudElement(HudElement hudElement){
+    public void RemoveHudElement(fi.tuni.tiko.hud.HudElement hudElement){
         if (!locked) hudElements.remove(hudElement);
         else delayedRemove.add(hudElement);
     }

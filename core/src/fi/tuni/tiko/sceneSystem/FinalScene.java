@@ -4,8 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 
 import fi.tuni.tiko.GameLogic;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
-import fi.tuni.tiko.hud.Button;
 import fi.tuni.tiko.hud.GlyphRenderer;
+import fi.tuni.tiko.hud.Button;
 import fi.tuni.tiko.hud.HudSprite;
 import fi.tuni.tiko.utilities.Action;
 import fi.tuni.tiko.utilities.NextButtonPosition;
@@ -13,8 +13,8 @@ import fi.tuni.tiko.utilities.NextButtonPosition;
 public class FinalScene extends Scene {
 
     private static final Texture menuBackground = new Texture("menu/menu_background.png");
-    HudSprite background;
-    private final Button backToMenuButton;
+    fi.tuni.tiko.hud.HudSprite background;
+    private final fi.tuni.tiko.hud.Button backToMenuButton;
 
     Texture[] backToMenuTexture = new Texture[] {
             new Texture("menu/menu.png"),
@@ -38,7 +38,7 @@ public class FinalScene extends Scene {
                 });
         hudElementManager.AddHudElement(backToMenuButton);
         currentPosition = NextButtonPosition.nextMenuPosition(currentPosition, -20, -50);
-        GlyphRenderer pointRenderer = new GlyphRenderer(currentPosition, 1, GlyphRenderer.Type.SCORE, GameLogic.getScore());
+        GlyphRenderer pointRenderer = new GlyphRenderer(currentPosition, 1, GlyphRenderer.Type.SCORE, fi.tuni.tiko.GameLogic.getScore());
         hudElementManager.AddHudElement(pointRenderer);
     }
 

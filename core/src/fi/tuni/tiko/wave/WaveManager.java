@@ -5,18 +5,18 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.HashMap;
 
 import fi.tuni.tiko.GameLogic;
+import fi.tuni.tiko.hud.WaveClearedPopOutMenu;
 import fi.tuni.tiko.gameObject.GameObject;
 import fi.tuni.tiko.gameObject.student.StudentContainer;
 import fi.tuni.tiko.gameObject.student.StudentType;
-import fi.tuni.tiko.hud.WaveClearedPopOutMenu;
 import fi.tuni.tiko.map.Map;
 
 public class WaveManager implements GameObject {
-    private final Map map;
+    private final fi.tuni.tiko.map.Map map;
     private float cooldown = 0;
     private int remaining = 0;
     private int currentWave = 0;
-    private final HashMap<StudentType, Integer> studentCountList;
+    private final HashMap<fi.tuni.tiko.gameObject.student.StudentType, Integer> studentCountList;
 
     public WaveManager(Map map) {
         this.map = map;
@@ -30,7 +30,7 @@ public class WaveManager implements GameObject {
     }
 
     private void waveCleared() {
-        WaveData wave = map.mapData.waves.get(currentWave);
+        fi.tuni.tiko.wave.WaveData wave = map.mapData.waves.get(currentWave);
         GameLogic.addFunds(wave.fund_reward);
         GameLogic.addWorkers(wave.worker_reward);
 
@@ -44,13 +44,13 @@ public class WaveManager implements GameObject {
 
     private void nextWave() {
         WaveData wave = map.mapData.waves.get(currentWave);
-        for (StudentType type :
+        for (fi.tuni.tiko.gameObject.student.StudentType type :
                 wave.students.keySet()) {
             remaining += wave.students.get(type).amount;
             studentCountList.put(type, wave.students.get(type).amount);
         }
         cooldown = 0;
-        GameLogic.Pause();
+        fi.tuni.tiko.GameLogic.Pause();
         WaveClearedPopOutMenu.GetInstance(map.getHudElementManager(), wave);
     }
 

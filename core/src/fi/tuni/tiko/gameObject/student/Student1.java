@@ -14,7 +14,7 @@ public class Student1 implements Student {
     static {
         Texture texture = new Texture("student_sprites/student1.png");
         walkingAnimation = FancyMath.getAnimationStrip(texture, 23, 23, 4, 0.3f);
-        cheeringAnimation = FancyMath.getAnimationStrip(texture, 23, 23, 4, 1f);
+        cheeringAnimation = fi.tuni.tiko.utilities.FancyMath.getAnimationStrip(texture, 23, 23, 4, 1f);
     }
 
     private static final Student1 instance = new Student1();

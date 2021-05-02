@@ -1,7 +1,5 @@
 package fi.tuni.tiko.sceneSystem;
 
-import fi.tuni.tiko.MainGame;
-
 /**
  * Handles changing between scenes, such as between different menus
  * Each screen should have it's own specific class

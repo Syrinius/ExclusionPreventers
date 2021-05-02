@@ -9,35 +9,35 @@ import java.util.ArrayList;
  */
 public class MapManager {
 
-    static ArrayList<Map> availableMaps = new ArrayList<>();
-    static Map selectedMap;
+    static ArrayList<fi.tuni.tiko.map.Map> availableMaps = new ArrayList<>();
+    static fi.tuni.tiko.map.Map selectedMap;
 
     static {
-        availableMaps.add(new Map("map1.tmx", "map1.json"));
-        availableMaps.add(new Map("map2.tmx", "map1.json"));
-        availableMaps.add(new Map("map3.tmx", "map1.json"));
-        availableMaps.add(new Map("map4.tmx", "map1.json"));
-        availableMaps.add(new Map("map5.tmx", "map1.json"));
-        availableMaps.add(new Map("map6.tmx", "map1.json"));
-        availableMaps.add(new Map("map7.tmx", "map1.json"));
-        availableMaps.add(new Map("map8.tmx", "map1.json"));
-        availableMaps.add(new Map("map9.tmx", "map1.json"));
-        availableMaps.add(new Map("map10.tmx", "map1.json"));
+        availableMaps.add(new fi.tuni.tiko.map.Map("map1.tmx", "map1.json"));
+        availableMaps.add(new fi.tuni.tiko.map.Map("map2.tmx", "map1.json"));
+        availableMaps.add(new fi.tuni.tiko.map.Map("map3.tmx", "map1.json"));
+        availableMaps.add(new fi.tuni.tiko.map.Map("map4.tmx", "map1.json"));
+        availableMaps.add(new fi.tuni.tiko.map.Map("map5.tmx", "map1.json"));
+        availableMaps.add(new fi.tuni.tiko.map.Map("map6.tmx", "map1.json"));
+        availableMaps.add(new fi.tuni.tiko.map.Map("map7.tmx", "map1.json"));
+        availableMaps.add(new fi.tuni.tiko.map.Map("map8.tmx", "map1.json"));
+        availableMaps.add(new fi.tuni.tiko.map.Map("map9.tmx", "map1.json"));
+        availableMaps.add(new fi.tuni.tiko.map.Map("map10.tmx", "map1.json"));
     }
 
     public static boolean isLastMap() {
         return selectedMap == availableMaps.get(availableMaps.size() - 1);
     }
 
-    public static Map selectMap(int index) {
+    public static fi.tuni.tiko.map.Map selectMap(int index) {
         return selectedMap = availableMaps.get(index);
     }
 
-    public static Map getMap(int index) {
+    public static fi.tuni.tiko.map.Map getMap(int index) {
         return availableMaps.get(index);
     }
 
-    public static int getIndex(Map map) {
+    public static int getIndex(fi.tuni.tiko.map.Map map) {
         return availableMaps.indexOf(map);
     }
 

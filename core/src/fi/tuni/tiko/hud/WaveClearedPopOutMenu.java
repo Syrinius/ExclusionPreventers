@@ -3,9 +3,9 @@ package fi.tuni.tiko.hud;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import fi.tuni.tiko.eventSystem.Events;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.coordinateSystem.ScreenPosition;
-import fi.tuni.tiko.eventSystem.Events;
 import fi.tuni.tiko.eventSystem.TouchListener;
 import fi.tuni.tiko.gameObject.student.StudentType;
 import fi.tuni.tiko.utilities.Action;
@@ -18,11 +18,11 @@ public class WaveClearedPopOutMenu extends HudSprite implements TouchListener, P
     private static final Texture okTexture = new Texture("menu/ok.png");
     private static final float BACKGROUND_SIZE = 150;
     private final HudElementManager manager;
-    private final WaveData data;
+    private final fi.tuni.tiko.wave.WaveData data;
     private final Button okButton;
-    private final StudentInfo[] students;
+    private final fi.tuni.tiko.hud.StudentInfo[] students;
 
-    public static WaveClearedPopOutMenu GetInstance(HudElementManager manager, WaveData data) {
+    public static WaveClearedPopOutMenu GetInstance(HudElementManager manager, fi.tuni.tiko.wave.WaveData data) {
         WaveClearedPopOutMenu toReturn = new WaveClearedPopOutMenu(manager, data);
         manager.AddHudElement(toReturn);
         manager.SetPopOut(toReturn);
@@ -34,12 +34,12 @@ public class WaveClearedPopOutMenu extends HudSprite implements TouchListener, P
         this.manager = manager;
         this.data = data;
 
-        students = new StudentInfo[data.students.size()];
+        students = new fi.tuni.tiko.hud.StudentInfo[data.students.size()];
         int index = 0;
         MenuPosition studentPosition = new MenuPosition(160, 155);
         for (StudentType student : data.students.keySet()) {
             StudentData studentData = data.students.get(student);
-            students[index] = new StudentInfo(studentPosition, student, studentData.affinity, studentData.resistance, studentData.amount);
+            students[index] = new fi.tuni.tiko.hud.StudentInfo(studentPosition, student, studentData.affinity, studentData.resistance, studentData.amount);
             NextButtonPosition.nextMenuPosition(studentPosition, 0, -30);
             index++;
         }
@@ -57,7 +57,7 @@ public class WaveClearedPopOutMenu extends HudSprite implements TouchListener, P
     @Override
     public void render(SpriteBatch batch) {
         super.render(batch);
-        for (StudentInfo studentInfo : students) {
+        for (fi.tuni.tiko.hud.StudentInfo studentInfo : students) {
             studentInfo.render(batch);
         }
         okButton.render(batch);
@@ -74,12 +74,12 @@ public class WaveClearedPopOutMenu extends HudSprite implements TouchListener, P
     }
 
     @Override
-    public boolean onTouchDown(ScreenPosition position, int pointer) {
+    public boolean onTouchDown(fi.tuni.tiko.coordinateSystem.ScreenPosition position, int pointer) {
         return true;
     }
 
     @Override
-    public boolean onTouchUp(ScreenPosition position, int pointer) {
+    public boolean onTouchUp(fi.tuni.tiko.coordinateSystem.ScreenPosition position, int pointer) {
         return false;
     }
 
@@ -89,8 +89,8 @@ public class WaveClearedPopOutMenu extends HudSprite implements TouchListener, P
     }
 
     @Override
-    public Events.Priority getTouchListenerPriority() {
-        return Events.Priority.MEDIUM;
+    public fi.tuni.tiko.eventSystem.Events.Priority getTouchListenerPriority() {
+        return fi.tuni.tiko.eventSystem.Events.Priority.MEDIUM;
     }
 
     @Override

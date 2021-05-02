@@ -2,8 +2,6 @@ package fi.tuni.tiko.coordinateSystem;
 
 import com.badlogic.gdx.math.Vector2;
 
-import fi.tuni.tiko.utilities.NextButtonPosition;
-
 /**
  * Coordinate system for all hud and menu elements
  * Units arbitrarily chosen to be used for all menus

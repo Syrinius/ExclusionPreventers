@@ -3,16 +3,15 @@ package fi.tuni.tiko.hud;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import fi.tuni.tiko.GameLogic;
+import fi.tuni.tiko.eventSystem.Events;
+import fi.tuni.tiko.utilities.NextButtonPosition;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.coordinateSystem.ScreenPosition;
-import fi.tuni.tiko.eventSystem.Events;
+import fi.tuni.tiko.GameLogic;
 import fi.tuni.tiko.eventSystem.TouchListener;
-import fi.tuni.tiko.gameObject.tower.EmptyTower;
 import fi.tuni.tiko.gameObject.tower.TowerData;
 import fi.tuni.tiko.gameObject.tower.TowerLocation;
 import fi.tuni.tiko.utilities.Action;
-import fi.tuni.tiko.utilities.NextButtonPosition;
 
 public class TowerImprovementPopOutMenu extends HudSprite implements TouchListener, PopOut {
 
@@ -28,7 +27,7 @@ public class TowerImprovementPopOutMenu extends HudSprite implements TouchListen
     private final Button removeWorkerButton;
     private final GlyphRenderer workerRenderer;
 
-    public static TowerImprovementPopOutMenu GetInstance(HudElementManager manager, MenuPosition position, final TowerLocation location) {
+    public static TowerImprovementPopOutMenu GetInstance(HudElementManager manager, MenuPosition position, final fi.tuni.tiko.gameObject.tower.TowerLocation location) {
         TowerImprovementPopOutMenu toReturn = new TowerImprovementPopOutMenu(manager, position, location);
         manager.AddHudElement(toReturn);
         manager.SetPopOut(toReturn);
@@ -39,7 +38,7 @@ public class TowerImprovementPopOutMenu extends HudSprite implements TouchListen
         super(backgroundTexture, towerPosition, BACKGROUND_SIZE);
         this.manager = manager;
 
-        Action disposer = new Action() {
+        fi.tuni.tiko.utilities.Action disposer = new fi.tuni.tiko.utilities.Action() {
             @Override
             public void run() {
                 manager.SetPopOut(null);
@@ -60,7 +59,7 @@ public class TowerImprovementPopOutMenu extends HudSprite implements TouchListen
         removeButton = new RemoveTowerButton(location, towerPosition, 25, disposer);
         towerPosition = NextButtonPosition.nextTowerPosition(towerPosition, -30, -40);
 
-        removeWorkerButton = new Button(minusTexture, towerPosition, 20, new Action() {
+        removeWorkerButton = new Button(minusTexture, towerPosition, 20, new fi.tuni.tiko.utilities.Action() {
             @Override
             public void run() {
                 if (location.getWorkers() > 0) {
@@ -80,7 +79,7 @@ public class TowerImprovementPopOutMenu extends HudSprite implements TouchListen
                 }
             }
         });
-        towerPosition = NextButtonPosition.nextTowerPosition(towerPosition, -43, -6);
+        towerPosition = fi.tuni.tiko.utilities.NextButtonPosition.nextTowerPosition(towerPosition, -43, -6);
 
         workerRenderer = new GlyphRenderer(towerPosition, 0.5f, GlyphRenderer.Type.WORKERS, location.getWorkers());
 
@@ -117,14 +116,14 @@ public class TowerImprovementPopOutMenu extends HudSprite implements TouchListen
     }
 
     @Override
-    public Events.Priority getTouchListenerPriority() {
+    public fi.tuni.tiko.eventSystem.Events.Priority getTouchListenerPriority() {
         return Events.Priority.MEDIUM;
     }
 
     @Override
     public void dispose() {
         manager.RemoveHudElement(this);
-        Events.RemoveListener(this);
+        fi.tuni.tiko.eventSystem.Events.RemoveListener(this);
         upgradeButton.dispose();
         removeButton.dispose();
         addWorkerButton.dispose();

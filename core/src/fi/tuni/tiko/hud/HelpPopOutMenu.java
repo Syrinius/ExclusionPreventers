@@ -3,14 +3,14 @@ package fi.tuni.tiko.hud;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import fi.tuni.tiko.eventSystem.Events;
+import fi.tuni.tiko.sceneSystem.HelpScene;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.coordinateSystem.ScreenPosition;
-import fi.tuni.tiko.eventSystem.Events;
 import fi.tuni.tiko.eventSystem.TouchListener;
-import fi.tuni.tiko.sceneSystem.HelpScene;
 import fi.tuni.tiko.utilities.Action;
 
-public class HelpPopOutMenu extends HudSprite implements TouchListener, PopOut{
+public class HelpPopOutMenu extends HudSprite implements TouchListener, PopOut {
 
     private static final Texture backgroundTexture = new Texture("menu/help_background.png");
     private static final Texture backTexture = new Texture("menu/back.png");
@@ -37,14 +37,14 @@ public class HelpPopOutMenu extends HudSprite implements TouchListener, PopOut{
         this.manager = manager;
         helpSprite = new HudSprite(HelpScene.getPage(page), MenuPosition.CENTER, 250);
 
-        backButton = new Button(backTexture, new MenuPosition(200, 20), 30, new Action() {
+        backButton = new Button(backTexture, new MenuPosition(200, 20), 30, new fi.tuni.tiko.utilities.Action() {
             @Override
             public void run() {
                 manager.SetPopOut(null);
             }
         }, Events.Priority.HIGH);
 
-        leftButton = new Button(leftTexture, new MenuPosition(100, 20), 20, new Action() {
+        leftButton = new Button(leftTexture, new MenuPosition(100, 20), 20, new fi.tuni.tiko.utilities.Action() {
             @Override
             public void run() {
                 if (page != 0) helpSprite.setTexture(HelpScene.getPage(--page));
@@ -54,7 +54,7 @@ public class HelpPopOutMenu extends HudSprite implements TouchListener, PopOut{
         rightButton = new Button(rightTexture, new MenuPosition(300, 20), 20, new Action() {
             @Override
             public void run() {
-                if (page != HelpScene.getHelpImagesLastIndex()) helpSprite.setTexture(HelpScene.getPage(++page));
+                if (page != HelpScene.getHelpImagesLastIndex()) helpSprite.setTexture(fi.tuni.tiko.sceneSystem.HelpScene.getPage(++page));
             }
         }, Events.Priority.HIGH);
     }
@@ -75,7 +75,7 @@ public class HelpPopOutMenu extends HudSprite implements TouchListener, PopOut{
     }
 
     @Override
-    public Events.Priority getTouchListenerPriority() {
+    public fi.tuni.tiko.eventSystem.Events.Priority getTouchListenerPriority() {
         return Events.Priority.MEDIUM;
     }
 
@@ -91,7 +91,7 @@ public class HelpPopOutMenu extends HudSprite implements TouchListener, PopOut{
     @Override
     public void dispose() {
         manager.RemoveHudElement(this);
-        Events.RemoveListener(this);
+        fi.tuni.tiko.eventSystem.Events.RemoveListener(this);
         backButton.dispose();
         leftButton.dispose();
         rightButton.dispose();

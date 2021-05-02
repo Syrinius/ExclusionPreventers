@@ -2,18 +2,18 @@ package fi.tuni.tiko;
 
 import java.util.ArrayList;
 
+import fi.tuni.tiko.sceneSystem.SceneManager;
 import fi.tuni.tiko.coordinateSystem.MapPosition;
-import fi.tuni.tiko.eventSystem.Events;
 import fi.tuni.tiko.map.MapManager;
 import fi.tuni.tiko.sceneSystem.FinalScene;
 import fi.tuni.tiko.sceneSystem.GameOverScene;
-import fi.tuni.tiko.sceneSystem.GameScene;
 import fi.tuni.tiko.sceneSystem.GameWinScene;
 import fi.tuni.tiko.sceneSystem.HelpScene;
+import fi.tuni.tiko.eventSystem.Events;
+import fi.tuni.tiko.sceneSystem.GameScene;
 import fi.tuni.tiko.sceneSystem.MainMenu;
 import fi.tuni.tiko.sceneSystem.MapLoadingScreen;
 import fi.tuni.tiko.sceneSystem.MapSelectionMenu;
-import fi.tuni.tiko.sceneSystem.SceneManager;
 import fi.tuni.tiko.sceneSystem.SettingScene;
 import fi.tuni.tiko.utilities.Action;
 
@@ -178,7 +178,7 @@ public class GameLogic {
                 break;
             case MAP_LOADING_SCREEN:
                 SceneManager.SetActiveScene(new MapLoadingScreen());
-                final GameScene scene = new GameScene();
+                final fi.tuni.tiko.sceneSystem.GameScene scene = new GameScene();
                 MapManager.getSelectedMap().LoadMap(scene, new Action() {
                     @Override
                     public void run() {
@@ -203,7 +203,7 @@ public class GameLogic {
                 }
                 break;
             case HELP_SCREEN:
-                SceneManager.SetActiveScene(new HelpScene());
+                fi.tuni.tiko.sceneSystem.SceneManager.SetActiveScene(new HelpScene());
                 break;
         }
     }

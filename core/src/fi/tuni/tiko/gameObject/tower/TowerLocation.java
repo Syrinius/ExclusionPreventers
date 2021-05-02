@@ -25,7 +25,7 @@ import fi.tuni.tiko.utilities.FancyMath;
 public class TowerLocation extends GameObjectSprite implements TouchListener {
 
     private static final Texture placeholderTexture = new Texture("towers/empty_tower.png");
-    private Tower tower;
+    private fi.tuni.tiko.gameObject.tower.Tower tower;
     public MapPosition[] room  = new MapPosition[4];
     private int studentsParticipated = 0;
     private TowerData towerData;
@@ -49,7 +49,7 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
 
     public TowerLocation(MapPosition position, Map map) {
         super(placeholderTexture, position, map);
-        setTower(EmptyTower.getInstance(), 0, true);
+        setTower(fi.tuni.tiko.gameObject.tower.EmptyTower.getInstance(), 0, true);
         Events.AddListener(this);
         createRoom(position);
     }
@@ -72,11 +72,11 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
         return towerData.level;
     }
 
-    public Tower getTower() {
+    public fi.tuni.tiko.gameObject.tower.Tower getTower() {
         return tower;
     }
 
-    public void setTower(Tower toSet, boolean flushData) {
+    public void setTower(fi.tuni.tiko.gameObject.tower.Tower toSet, boolean flushData) {
         setTower(toSet, 1, flushData);
     }
 

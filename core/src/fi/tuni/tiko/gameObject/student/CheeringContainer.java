@@ -1,7 +1,5 @@
 package fi.tuni.tiko.gameObject.student;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 import fi.tuni.tiko.gameObject.GameObjectSprite;
 import fi.tuni.tiko.map.Map;

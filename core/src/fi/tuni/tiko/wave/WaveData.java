@@ -9,7 +9,7 @@ import fi.tuni.tiko.gameObject.student.StudentType;
 
 public class WaveData implements Json.Serializable {
 
-    public HashMap<StudentType, StudentData> students;
+    public HashMap<fi.tuni.tiko.gameObject.student.StudentType, StudentData> students;
     public int worker_reward = 0;
     public int fund_reward = 0;
 

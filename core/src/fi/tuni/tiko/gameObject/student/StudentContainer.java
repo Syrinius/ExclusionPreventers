@@ -11,6 +11,10 @@ import fi.tuni.tiko.utilities.FancyMath;
 import fi.tuni.tiko.gameObject.GameObjectSprite;
 import fi.tuni.tiko.gameObject.tower.TowerLocation;
 
+/**
+ * All students are instances of this class and hold a reference to static implementation of the specific kind of student it is
+ * Handles all the functionalities of students moving on the map
+ */
 public class StudentContainer extends GameObjectSprite {
 
     private Student student;
@@ -40,6 +44,12 @@ public class StudentContainer extends GameObjectSprite {
         return TYPE.STUDENT;
     }
 
+    /**
+     * Handles movement of the student through a given path
+     * Uses lerp between chackpoints with currently available move distance as alpha, until all movement in current tick has been consumed
+     * @param deltaTime time since last tick. Used to ensure consistent pace of movement
+     * @param revalidate if true will tell towers to re-check for targets
+     */
     @Override
     public void onTick(float deltaTime, boolean revalidate) {
         if(!isValid()) return;
@@ -76,6 +86,10 @@ public class StudentContainer extends GameObjectSprite {
         }
     }
 
+    /**
+     * Handles adding of particiaption when the student has been affected by a tower
+     * @param tower the tower that is affecting the student, used to get the appropriate participation value
+     */
     public void addParticipation(TowerLocation tower) {
         if(!isValid()) return;
         float toAdd = tower.getParticipation();

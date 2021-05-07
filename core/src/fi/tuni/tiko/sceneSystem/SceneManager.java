@@ -2,7 +2,7 @@ package fi.tuni.tiko.sceneSystem;
 
 /**
  * Handles changing between scenes, such as between different menus
- * Each screen should have it's own specific class
+ * Each screen should have its own specific class
  */
 public class SceneManager {
 
@@ -12,7 +12,6 @@ public class SceneManager {
         if (activeScene == scene) return;
         if (activeScene != null) activeScene.dispose();
         activeScene = scene;
-
     }
 
     public static Scene GetActiveScene() {

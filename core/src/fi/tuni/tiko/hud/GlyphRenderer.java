@@ -8,6 +8,9 @@ import com.badlogic.gdx.utils.Array;
 import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.utilities.FancyMath;
 
+/**
+ * A class for drawing numbers displaying ingame resources
+ */
 public class GlyphRenderer implements HudElement {
 
     public enum Type { FUNDS, LIVES, WORKERS, SCORE, PLAIN }
@@ -34,6 +37,11 @@ public class GlyphRenderer implements HudElement {
         this.value = Math.abs(value);
     }
 
+    /**
+     * First part is drawing the glyph representing the type of resource, if any
+     * Second part is drawing each individual digit of the number
+     * @param batch the spritebatch
+     */
     @Override
     public void render(SpriteBatch batch) {
         float positionX = position.x;

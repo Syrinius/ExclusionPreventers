@@ -13,6 +13,11 @@ import fi.tuni.tiko.gameObject.tower.TowerData;
 import fi.tuni.tiko.gameObject.tower.TowerLocation;
 import fi.tuni.tiko.utilities.Action;
 
+/**
+ * The ingame menu for upgrading or removing a tower
+ * Opened through player input by touching a TowerLocation
+ * Instanciates all the lement necessary for that menu
+ */
 public class TowerImprovementPopOutMenu extends HudSprite implements TouchListener, PopOut {
 
     private static final Texture backgroundTexture = new Texture("towers/tower_improvement_background.png");

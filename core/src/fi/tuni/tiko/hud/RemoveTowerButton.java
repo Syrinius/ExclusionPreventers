@@ -7,6 +7,9 @@ import fi.tuni.tiko.GameLogic;
 import fi.tuni.tiko.gameObject.tower.TowerLocation;
 import fi.tuni.tiko.utilities.Action;
 
+/**
+ * Adds the functionalities necessary for removing towers to the tower button
+ */
 public class RemoveTowerButton extends TowerButton {
 
     public RemoveTowerButton(TowerLocation location, MenuPosition position, float size, Action toExecute) {

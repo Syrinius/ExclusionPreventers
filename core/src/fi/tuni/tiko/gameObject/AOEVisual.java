@@ -8,6 +8,9 @@ import fi.tuni.tiko.coordinateSystem.MapPosition;
 import fi.tuni.tiko.map.Map;
 import fi.tuni.tiko.utilities.FancyMath;
 
+/**
+ * A visual effect for the music tower, has no other functionality
+ */
 public class AOEVisual extends GameObjectSprite {
     private float animationTime = 0;
     private float lifetime = 0.5f;

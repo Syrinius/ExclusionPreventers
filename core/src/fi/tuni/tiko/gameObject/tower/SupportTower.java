@@ -19,6 +19,9 @@ public class SupportTower extends Tower {
     private static final float[] COOLDOWN = {6, 5, 4};
     private static final Sound cookSound = Gdx.audio.newSound(Gdx.files.internal("sounds/cook_sound.mp3"));
 
+    /**
+     * RANGE, PARTICIPATION, COST
+     */
     public SupportTower() {
         super(new float[]{7, 8, 9}, new float[]{2, 3, 4}, new int[]{40, 70, 100});
     }

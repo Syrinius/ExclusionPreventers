@@ -4,6 +4,10 @@ import fi.tuni.tiko.coordinateSystem.MapPosition;
 import fi.tuni.tiko.gameObject.GameObjectSprite;
 import fi.tuni.tiko.map.Map;
 
+/**
+ * Visual representation of cheering students around the activities
+ * Has no other functionality
+ */
 public class CheeringContainer extends GameObjectSprite {
     private Student student;
     private float animationTime = 0;

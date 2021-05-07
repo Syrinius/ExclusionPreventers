@@ -5,6 +5,10 @@ import java.util.Set;
 
 import fi.tuni.tiko.gameObject.student.StudentContainer;
 
+/**
+ * Contains all the non-static variables that all instances of towers must have
+ * Avoids redundantly writing individual variables as arguments
+ */
 public class TowerData {
 
     public int level = 1;

@@ -20,6 +20,9 @@ public class AtkTower extends Tower {
     private static final Sound atkSound = Gdx.audio.newSound(Gdx.files.internal("sounds/computer_sound.mp3"));
 
 
+    /**
+     * RANGE, PARTICIPATION, COST
+     */
     public AtkTower() {
         super(new float[]{12, 15, 20}, new float[]{10, 13, 16}, new int[]{60, 90, 140});
     }

@@ -8,6 +8,10 @@ import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.gameObject.student.StudentType;
 import fi.tuni.tiko.gameObject.tower.TowerType;
 
+/**
+ * A class for displaying info about each type of student present in the next wave on WaveClearedPopOutMenu
+ * Instanciates all the elements needed for displaying that info
+ */
 public class StudentInfo implements HudElement {
 
     private final HudSprite student;

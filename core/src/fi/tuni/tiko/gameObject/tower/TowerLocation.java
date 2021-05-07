@@ -21,6 +21,9 @@ import fi.tuni.tiko.utilities.FancyMath;
  * Listable positions where towers can be built on the map
  * OnTouch functionalities of towers
  * Calls the implementation classes of specific towers for Ontick functionalities
+ * Handles ingame resource manipulation related to the tower
+ * Each tower will consist of an instance of this class and a reference to static implementation of a class specific for the type of tower in the location
+ * This is to only instanciate the features of the tower that need that
  */
 public class TowerLocation extends GameObjectSprite implements TouchListener {
 
@@ -90,6 +93,9 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
         setTexture(tower.getTexture(towerData));
     }
 
+    /**
+     * @return a random MapPosition in the room in which the towerlocation that particiapted that student is
+     */
     public MapPosition getCheeringSpawnPosition() {
         MapPosition position = new MapPosition(0, 0);
         do {
@@ -99,6 +105,11 @@ public class TowerLocation extends GameObjectSprite implements TouchListener {
         return position;
     }
 
+    /**
+     * Creates boundaries within which cheering students can be placed
+     * Called once upon creation of the TowerLocation
+     * @param position Center of the tower
+     */
     public void createRoom(MapPosition position) {
         MapPosition currentPosition = position.clone();
         do {

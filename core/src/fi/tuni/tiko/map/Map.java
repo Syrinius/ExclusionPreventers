@@ -57,6 +57,7 @@ public class Map extends Timer.Task implements GameLogicListener {
     public fi.tuni.tiko.gameObject.GameObjectManager getGameObjectManager() {
         return gameObjectManager;
     }
+
     public HudElementManager getHudElementManager() {
         return scene.hudElementManager;
     }
@@ -80,6 +81,11 @@ public class Map extends Timer.Task implements GameLogicListener {
         GameLogic.RemoveListener(this);
     }
 
+    /**
+     * Uses a timer so other code can finish before game freezes during map load
+     * @param scene current instance of GameScene
+     * @param mapLoaded Action to be performed after map is succesfully loaded
+     */
     public void LoadMap(GameScene scene, Action mapLoaded) {
         this.scene = scene;
         toExecute = mapLoaded;
@@ -94,6 +100,11 @@ public class Map extends Timer.Task implements GameLogicListener {
         gameObjectManager.render();
     }
 
+    /**
+     * only the one using MapPosition is accessible outside to only allow correct usage
+     * @param at the tile being checked
+     * @return Returns the type of the tile as given as property on the tileset as a String
+     */
     public String getTileType(MapPosition at) {
         return getTileType((int)at.x, (int)at.y);
     }
@@ -107,6 +118,14 @@ public class Map extends Timer.Task implements GameLogicListener {
         return (String)props.get("type");
     }
 
+    /**
+     * Creates new paths by calling itself at crossroads
+     * Creates all the checkpoints for the path from start tile to end tile
+     * Generates all the possible paths in the currently loading map
+     * @param path The path being saved as an instance of Path class
+     * @param currentPosition current tile the function is iterating through
+     * @param type property of the tile being checked, determines how the function behaves
+     */
     private void generatePaths(fi.tuni.tiko.map.Path path, MapPosition currentPosition, String type) {
         paths.add(path);
         MapPosition aheadPosition;
@@ -146,6 +165,12 @@ public class Map extends Timer.Task implements GameLogicListener {
         } while (!end);
     }
 
+    /**
+     * helper function for generating paths
+     * @param direction Direction gives as a string
+     * @param position the position from which the next position is returned
+     * @return returns the next position in the give direction from given tile as MapPosition
+     */
     private static MapPosition nextPosition(String direction, MapPosition position) {
         switch (direction) {
             case "up":
@@ -160,6 +185,12 @@ public class Map extends Timer.Task implements GameLogicListener {
         return null;
     }
 
+    /**
+     * Most of the actions needed to load the map happen here
+     * Calls to initialize all the other required classes for a map
+     * Iterates through all the tiles on a map to find tower locations and starting tile for paths
+     * Sets ingame resources to correct starting amounts
+     */
     @Override
     public void run() {
         if (firstTimeCreated) {

@@ -19,7 +19,9 @@ public class BookTower extends Tower {
     private static final float[] COOLDOWN = {3.5f, 3, 2.5f};
     private static final Sound bookSound = Gdx.audio.newSound(Gdx.files.internal("sounds/book_sound.mp3"));
 
-
+    /**
+     * RANGE, PARTICIPATION, COST
+     */
     public BookTower() {
         super(new float[]{6, 7, 8}, new float[]{3, 4, 5}, new int[]{25, 50, 80});
     }

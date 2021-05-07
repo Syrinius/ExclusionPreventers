@@ -19,7 +19,9 @@ public class SportTower extends Tower {
     private static final float[] COOLDOWN = {4, 3, 2};
     private static final Sound sportSound = Gdx.audio.newSound(Gdx.files.internal("sounds/sport_sound.mp3"));
 
-
+    /**
+     * RANGE, PARTICIPATION, COST
+     */
     public SportTower() {
         super(new float[]{5, 6, 7}, new float[]{3, 4, 5}, new int[]{25, 45, 100});
     }

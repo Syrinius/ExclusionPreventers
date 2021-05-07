@@ -11,6 +11,8 @@ import fi.tuni.tiko.utilities.Action;
 /**
  * Generic implementation of button to add to various menus
  * Menus should create instances of this class
+ * Extends Hudsprite for the visual aspects of a button
+ * Implements touchlistener for user input functionality
  */
 public class Button extends HudSprite implements TouchListener {
 

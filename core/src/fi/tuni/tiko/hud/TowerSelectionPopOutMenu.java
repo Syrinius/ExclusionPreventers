@@ -15,6 +15,11 @@ import fi.tuni.tiko.gameObject.tower.TowerLocation;
 import fi.tuni.tiko.utilities.Action;
 import fi.tuni.tiko.utilities.NextButtonPosition;
 
+/**
+ * The ingame menu for building a tower
+ * Opened through player input by touching an empty TowerLocation
+ * Instanciates all the elements necessary for that menu
+ */
 public class TowerSelectionPopOutMenu extends HudSprite implements TouchListener, PopOut {
 
 

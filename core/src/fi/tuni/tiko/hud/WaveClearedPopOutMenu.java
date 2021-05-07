@@ -13,6 +13,11 @@ import fi.tuni.tiko.utilities.NextButtonPosition;
 import fi.tuni.tiko.wave.StudentData;
 import fi.tuni.tiko.wave.WaveData;
 
+/**
+ * The ingame menu for displaying information about next wave after each wave of students
+ * Automatically opens after each wave ends if the game didn't end
+ * Instanciates all the elements necessary for that menu
+ */
 public class WaveClearedPopOutMenu extends HudSprite implements TouchListener, PopOut {
     private static final Texture backgroundTexture = new Texture("menu/wave_cleared_background.png");
     private static final Texture okTexture = new Texture("menu/ok.png");

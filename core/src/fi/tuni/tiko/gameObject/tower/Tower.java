@@ -5,7 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import fi.tuni.tiko.gameObject.student.StudentContainer;
 
 /**
- * Specific kinds of towers should all have their own classes that implement this
+ * Specific kinds of towers should all have their own classes that extend this
+ * Includes the basic functionalities that all towers share
  */
 public abstract class Tower {
 

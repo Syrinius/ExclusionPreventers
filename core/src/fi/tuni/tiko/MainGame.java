@@ -11,6 +11,10 @@ import fi.tuni.tiko.coordinateSystem.MenuPosition;
 import fi.tuni.tiko.coordinateSystem.ScreenPosition;
 import fi.tuni.tiko.sceneSystem.SceneManager;
 
+/**
+ * Handles debug text rendering
+ * Purposedly kept clean as most function fit better in other classes
+ */
 public class MainGame extends ApplicationAdapter {
 
 	BitmapFont font;
@@ -23,6 +27,10 @@ public class MainGame extends ApplicationAdapter {
 		return instance;
 	}
 
+	/**
+	 * @param width new width
+	 * @param height new height
+	 */
 	@Override
 	public void resize(int width, int height) {
 		super.resize(width, height);
@@ -30,6 +38,11 @@ public class MainGame extends ApplicationAdapter {
 		ScreenPosition.HEIGHT = height;
 	}
 
+	/**
+	 * Called once when the game starts
+	 * everything except call to GameLogic is just for debug text
+	 * GameLogic handles game state changes
+	 */
 	@Override
 	public void create() {
 		instance = this;
@@ -40,6 +53,10 @@ public class MainGame extends ApplicationAdapter {
 		fi.tuni.tiko.GameLogic.SetState(GameLogic.GameState.SPLASH_SCREEN);
 	}
 
+	/**
+	 * Everything here except the call to scenemanager exists just for debug text
+	 * SceneManager handles distributing render calls forward
+	 */
 	@Override
 	public void render() {
 		Gdx.gl.glClearColor(0, 0, 0.2f, 1);
@@ -52,6 +69,9 @@ public class MainGame extends ApplicationAdapter {
 		debugBatch.end();
 	}
 
+	/**
+	 * @param text text to be rendered on debugrenderer
+	 */
 	public static void SetDebugText(String text){
 		debugText = text;
 	}

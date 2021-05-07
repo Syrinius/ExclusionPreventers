@@ -19,7 +19,9 @@ public class MusicTower extends Tower {
     private static final float[] COOLDOWN = {12, 10, 8};
     private static final Sound musicSound = Gdx.audio.newSound(Gdx.files.internal("sounds/music_sound.mp3"));
 
-
+    /**
+     * RANGE, PARTICIPATION, COST
+     */
     public MusicTower() {
         super(new float[]{6, 7, 8}, new float[]{3, 4, 5}, new int[]{40, 60, 100});
     }

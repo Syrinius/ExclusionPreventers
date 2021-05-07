@@ -9,7 +9,8 @@ import fi.tuni.tiko.hud.HudSprite;
 import fi.tuni.tiko.utilities.Action;
 
 /**
- * Specific implementation of the map selection screen and all the elements it contains
+ * Deprecated scene
+ * Not yet removed incase it ends up being implemented after all
  */
 public class SettingScene extends Scene {
 

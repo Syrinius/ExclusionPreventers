@@ -12,6 +12,9 @@ import fi.tuni.tiko.gameObject.tower.Tower;
 import fi.tuni.tiko.gameObject.tower.TowerLocation;
 import fi.tuni.tiko.utilities.Action;
 
+/**
+ * Adds the functionalities to the generic button, necessary for tower adding and upgrading buttons
+ */
 public class TowerButton extends Button {
 
 

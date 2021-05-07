@@ -1,5 +1,8 @@
 package fi.tuni.tiko.gameObject.tower;
 
+/**
+ * Allows deserialization reference for all tower in one place
+ */
 public enum TowerType {
 
     ATK(AtkTower.getInstance()),

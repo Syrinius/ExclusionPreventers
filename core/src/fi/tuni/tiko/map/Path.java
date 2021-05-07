@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import fi.tuni.tiko.coordinateSystem.MapPosition;
 
+/**
+ * The form which paths that student will walk are saved as
+ */
 public class Path {
 
     public final ArrayList<MapPosition> checkPoints;

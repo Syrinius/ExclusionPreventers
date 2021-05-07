@@ -10,6 +10,7 @@ import fi.tuni.tiko.coordinateSystem.MenuPosition;
 /**
  * Dispatches render events to HudElements
  * All HudElements should subscribe to hudElements list
+ * As with other observer patterns the lock exists to avoid concurrent modification exception
  */
 public class HudElementManager {
 
@@ -23,7 +24,6 @@ public class HudElementManager {
         if (currentPopOut != null) currentPopOut.close();
         currentPopOut = toSet;
     }
-
     SpriteBatch batch;
     OrthographicCamera camera;
 
@@ -72,7 +72,6 @@ public class HudElementManager {
             hudElements.removeAll(delayedRemove);
             delayedRemove.clear();
         }
-
         batch.end();
     }
 

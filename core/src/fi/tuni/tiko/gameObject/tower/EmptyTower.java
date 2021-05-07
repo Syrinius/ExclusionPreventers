@@ -12,6 +12,9 @@ public class EmptyTower extends Tower {
     private static EmptyTower instance;
     private static final Texture texture = new Texture("towers/empty_tower.png");
 
+    /**
+     * RANGE, PARTICIPATION, COST
+     */
     public EmptyTower() {
         super(new float[]{0}, new float[]{0}, new int[]{0});
     }

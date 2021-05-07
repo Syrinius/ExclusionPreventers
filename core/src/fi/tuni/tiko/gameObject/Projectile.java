@@ -8,6 +8,10 @@ import fi.tuni.tiko.gameObject.student.StudentContainer;
 import fi.tuni.tiko.gameObject.tower.TowerLocation;
 import fi.tuni.tiko.map.Map;
 
+/**
+ * Projectiles always have a target student that they move towards
+ * Handles checking if it hit target and calls the tower the projectile came from, to handle adding participation to the student
+ */
 public class Projectile extends GameObjectSprite {
 
     private final fi.tuni.tiko.gameObject.tower.TowerLocation tower;

@@ -20,12 +20,15 @@ public class MapSelectionMenu extends Scene {
     HudSprite background;
     Button backButton;
     Button map1Button, map2Button, map3Button, map4Button, map5Button, map6Button, map7Button, map8Button, map9Button, map10Button;
-    MenuPosition mapButtonPosition = new MenuPosition(60, 150);
-    float gapX = 70;
-    float gapY = 0;
 
-
+    /**
+     * Adds all elements to the scene
+     * Could be made into for loop
+     */
     public MapSelectionMenu() {
+        MenuPosition mapButtonPosition = new MenuPosition(60, 150);
+        float gapX = 70;
+        float gapY = 0;
         background = new HudSprite(menuBackground, MenuPosition.CENTER, MenuPosition.WIDTH);
         hudElementManager.AddHudElement(background);
 

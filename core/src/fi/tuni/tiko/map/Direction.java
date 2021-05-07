@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Helper class for generating paths
+ */
 class Direction {
 
     private static final java.util.Map<String, List<String>> directions = new HashMap<>();

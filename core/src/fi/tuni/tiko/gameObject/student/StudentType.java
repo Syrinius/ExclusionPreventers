@@ -1,5 +1,8 @@
 package fi.tuni.tiko.gameObject.student;
 
+/**
+ * Allows deserialization reference for all students in one place
+ */
 public enum StudentType {
 
     STUDENT1(Student1.getInstance()),

@@ -17,6 +17,9 @@ public class PromoTower extends Tower {
     private static final float[] PROMO_COOLDOWN = {0.3f, 0.25f, 0.2f};
     private static final int SPLASH_RANGE = 2;
 
+    /**
+     * RANGE, PARTICIPATION, COST
+     */
     public PromoTower() {
         super(new float[]{18, 24, 40}, new float[]{1, 1, 1}, new int[]{40, 60, 100});
     }

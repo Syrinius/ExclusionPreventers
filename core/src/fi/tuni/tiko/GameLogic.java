@@ -18,15 +18,15 @@ import fi.tuni.tiko.sceneSystem.SettingScene;
 import fi.tuni.tiko.utilities.Action;
 
 /**
- * Class for handling changes of game state
- * Dispatcher of StateChanged events to classes that need to listen to that
- * All elements that need to listen to game state changes should subscribe to gameLogicListeners list
+ * Class for handling changes of game state and ingame resources
+ * Dispatcher of events to classes that need to listen to that
+ * All elements that need to listen to game state or resource changes should subscribe to gameLogicListeners list
  */
 public class GameLogic {
 
     /**
      * Enum to trigger correct events based on what state the game is currently in
-     * for instance clicking the settings button in main menu will change change the game state to SETTINGS_SCREEN
+     * for instance clicking the play button in main menu will change change the game state to MAP_SELECTION
      * and will trigger all the events needed for the settings screen
      */
     public enum GameState {
@@ -34,6 +34,9 @@ public class GameLogic {
         MAP_LOADING_SCREEN, GAME_SCREEN, LOSE_SCREEN, WIN_SCREEN, HELP_SCREEN
     }
 
+    /**
+     * Enum for triggering correct events based on language setting
+     */
     public enum Language {
         ENGLISH, FINNISH
     }
@@ -68,11 +71,16 @@ public class GameLogic {
         currentSpeedMultiplier = value;
     }
 
-
     public static int getScore() {
         return score;
     }
 
+    /**
+     * Calls update listeners to have listeners from delayed add included
+     * locks to have attempted changes to the iterated list be added to the delayed change lists instead
+     * dispatches the event to all listeners
+     * @param score score to be set
+     */
     public static void setScore(int score) {
         updateListeners();
         GameLogic.score = score;
@@ -96,6 +104,13 @@ public class GameLogic {
         setLives(lives + toAdd);
     }
 
+    /**
+     * Calls update listeners to have listeners from delayed add included
+     * locks to have attempted changes to the iterated list be added to the delayed change lists instead
+     * dispatches the event to all listeners
+     * if lives reach 0 calls SetState to end the game
+     * @param lives lives to be set
+     */
     public static void setLives(int lives) {
         updateListeners();
         GameLogic.lives = lives;
@@ -116,6 +131,12 @@ public class GameLogic {
         setWorkers(workers + toAdd);
     }
 
+    /**
+     * Calls update listeners to have listeners from delayed add included
+     * locks to have attempted changes to the iterated list be added to the delayed change lists instead
+     * dispatches the event to all listeners
+     * @param workers workers to be set
+     */
     public static void setWorkers(int workers) {
         updateListeners();
         GameLogic.workers = workers;
@@ -135,6 +156,12 @@ public class GameLogic {
         setFunds(funds + toAdd);
     }
 
+    /**
+     * Calls update listeners to have listeners from delayed add included
+     * locks to have attempted changes to the iterated list be added to the delayed change lists instead
+     * dispatches the event to all listeners
+     * @param funds funds to be set
+     */
     public static void setFunds(int funds) {
         updateListeners();
         GameLogic.funds = funds;
@@ -146,6 +173,9 @@ public class GameLogic {
         lock = false;
     }
 
+    /**
+     * Exists so that cahnges to the listeners list attempted while it's being iterated, will be done later instead
+     */
     private static void updateListeners() {
         if (!toRemove.isEmpty()) {
             gameLogicListeners.removeAll(toRemove);
@@ -157,6 +187,11 @@ public class GameLogic {
         }
     }
 
+    /**
+     * the main function for moving the game from one state to another
+     * Initializes necessary things and calls SceneManager to have currently displayed Scene changes appropriately for the state change
+     * @param state gamestate to be set
+     */
     public static void SetState(GameState state){
         gameState = state;
         updateListeners();
@@ -169,9 +204,6 @@ public class GameLogic {
                 break;
             case MAIN_MENU:
                 SceneManager.SetActiveScene(new MainMenu());
-                break;
-            case SETTINGS_SCREEN:
-                SceneManager.SetActiveScene(new SettingScene());
                 break;
             case MAP_SELECTION_SCREEN:
                 SceneManager.SetActiveScene(new MapSelectionMenu());
@@ -212,16 +244,29 @@ public class GameLogic {
         return gameState;
     }
 
+    /**
+     * exists to ensure the listeners list doesn't get modified while it's being iterated
+     * @param listener listener to be added
+     */
     public static void AddListener(GameLogicListener listener){
         if (lock) toAdd.add(listener);
         else gameLogicListeners.add(listener);
     }
 
+    /**
+     * exists to ensure the listeners list doesn't get modified while it's being iterated
+     * @param listener listener to be removed
+     */
     public static void RemoveListener(GameLogicListener listener){
         if (lock) toRemove.add(listener);
         else gameLogicListeners.remove(listener);
     }
 
+    /**
+     * Handled pausing of the game
+     * locks to have attempted changes to the iterated list be added to the delayed change lists instead
+     * dispatches the event to all listeners
+     */
     public static void Pause() {
         updateListeners();
         if (paused) return;
@@ -234,6 +279,11 @@ public class GameLogic {
         lock = false;
     }
 
+    /**
+     * Handles resuming the game
+     * locks to have attempted changes to the iterated list be added to the delayed change lists instead
+     * dispatches the event to all listeners
+     */
     public static void Resume() {
         updateListeners();
         if (!paused) return;

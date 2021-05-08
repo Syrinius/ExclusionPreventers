@@ -1,0 +1,13 @@
+fi.tuni.exclusionpreventers
+fi.tuni.tiko
+fi.tuni.tiko.coordinateSystem
+fi.tuni.tiko.desktop
+fi.tuni.tiko.eventSystem
+fi.tuni.tiko.gameObject
+fi.tuni.tiko.gameObject.student
+fi.tuni.tiko.gameObject.tower
+fi.tuni.tiko.hud
+fi.tuni.tiko.map
+fi.tuni.tiko.sceneSystem
+fi.tuni.tiko.utilities
+fi.tuni.tiko.wave

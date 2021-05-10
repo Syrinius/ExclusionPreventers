@@ -22,19 +22,20 @@ public class WaveClearedPopOutMenu extends HudSprite implements TouchListener, P
     private static final Texture backgroundTexture = new Texture("menu/wave_cleared_background.png");
     private static final Texture okTexture = new Texture("menu/ok.png");
     private static final float BACKGROUND_SIZE = 150;
+    private final GlyphRenderer waveCounterRenderer;
     private final HudElementManager manager;
     private final fi.tuni.tiko.wave.WaveData data;
     private final Button okButton;
     private final fi.tuni.tiko.hud.StudentInfo[] students;
 
-    public static WaveClearedPopOutMenu GetInstance(HudElementManager manager, fi.tuni.tiko.wave.WaveData data) {
-        WaveClearedPopOutMenu toReturn = new WaveClearedPopOutMenu(manager, data);
+    public static WaveClearedPopOutMenu GetInstance(HudElementManager manager, fi.tuni.tiko.wave.WaveData data, int currentWave) {
+        WaveClearedPopOutMenu toReturn = new WaveClearedPopOutMenu(manager, data, currentWave);
         manager.AddHudElement(toReturn);
         manager.SetPopOut(toReturn);
         return toReturn;
     }
 
-    private WaveClearedPopOutMenu(final HudElementManager manager, WaveData data) {
+    private WaveClearedPopOutMenu(final HudElementManager manager, WaveData data, int currentWave) {
         super(backgroundTexture, new MenuPosition(200, 100), BACKGROUND_SIZE);
         this.manager = manager;
         this.data = data;
@@ -49,12 +50,14 @@ public class WaveClearedPopOutMenu extends HudSprite implements TouchListener, P
             index++;
         }
 
-        okButton = new Button(okTexture, new MenuPosition(200, 50), 30, new Action() {
+        okButton = new Button(okTexture, new MenuPosition(240, 50), 30, new Action() {
             @Override
             public void run() {
                 manager.SetPopOut(null);
             }
         }, Events.Priority.HIGH);
+
+        waveCounterRenderer = new GlyphRenderer(new MenuPosition(190, 27), 0.7f, GlyphRenderer.Type.PLAIN, currentWave + 1);
 
         Events.AddListener(this);
     }
@@ -66,6 +69,7 @@ public class WaveClearedPopOutMenu extends HudSprite implements TouchListener, P
             studentInfo.render(batch);
         }
         okButton.render(batch);
+        waveCounterRenderer.render(batch);
     }
 
     @Override
@@ -73,6 +77,7 @@ public class WaveClearedPopOutMenu extends HudSprite implements TouchListener, P
         manager.RemoveHudElement(this);
         Events.RemoveListener(this);
         okButton.dispose();
+        waveCounterRenderer.dispose();
         for (StudentInfo studentInfo : students) {
             studentInfo.dispose();
         }

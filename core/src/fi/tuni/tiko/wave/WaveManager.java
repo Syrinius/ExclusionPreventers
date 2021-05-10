@@ -11,6 +11,11 @@ import fi.tuni.tiko.gameObject.student.StudentContainer;
 import fi.tuni.tiko.gameObject.student.StudentType;
 import fi.tuni.tiko.map.Map;
 
+/**
+ * Manages the deserialized data for the waves of students, from the json files
+ * Responsible for moving to the next wave after previous one is done and ending the game once last wave is beaten
+ * Also responsible for spawning of the students specified for the wave
+ */
 public class WaveManager implements GameObject {
     private final fi.tuni.tiko.map.Map map;
     private float cooldown = 0;
@@ -51,7 +56,7 @@ public class WaveManager implements GameObject {
         }
         cooldown = 0;
         fi.tuni.tiko.GameLogic.Pause();
-        WaveClearedPopOutMenu.GetInstance(map.getHudElementManager(), wave);
+        WaveClearedPopOutMenu.GetInstance(map.getHudElementManager(), wave, currentWave);
     }
 
     @Override

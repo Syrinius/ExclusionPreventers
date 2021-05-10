@@ -4,6 +4,9 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
 import fi.tuni.tiko.gameObject.tower.TowerType;
 
+/**
+ * Deserialized data from the json files
+ */
 public class StudentData implements Json.Serializable {
 
     public int amount;

@@ -2,6 +2,9 @@ package fi.tuni.tiko.wave;
 
 import com.badlogic.gdx.utils.Array;
 
+/**
+ * Deserialized data from the json files
+ */
 public class MapData {
 
     public Array<WaveData> waves;

@@ -7,6 +7,9 @@ import java.util.HashMap;
 
 import fi.tuni.tiko.gameObject.student.StudentType;
 
+/**
+ * Deserialized data from the json files
+ */
 public class WaveData implements Json.Serializable {
 
     public HashMap<fi.tuni.tiko.gameObject.student.StudentType, StudentData> students;

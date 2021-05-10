@@ -14,15 +14,15 @@ public class MapManager {
 
     static {
         availableMaps.add(new fi.tuni.tiko.map.Map("map1.tmx", "map1.json"));
-        availableMaps.add(new fi.tuni.tiko.map.Map("map2.tmx", "map1.json"));
+        availableMaps.add(new fi.tuni.tiko.map.Map("map2.tmx", "map2.json"));
         availableMaps.add(new fi.tuni.tiko.map.Map("map3.tmx", "map1.json"));
-        availableMaps.add(new fi.tuni.tiko.map.Map("map4.tmx", "map1.json"));
+        availableMaps.add(new fi.tuni.tiko.map.Map("map4.tmx", "map3.json"));
         availableMaps.add(new fi.tuni.tiko.map.Map("map5.tmx", "map1.json"));
-        availableMaps.add(new fi.tuni.tiko.map.Map("map6.tmx", "map1.json"));
+        availableMaps.add(new fi.tuni.tiko.map.Map("map6.tmx", "map3.json"));
         availableMaps.add(new fi.tuni.tiko.map.Map("map7.tmx", "map1.json"));
-        availableMaps.add(new fi.tuni.tiko.map.Map("map8.tmx", "map1.json"));
-        availableMaps.add(new fi.tuni.tiko.map.Map("map9.tmx", "map1.json"));
-        availableMaps.add(new fi.tuni.tiko.map.Map("map10.tmx", "map1.json"));
+        availableMaps.add(new fi.tuni.tiko.map.Map("map8.tmx", "map2.json"));
+        availableMaps.add(new fi.tuni.tiko.map.Map("map9.tmx", "map3.json"));
+        availableMaps.add(new fi.tuni.tiko.map.Map("map10.tmx", "map3.json"));
     }
 
     public static boolean isLastMap() {

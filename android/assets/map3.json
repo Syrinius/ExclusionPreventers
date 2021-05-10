@@ -1,0 +1,183 @@
+{
+  "starting_funds": 80,
+  "starting_lives": 5,
+  "starting_workers": 3,
+  "waves": [
+    {
+      "composition" : {
+        "STUDENT1" : {
+          "amount": 5,
+          "baseCooldown": 2
+        },
+        "STUDENT2" : {
+          "amount": 2,
+          "baseCooldown": 4
+        }
+      },
+      "fund_reward": 25
+    },
+    {
+      "composition" : {
+        "STUDENT1" : {
+          "amount": 3,
+          "baseCooldown": 2,
+          "affinity": "SPORT"
+        },
+        "STUDENT2" : {
+          "amount": 3,
+          "baseCooldown": 3,
+          "resistance": "ATK"
+        },
+        "STUDENT3" : {
+          "amount": 3,
+          "baseCooldown": 4,
+          "affinity": "COOK"
+        }
+      },
+      "fund_reward": 50,
+      "worker_reward": 0
+    },
+    {
+      "composition" : {
+        "STUDENT1" : {
+          "amount": 8,
+          "baseCooldown": 3,
+          "affinity": "PROMO"
+        },
+        "STUDENT2" : {
+          "amount": 2,
+          "baseCooldown": 4,
+          "affinity": "SUPPORT"
+        },
+        "STUDENT3" : {
+          "amount": 4,
+          "baseCooldown": 3,
+          "resistance": "BOOK"
+        }
+      },
+      "fund_reward": 25,
+      "worker_reward": 1
+    },
+    {
+      "composition" : {
+        "STUDENT1" : {
+          "amount": 15,
+          "baseCooldown": 3,
+          "affinity": "MUSIC",
+          "resistance": "SPORT"
+        },
+        "STUDENT2" : {
+          "amount": 1,
+          "baseCooldown": 4
+        }
+      },
+      "fund_reward": 50
+    },
+    {
+      "composition" : {
+        "STUDENT1": {
+          "amount": 8,
+          "baseCooldown": 1,
+          "affinity": "ATK"
+        },
+        "STUDENT3": {
+          "amount": 8,
+          "baseCooldown": 3,
+          "resistance": "SPORT",
+          "affinity": "SUPPORT"
+        }
+      },
+      "fund_reward": 25,
+      "worker_reward": 1
+    },
+    {
+      "composition" : {
+        "STUDENT3" : {
+          "amount": 20,
+          "baseCooldown": 4,
+          "affinity": "SUPPORT"
+        }
+      },
+      "fund_reward": 50
+    },
+    {
+      "composition" : {
+        "STUDENT1" : {
+          "amount": 8,
+          "baseCooldown": 3,
+          "resistance": "MUSIC",
+          "affinity": "SPORT"
+        },
+        "STUDENT2" : {
+          "amount": 8,
+          "baseCooldown": 3,
+          "resistance": "SPORT",
+          "affinity": "PROMO"
+        },
+        "STUDENT3" : {
+          "amount": 8,
+          "baseCooldown": 3,
+          "resistance": "PROMO",
+          "affinity": "MUSIC"
+        }
+      },
+      "fund_reward": 50,
+      "worker_reward": 1
+    },
+    {
+      "composition" : {
+        "STUDENT2" : {
+          "amount": 6,
+          "baseCooldown": 2,
+          "resistance": "SPORT",
+          "affinity": "BOOK"
+        },
+        "STUDENT3" : {
+          "amount": 10,
+          "baseCooldown": 2,
+          "affinity": "ATK"
+        }
+      },
+      "fund_reward": 50
+    },
+    {
+      "composition" : {
+        "STUDENT1" : {
+          "amount": 8,
+          "baseCooldown": 1,
+          "resistance": "SUPPORT"
+        },
+        "STUDENT3" : {
+          "amount": 15,
+          "baseCooldown": 2,
+          "resistance": "ATK",
+          "affinity": "COOK"
+        }
+      },
+      "fund_reward": 50,
+      "worker_reward": 2
+    },
+    {
+      "composition" : {
+        "STUDENT1" : {
+          "amount": 18,
+          "baseCooldown": 2,
+          "resistance": "ATK",
+          "affinity": "COOK"
+        },
+        "STUDENT2" : {
+          "amount": 18,
+          "baseCooldown": 2,
+          "resistance": "COOK",
+          "affinity": "BOOK"
+        },
+        "STUDENT3" : {
+          "amount": 18,
+          "baseCooldown": 2,
+          "resistance": "BOOK",
+          "affinity": "ATK"
+        }
+      }
+    }
+  ]
+}
